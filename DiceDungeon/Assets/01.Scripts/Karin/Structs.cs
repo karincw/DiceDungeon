@@ -7,7 +7,7 @@ namespace Karin
     public struct AttackData
     {
         //누가
-        public GameObject who;
+        public Agent who;
         //어디서
         public Transform where;
         //어디를 바라보고
@@ -24,7 +24,7 @@ namespace Karin
     public struct ShieldData
     {
         //누가
-        public GameObject who;
+        public Agent who;
         //어느정도의 쉴드량을 얻는지
         public int shield;
     }
@@ -33,7 +33,7 @@ namespace Karin
     public struct MoveData
     {
         //누가
-        public GameObject who;
+        public Agent who;
         //어느방향으로
         public Direction direction;
         //얼마나 이동할꺼고
@@ -46,7 +46,7 @@ namespace Karin
     public struct BuffData
     {
         //누가
-        public GameObject who;
+        public Agent who;
         //어떤 버프를
         public buffType buffType;
         ///몇 턴 동안 지속할지 infinite : -1
