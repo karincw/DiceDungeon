@@ -1,36 +1,23 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.EventSystems;
 
 namespace SHY
 {
-    public class BarrelShaker : MonoBehaviour, IDragHandler
+    public class BarrelShaker : MonoBehaviour
     {
-        private enum ShakeType
+        private void Update()
         {
-            TopView,
-            SideView,
-            Self
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Shake();
+            }
         }
 
-        [SerializeField] private ShakeType type;
-
-        private void Start()
+        private void Shake()
         {
-            if (type != ShakeType.Self)
-            Shake();
-        }
+            Sequence seq = DOTween.Sequence();
 
-        public void Shake()
-        {
-            transform.DOMoveX(0.1f, 0.3f);
-
-        }
-
-        public void OnDrag(PointerEventData eventData)
-        {
-            Debug.Log(eventData.position);
-            transform.position = Camera.main.ScreenToWorldPoint(eventData.position);
+            seq.Append(transform.DOShakePosition(1.25f, new Vector3(120, 0), 10, 0, false, false));
         }
     }
 }
