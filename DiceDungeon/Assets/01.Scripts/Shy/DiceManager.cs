@@ -6,7 +6,7 @@ namespace SHY
 {
     public class DiceManager : MonoBehaviour
     {
-        public List<Dice> dices;
+        public List<UIDice> dices;
         [SerializeField] private BarrelShaker shaker;
 
         private void Awake()
@@ -18,7 +18,7 @@ namespace SHY
         {
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                shaker.Shake();
+                Roll();
             }
         }
 
@@ -26,20 +26,30 @@ namespace SHY
 
         public void Roll()
         {
-            
+            for (int i = 0; i < dices.Count; i++)
+            {
+                if(dices[i].isRoll())
+                {
+                    dices[i].transform.position = Vector3.zero;
+                }
+            }
+            shaker.Shake();
         }
 
         public IEnumerator ReturnDice()
         {
             yield return new WaitForSeconds(1.3f);
 
-            foreach (Dice item in dices)
-            {
-                item.ReturnPos();
-            }
+            
         }
 
-        public void RetrunDice() => StartCoroutine(ReturnDice());
+        public void RetrunDice()
+        {
+            foreach (UIDice item in dices)
+            {
+                item.ReturnPos(.4f);
+            }
+        }
     }
 }
 

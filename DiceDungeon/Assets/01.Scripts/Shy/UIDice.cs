@@ -4,7 +4,7 @@ using DG.Tweening;
 
 namespace SHY
 {
-    public class Dice : MonoBehaviour, IPointerClickHandler, 
+    public class UIDice : MonoBehaviour, IPointerClickHandler, 
         IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 clickPos;
@@ -20,6 +20,8 @@ namespace SHY
 
         private bool ACheck(Transform _trm) => _trm.GetChild(0).gameObject.activeSelf;
 
+        public bool isRoll() => ACheck(transform);
+
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isDrager) return;
@@ -27,9 +29,9 @@ namespace SHY
             transform.GetChild(0).gameObject.SetActive(!ACheck(transform));
         }
 
-        public void ReturnPos()
+        public void ReturnPos(float t = 0.1f)
         {
-            transform.DOLocalMove(Vector2.zero, 0.1f);
+            transform.DOLocalMove(Vector2.zero, t);
         }
 
 
