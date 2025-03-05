@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Karin
+namespace Karin.HexMap
 {
     public class HexCoordinates
     {
@@ -9,8 +9,14 @@ namespace Karin
 
         public static Vector2Int ConvertPositionToOffset(Vector2 position)
         {
-            int x = Mathf.RoundToInt(position.x - offsetPos.x / xOffset);
-            int y = Mathf.RoundToInt(position.y - offsetPos.y / yOffset);
+            int y = Mathf.RoundToInt((position.y - offsetPos.y) / yOffset);
+            float posx = position.x;
+            if (Mathf.Abs(y) % 2 == 1)
+            {
+                posx = position.x - xOffset / 2;
+            }
+            int x = Mathf.RoundToInt((posx - offsetPos.x) / xOffset);
+
             return new Vector2Int(x, y);
         }
 
@@ -25,25 +31,25 @@ namespace Karin
             return new Vector2(x + offsetPos.x, y + offsetPos.y);
         }
 
-        public static Vector2Int GetDirection(Direction dir)
+        public static Vector2 GetDirection(Direction dir)
         {
             switch (dir)
             {
                 case Direction.Left:
-                    return new Vector2Int(-1, 0);
+                    return new Vector2(-xOffset, 0);
                 case Direction.Right:
-                    return new Vector2Int(1, 0);
+                    return new Vector2(xOffset, 0);
                 case Direction.TopLeft:
-                    return new Vector2Int(-1, 1);
+                    return new Vector2(-xOffset / 2, yOffset);
                 case Direction.TopRight:
-                    return new Vector2Int(0, 1);
+                    return new Vector2(xOffset / 2, yOffset);
                 case Direction.BottomLeft:
-                    return new Vector2Int(-1, -1);
+                    return new Vector2(-xOffset / 2, -yOffset);
                 case Direction.BottomRight:
-                    return new Vector2Int(0, -1);
+                    return new Vector2(xOffset / 2, -yOffset);
             }
             Debug.LogError("Error Vector");
-            return new Vector2Int(0, 0);
+            return new Vector2(0, 0);
         }
     }
 }

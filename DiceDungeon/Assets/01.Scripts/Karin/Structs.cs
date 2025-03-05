@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using Karin.Charactor;
 
 namespace Karin
 {
@@ -9,7 +10,7 @@ namespace Karin
         //누가
         public Agent who;
         //어디서
-        public Transform where;
+        public Vector2Int where;
         //어디를 바라보고
         public Direction direction;
         //어떤형태로 공격을 하는데

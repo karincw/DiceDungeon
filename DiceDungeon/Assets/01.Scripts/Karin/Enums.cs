@@ -11,14 +11,14 @@ namespace Karin
         AllAround
     }
 
-    public enum Direction
+    public enum Direction : int
     {
         Left,
-        Right,
         TopLeft,
         TopRight,
+        Right,
+        BottomRight,
         BottomLeft,
-        BottomRight
     }
 
     [Flags]
@@ -37,7 +37,7 @@ namespace Karin
 
     public enum buffType
     {
-        
+
     }
 
 

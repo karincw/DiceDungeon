@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Karin
+namespace Karin.HexMap
 {
     public class MapManager : SingleTon<MapManager>
     {
