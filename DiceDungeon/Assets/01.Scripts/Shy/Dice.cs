@@ -27,6 +27,11 @@ namespace SHY
             transform.GetChild(0).gameObject.SetActive(!ACheck(transform));
         }
 
+        public void ReturnPos()
+        {
+            transform.DOLocalMove(Vector2.zero, 0.1f);
+        }
+
 
         #region Dice Move
         public void OnBeginDrag(PointerEventData eventData)
@@ -50,10 +55,13 @@ namespace SHY
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            transform.DOLocalMove(Vector2.zero, 0.1f);
+            ReturnPos();
 
-            if (ACheck(transform)) return;
-            transform.parent.SetSiblingIndex(sibleIdx);
+            if (!ACheck(transform))
+            {
+                transform.parent.SetSiblingIndex(sibleIdx);
+            }
+            
             isDrager = false;
         }
 
