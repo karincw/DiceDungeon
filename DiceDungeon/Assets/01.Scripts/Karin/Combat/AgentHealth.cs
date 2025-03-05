@@ -10,9 +10,11 @@ namespace Karin.Charactor
         private int currentHealth;
         public int shield;
 
-        private void Start()
+        private void Awake()
         {
             currentHealth = maxHealth;
+            _hpGauge.StartGauge1 = maxHealth;
+            _hpGauge.currentGauge1 = maxHealth;
         }
 
         public void IncreaseHealth(int value)

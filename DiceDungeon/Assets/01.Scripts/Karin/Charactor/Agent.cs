@@ -1,5 +1,6 @@
 using UnityEngine;
 using Karin.HexMap;
+using Karin.Buff;
 
 namespace Karin.Charactor
 {
@@ -7,10 +8,12 @@ namespace Karin.Charactor
     {
         public Direction direction;
         [HideInInspector] public AgentHealth health;
+        [HideInInspector] public BuffContainer buffContainer;
 
         private void Awake()
         {
             health = GetComponent<AgentHealth>();
+            buffContainer = GetComponent<BuffContainer>();
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
         }
 
@@ -24,6 +27,7 @@ namespace Karin.Charactor
         public virtual void TurnReset()
         {
             health.shield = 0;
+            buffContainer.TurnReset();
         }
 
         public virtual void MoveEnd()
