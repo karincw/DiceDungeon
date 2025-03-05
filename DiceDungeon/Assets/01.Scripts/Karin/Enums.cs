@@ -35,11 +35,6 @@ namespace Karin
         Collision, //Ãæµ¹
     }
 
-    public enum buffType
-    {
-
-    }
-
 
 
 }

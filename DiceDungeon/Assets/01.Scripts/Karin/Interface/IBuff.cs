@@ -1,7 +1,12 @@
+using Karin.Charactor;
 using UnityEngine;
 
-public interface IBuff
+namespace Karin.Buff
 {
-    public int value { get; set; }
-    public void TurnEndSetting();
+    public interface IBuff
+    {
+        public Agent owner { get; set; }
+        public int value { get; set; }
+        public void TurnEndSetting();
+    }
 }
