@@ -35,6 +35,11 @@ namespace Karin
         Collision, //Ãæµ¹
     }
 
+    public enum Buff : int
+    {
+        Poison = 0
+    }
+
 
 
 }

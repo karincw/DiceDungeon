@@ -1,7 +1,6 @@
 using Karin;
 using Karin.Charactor;
 using Karin.Event;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class Player : Agent
@@ -73,6 +72,14 @@ public class Player : Agent
             attackData.damage = 2000;
             attackData.attackType = type;
             EventManager.Instance.AttackEvent?.Invoke(attackData);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            BuffData bd = new BuffData();
+            bd.who = this;
+            bd.buffType = Buff.Poison;
+            bd.value = 10;
+            EventManager.Instance.BuffEvent?.Invoke(bd);
         }
     }
 }

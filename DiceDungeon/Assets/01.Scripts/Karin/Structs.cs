@@ -1,7 +1,7 @@
 
-using UnityEngine;
 using Karin.Charactor;
-using Karin.Buff;
+using Karin.BuffSystem;
+using UnityEngine;
 
 namespace Karin
 {
@@ -50,10 +50,9 @@ namespace Karin
         //누가
         public Agent who;
         //어떤 버프를
-        public IBuff buffType;
+        public Buff buffType;
         ///몇 턴 동안 지속할지 infinite : -1
         public int value;
     }
-
 
 }
