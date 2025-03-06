@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419196c824ab0ba44bb00d36bfd2d196, type: 3}
+  m_Name: Test Move
+  m_EditorClassIdentifier: 
+  eyeName: "\uBC29\uD5A5"
+  img: {fileID: 8819977675518671219, guid: 4ea26124965658449bc6bbebfe82586c, type: 3}
+  value: 1
+  dir: 0
+  moveEffect: 0

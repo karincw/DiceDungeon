@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe33d60fe355474eb746f70fb0d54d0, type: 3}
+  m_Name: Test Attack
+  m_EditorClassIdentifier: 
+  eyeName: "\uB3C5\uCE7C"
+  img: {fileID: -6955612410638202120, guid: f34d4515b12e7b74ba70714fb7a21398, type: 3}
+  value: 1
+  attackType: 1
+  attackEffect: -1

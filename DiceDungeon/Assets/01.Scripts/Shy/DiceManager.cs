@@ -8,46 +8,56 @@ namespace SHY
     {
         public List<UIDice> dices;
         [SerializeField] private BarrelShaker shaker;
+        private int rollcnt;
 
         private void Awake()
         {
-            shaker.ShakeFin += RetrunDice;
+            shaker.shakeFin += ReturnDice;
+            shaker.openCup += () => {
+                foreach (UIDice item in dices)
+                {
+                    item.gameObject.SetActive(true);
+                }
+            };
         }
 
-        private void Update()
+        public void Init()
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Roll();
-            }
+            rollcnt = 3;
+            shaker.Disappear(0, 0);
+            Roll(true);
         }
 
-
-
-        public void Roll()
+        public void Roll(bool _resetAll = false)
         {
+            if (rollcnt-- <= 0) return;
+
             for (int i = 0; i < dices.Count; i++)
             {
-                if(dices[i].isRoll())
+                if(dices[i].SelectCheck() || _resetAll)
                 {
                     dices[i].transform.position = Vector3.zero;
+                    dices[i].gameObject.SetActive(false);
+                    dices[i].Init();
                 }
             }
             shaker.Shake();
         }
 
-        public IEnumerator ReturnDice()
-        {
-            yield return new WaitForSeconds(1.3f);
-
-            
-        }
-
-        public void RetrunDice()
+        public void ReturnDice()
         {
             foreach (UIDice item in dices)
             {
                 item.ReturnPos(.4f);
+            }
+            shaker.Disappear();
+        }
+
+        public void UseDice(Player _p)
+        {
+            foreach (UIDice item in dices)
+            {
+                item.diceData.OnUse(_p);
             }
         }
     }

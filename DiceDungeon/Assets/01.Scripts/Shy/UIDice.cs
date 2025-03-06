@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace SHY
 {
@@ -11,29 +12,43 @@ namespace SHY
         private bool isDrager = false;
         private int sibleIdx;
 
+        public DiceSO diceData;
+
+        private Image icon;
+        private GameObject checker;
+        
         private Sequence seq;
 
         private void Awake()
         {
+            icon = transform.Find("Icon").GetComponent<Image>();
+            checker = transform.Find("Check").gameObject;
             seq = DOTween.Sequence();
         }
 
-        private bool ACheck(Transform _trm) => _trm.GetChild(0).gameObject.activeSelf;
+        private bool SelectCheck(Transform _trm) => _trm.Find("Check").gameObject.activeSelf;
 
-        public bool isRoll() => ACheck(transform);
+        public bool SelectCheck() => checker.activeSelf;
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void Init()
         {
-            if (isDrager) return;
-
-            transform.GetChild(0).gameObject.SetActive(!ACheck(transform));
+            icon.sprite = diceData.Roll();
+            checker.SetActive(false);
         }
+
+
 
         public void ReturnPos(float t = 0.1f)
         {
             transform.DOLocalMove(Vector2.zero, t);
         }
 
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (isDrager) return;
+
+            checker.SetActive(!SelectCheck());
+        }
 
         #region Dice Move
         public void OnBeginDrag(PointerEventData eventData)
@@ -42,14 +57,14 @@ namespace SHY
 
             isDrager = true;
 
-            if (ACheck(transform)) return;
+            if (SelectCheck()) return;
             sibleIdx = transform.parent.GetSiblingIndex();
             transform.parent.SetAsLastSibling();
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!isDrager || ACheck(transform)) return;
+            if (!isDrager || SelectCheck()) return;
 
             transform.localPosition += new Vector3(eventData.position.x - clickPos.x, eventData.position.y - clickPos.y);
             clickPos = eventData.position;
@@ -59,7 +74,7 @@ namespace SHY
         {
             ReturnPos();
 
-            if (!ACheck(transform))
+            if (!SelectCheck())
             {
                 transform.parent.SetSiblingIndex(sibleIdx);
             }
@@ -69,7 +84,7 @@ namespace SHY
 
         private void OnTriggerEnter2D(Collider2D _col)
         {
-            if (!isDrager || ACheck(_col.transform)) return;
+            if (!isDrager || SelectCheck(_col.transform)) return;
 
             Transform newParent = _col.transform.parent;
             _col.transform.SetParent(transform.parent);
