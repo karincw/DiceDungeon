@@ -80,7 +80,6 @@ namespace Karin.Event
             }
 
             MoveAgent(owner, targetPos);
-
         }
 
         private void MoveAgent(Agent agent, Vector2 destination)
@@ -92,7 +91,9 @@ namespace Karin.Event
 
         private void BuffEventHandler(BuffData bd)
         {
-            Debug.LogWarning("아직 기능이 준비되지 않음");
+            var agent = bd.who;
+            var buffContainer = agent.buffContainer;
+            buffContainer.AddBuff(bd.buffType, bd.value);
         }
 
     }

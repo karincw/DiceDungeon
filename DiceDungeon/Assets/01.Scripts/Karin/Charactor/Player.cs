@@ -70,7 +70,7 @@ public class Player : Agent
             AttackData attackData = new AttackData();
             attackData.who = this;
             attackData.direction = direction;
-            attackData.damage = 5;
+            attackData.damage = 2000;
             attackData.attackType = type;
             EventManager.Instance.AttackEvent?.Invoke(attackData);
         }
