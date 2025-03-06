@@ -7,7 +7,7 @@ namespace SHY
     [CreateAssetMenu(fileName = "BufEyeSO", menuName = "SO/Eye/Buf")]
     public class BufEyeSO : EyeSO
     {
-        public buffType type;
+        public Buff type;
 
         public override void OnUse(Agent _agent)
         {
@@ -17,7 +17,7 @@ namespace SHY
             BuffData bu = new BuffData();
             bu.who = _agent;
             bu.buffType = type;
-            bu.time = value;
+            bu.value = value;
 
             InvokeData(bu);
         }
