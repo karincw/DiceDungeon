@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using Karin.HexMap;
 using Karin.Charactor;
+using Karin.BuffSystem;
 
 namespace Karin.Event
 {
@@ -28,6 +29,17 @@ namespace Karin.Event
             ShieldEvent -= ShieldEventHandler;
             MoveEvent -= MoveEventHandler;
             BuffEvent -= BuffEventHandler;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                foreach (var item in FindObjectsByType<Agent>(FindObjectsSortMode.None))
+                {
+                    item.TurnReset();
+                }
+            }
         }
 
         private void AttackEventHandler(AttackData ad)
@@ -93,7 +105,9 @@ namespace Karin.Event
         {
             var agent = bd.who;
             var buffContainer = agent.buffContainer;
-            buffContainer.AddBuff(bd.buffType, bd.value);
+            var buff = Instantiate(BuffManager.Instance.BuffList[(int)bd.buffType]);
+            buff.owner = agent;
+            buffContainer.AddBuff(buff, bd.value);
         }
 
     }
