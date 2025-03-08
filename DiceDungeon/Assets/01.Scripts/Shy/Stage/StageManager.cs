@@ -1,69 +1,151 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageManager : MonoBehaviour
+namespace SHY
 {
-    public float yDistance = 5;
-    public int yStageCnt = 1;
-    [SerializeField] private StageSO baseStage, bossStage;
-    public List<StageSO> otherStageSO;
 
-    [SerializeField] private StageUI stageUI;
-    [SerializeField] private Transform backGround;
-
-    StageUI[,] stageTree = { { } };
-
-
-    private void Update()
+    public class StageManager : MonoBehaviour
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        public float yDistance = 5;
+        public int yStageCnt = 1;
+        [SerializeField] private StageSO baseStage, bossStage;
+        public List<StageSO> otherStageSO;
+
+        [SerializeField] private Transform backGround;
+
+        private List<StageUI>[] stageTree;
+
+
+        private void Update()
         {
-            for (int i = backGround.transform.childCount; i > 0; i--)
+            if (Input.GetKeyDown(KeyCode.S))
             {
-                Destroy(backGround.transform.GetChild(i - 1).gameObject);
+                for (int i = backGround.transform.childCount; i > 0; i--)
+                {
+                    Destroy(backGround.transform.GetChild(i - 1).gameObject);
+                }
+                MapGenerate();
             }
-            MapGenerate();
         }
-    }
 
-    public void MapGenerate()
-    {
-        StageUI start =  Instantiate(stageUI, backGround);
-        start.transform.position = Vector3.zero;
-        start.Init(baseStage, null);
-        stageTree[0, 0] = start;
+        private StageSO GetStage() => otherStageSO[Random.Range(0, otherStageSO.Count)];
 
-        float y = 0, aX;
-
-        for (int i = 1; i <= yStageCnt; i++)
+        //(확률) = RandByArr({10, 15, 10}) 10% = 1, 15% = 2, 10% = 3
+        private int RandByArr(int[] _arr)
         {
-            y -= yDistance;
+            int _va = 0;
 
-            int xCnt = Random.Range(1, 5);
-            aX = (5 - (5 - xCnt) * 0.5f) * 2;
-            Vector2 x = new Vector2(-aX / 2, aX / xCnt - aX / 2);
+            for (int i = 0; i < _arr.Length; i++) _va += _arr[i];
 
-            Debug.Log("Case " + i);
+            _va = Random.Range(0, _va);
 
-            for (int j = 0; j < xCnt; j++)
+            for (int i = 0; i < _arr.Length; i++)
             {
+                _va -= _arr[i];
+                if (_va < 0) return i + 1;
+            }
+
+            Debug.LogError("Rand Error");
+
+            return 99;
+        }
+
+
+        public void MapGenerate()
+        {
+            stageTree = new List<StageUI>[yStageCnt + 2];
+            float xDistance = 3f;
+
+            StageUI start = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
+            start.transform.position = Vector3.zero;
+            start.Init(baseStage, null, null);
+
+            stageTree[0] = new List<StageUI>();
+            stageTree[0].Add(start);
+
+            float yPos = 0, aX;
+
+            for (int yNum = 1; yNum <= yStageCnt; yNum++)
+            {
+                stageTree[yNum] = new List<StageUI>();
+
+                yPos -= yDistance;
+
+                int xCnt = RandByArr(new int[] { 15, 100, 70, 10 });
+
+                aX = (5 - (5 - xCnt) * 0.5f) * 2;
+                Vector2 xPosAbs = new Vector2(-aX / 2, aX / xCnt - aX / 2);
+
                 #region 생성
-                StageUI stage = Instantiate(stageUI, backGround);
+                for (int xNum = 0; xNum < xCnt; xNum++)
+                {
+                    StageUI stage = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
 
-                float calc = aX / xCnt * j;
-                stage.transform.position = new Vector3(
-                    Random.Range(x.x + calc + 1f, x.y + calc), Random.Range(y + .2f, y - .3f), 0);
+                    float calc = aX / xCnt * xNum;
+                    stage.transform.position = new Vector3(
+                        Random.Range(xPosAbs.x + calc + xDistance, xPosAbs.y + calc) - xDistance / 2, 
+                        Random.Range(yPos + .2f, yPos - .3f), 0);
+                    stageTree[yNum].Add(stage);
+                }
                 #endregion
+            }
 
-                //stage.Init(GetStage(),  q);
+            //마지막 아래 생성
+            yPos -= yDistance;
+            StageUI lastStage = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
+            lastStage.transform.position = new Vector3(0, yPos, 0);
+            stageTree[yStageCnt + 1] = new List<StageUI>() { lastStage };
 
 
-                stageTree[i, j] = stage;
+
+
+
+            #region 연결
+
+            //StageConnect(0);
+
+            for (int y = 1; y < stageTree.Length - 1; y++)
+            {
+                for (int x = 0; x < stageTree[y].Count; x++)
+                {
+                    //윗 놈들을 모아서
+                    List<StageUI> parentTrees = stageTree[y - 1].ToList();
+                    List<StageUI> childTrees = stageTree[y + 1].ToList();
+
+                    
+                    //윗 놈들 개수를 구하고
+                    int childCnt = childTrees.Count; // 1~4
+
+                    if (childCnt >= 2) childCnt = RandByArr(new int[] { 190, 10 });
+
+                    while (1 < parentTrees.Count)
+                    {
+                        parentTrees.RemoveAt(Random.Range(0, parentTrees.Count));
+                    }
+
+                    while (childCnt < childTrees.Count)
+                    {
+                        childTrees.RemoveAt(Random.Range(0, childTrees.Count));
+                    }
+
+                    stageTree[y][x].Init(GetStage(), parentTrees.ToArray(), childTrees.ToArray(), true);
+                }
+
 
             }
+            #endregion
         }
+
+        //public void StageConnect(int _yValue)
+        //{
+        //    if (_yValue == stageTree.Length) return;
+        //
+        //    StageConnect(_yValue + 1);
+        //}
+
+
     }
 
-    private StageSO GetStage() => otherStageSO[Random.Range(0, otherStageSO.Count)];
 }
