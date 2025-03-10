@@ -1,5 +1,6 @@
 using Karin;
 using Karin.Charactor;
+using Karin.Event;
 using UnityEngine;
 
 namespace SHY
@@ -21,7 +22,7 @@ namespace SHY
             mo.distance = value;
             mo.effect = moveEffect;
 
-            InvokeData(mo);
+            EventManager.Instance.MoveEvent?.Invoke(mo);
         }
     }
 }

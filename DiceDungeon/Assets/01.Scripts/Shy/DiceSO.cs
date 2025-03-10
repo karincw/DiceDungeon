@@ -19,7 +19,7 @@ namespace SHY
         public Sprite Roll()
         {
             eyeNum = Random.Range(0, 6);
-            return eyes[eyeNum].img;
+            return eyes[eyeNum].icon;
         }
 
         public void OnUse(Agent _agent) => eyes[eyeNum].OnUse(_agent);

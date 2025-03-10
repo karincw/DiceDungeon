@@ -8,7 +8,6 @@ namespace SHY
     {
         public List<UIDice> dices;
         [SerializeField] private BarrelShaker shaker;
-        [SerializeField] private BattleManager battleManager;
         private int rollcnt;
 
         private void Awake()
@@ -22,10 +21,11 @@ namespace SHY
                 }
             };
 
-            battleManager.Initialize += Init;
+            BattleManager.Instance.Initialize += Init;
+            BattleManager.Instance.playerTurnStart += TurnInit;
         }
 
-        public void Init(PlayerData _data)
+        private void Init(PlayerData _data)
         {
             for (int i = 0; i < 5; i++)
                 dices[i].Init(_data.dices[i]);
@@ -33,13 +33,13 @@ namespace SHY
             shaker.Disappear(0, 0);
         }
 
-        public void TurnInit()
+        private void TurnInit()
         {
             rollcnt = 3;
             Roll(true);
         }
 
-        public void Roll(bool _resetAll = false)
+        private void Roll(bool _resetAll = false)
         {
             if (rollcnt-- <= 0) return;
 
@@ -54,7 +54,7 @@ namespace SHY
             shaker.Shake();
         }
 
-        public void ReturnDice()
+        private void ReturnDice()
         {
             foreach (UIDice item in dices)
             {
@@ -62,6 +62,9 @@ namespace SHY
             }
             shaker.Disappear();
         }
+
+
+        public void DiceTest() => UseDice(null);
 
         public void UseDice(Player _p)
         {

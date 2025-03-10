@@ -18,8 +18,6 @@ namespace SHY
 
         private StageUI[,] stageTree = new StageUI[1, 5];
 
-        public TextMeshProUGUI t;
-
 
         private void Update()
         {

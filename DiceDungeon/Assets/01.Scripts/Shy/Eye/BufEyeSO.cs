@@ -1,5 +1,6 @@
 using Karin;
 using Karin.Charactor;
+using Karin.Event;
 using UnityEngine;
 
 namespace SHY
@@ -19,7 +20,7 @@ namespace SHY
             bu.buffType = type;
             bu.value = value;
 
-            InvokeData(bu);
+            EventManager.Instance.BuffEvent?.Invoke(bu);
         }
     }
 }

@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad7cce30fdcb194baf928e3a00cdd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceManager: {fileID: 741638212}
   player: {fileID: 0}
   enemys: []
 --- !u!1001 &456452248
@@ -576,9 +575,9 @@ MonoBehaviour:
   _event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 448629177}
-        m_TargetAssemblyTypeName: SHY.BattleManager, Assembly-CSharp
-        m_MethodName: ExitPlayerTurn
+      - m_Target: {fileID: 741638212}
+        m_TargetAssemblyTypeName: SHY.DiceManager, Assembly-CSharp
+        m_MethodName: DiceTest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1291,7 +1290,6 @@ MonoBehaviour:
   otherStageSO:
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   backGround: {fileID: 1461430380}
-  t: {fileID: 0}
 --- !u!1001 &1160388873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1653,13 +1651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af29aefbddf6104291d3a9d904bff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDice:
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
+  playerData: {fileID: 11400000, guid: b57c2e1ef8db08b469f320c9195048fa, type: 2}
   battleManager: {fileID: 448629177}
+  stageManager: {fileID: 0}
 --- !u!1 &1461430379
 GameObject:
   m_ObjectHideFlags: 0

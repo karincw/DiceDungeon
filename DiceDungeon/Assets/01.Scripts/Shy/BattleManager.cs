@@ -5,18 +5,19 @@ using UnityEngine;
 
 namespace SHY
 {
-    public class BattleManager : MonoBehaviour
+    public class BattleManager : SingleTon<BattleManager>
     {
         public Player player;
         public List<Agent> enemys;
 
         public Action<PlayerData> Initialize;
+        public Action playerTurnStart;
 
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                OnPlayerTurn();
+                playerTurnStart?.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -24,20 +25,26 @@ namespace SHY
             }
         }
 
-
-        public void OnPlayerTurn()
+        private void Awake()
         {
-            //diceManager.Init();
+            playerTurnStart += OnPlayerTurn;
         }
 
-        public void ExitPlayerTurn()
+        private void OnPlayerTurn()
         {
-            //diceManager.UseDice(player);
+            Debug.Log("Reset");
+
+            //player.TurnReset();
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                //에너미 죽은 놈들 없애고
+                //enemys[i].TurnReset();
+            }
         }
 
-        public void OnEnemyTurn()
+        private void OnEnemyTurn()
         {
-
+            //enemy들의 행동
         }
     }
 }

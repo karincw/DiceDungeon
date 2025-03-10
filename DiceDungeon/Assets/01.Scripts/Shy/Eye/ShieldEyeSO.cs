@@ -1,5 +1,6 @@
 using Karin;
 using Karin.Charactor;
+using Karin.Event;
 using UnityEngine;
 
 namespace SHY
@@ -16,7 +17,7 @@ namespace SHY
             sh.who = _agent;
             sh.shield = value;
 
-            InvokeData(sh);
+            EventManager.Instance.ShieldEvent?.Invoke(sh);
         }
     }
 }

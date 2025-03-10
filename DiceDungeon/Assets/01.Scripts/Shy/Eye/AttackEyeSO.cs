@@ -1,6 +1,7 @@
 using Karin;
 using Karin.Charactor;
 using UnityEngine;
+using Karin.Event;
 
 namespace SHY
 {
@@ -23,7 +24,7 @@ namespace SHY
             at.damage = value;
             at.effect = attackEffect;
 
-            InvokeData(at);
+            EventManager.Instance.AttackEvent?.Invoke(at);
         }
     }
 }
