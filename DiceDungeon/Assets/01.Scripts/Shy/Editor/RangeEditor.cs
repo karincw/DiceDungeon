@@ -2,41 +2,40 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(RangeSO))]
-[CanEditMultipleObjects]
 public class RangeEditor : Editor
 {
     private RangeSO range;
-    private int[] arrX = { 4, 5, 6, 7, 6, 5, 4 };
+    private int[] _arrX;
 
     private void OnEnable()
     {
         range = (RangeSO)target;
+        _arrX = range.arrX;
     }
 
     public override void OnInspectorGUI()
     {
+        int p = 0;
+
         for (int y = 0; y < 7; y++)
         {
             EditorGUILayout.BeginHorizontal();
 
-            GUILayout.Space(10 * (10 - arrX[y]));
+            GUILayout.Space(10 * (10 - _arrX[y]));
 
-            for (int x = 0; x < arrX[y]; x++)
+            for (int x = 0; x < _arrX[y]; x++)
             {
                 GUILayout.Space(5);
-                bool oldValue = range.arr[y, x];
-                bool newValue = EditorGUILayout.Toggle(oldValue, GUILayout.Width(10));
+                range.arr[p] = EditorGUILayout.Toggle(range.arr[p], GUILayout.Width(10));
 
-                if (oldValue != newValue)
-                {
-                    range.arr[y, x] = newValue;
-                    EditorUtility.SetDirty(target);
-                }
+                p++;
             }
 
             EditorGUILayout.EndHorizontal();
         }
 
+        EditorUtility.SetDirty(target);
+        serializedObject.ApplyModifiedProperties();
 
         base.OnInspectorGUI();
     }
