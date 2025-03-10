@@ -47,7 +47,7 @@ namespace SHY
             {
                 if(dices[i].SelectCheck() || _resetAll)
                 {
-                    dices[i].transform.position = Vector3.zero;
+                    dices[i].transform.position = new Vector3(Random.Range(-1.8f, 1.8f), Random.Range(-1.8f, 1.9f), 0);
                     dices[i].Roll();
                 }
             }

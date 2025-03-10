@@ -16,6 +16,11 @@ namespace SHY
             Debug.Log("АјАн");
             return;
 
+            EventManager.Instance.AttackEvent?.Invoke(GetData(_agent));
+        }
+
+        public AttackData GetData(Agent _agent)
+        {
             AttackData at = new AttackData();
             at.who = _agent;
             //where
@@ -24,7 +29,7 @@ namespace SHY
             at.damage = value;
             at.effect = attackEffect;
 
-            EventManager.Instance.AttackEvent?.Invoke(at);
+            return at;
         }
     }
 }

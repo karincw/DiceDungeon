@@ -10,6 +10,7 @@ namespace SHY
         public string eyeName;
         public Sprite icon;
         public int value;
+        public RangeSO range;
 
         public abstract void OnUse(Agent _agent);
     }

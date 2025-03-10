@@ -15,12 +15,17 @@ namespace SHY
             Debug.Log("น๖วม");
             return;
 
+            EventManager.Instance.BuffEvent?.Invoke(GetData(_agent));
+        }
+
+        public BuffData GetData(Agent _agent)
+        {
             BuffData bu = new BuffData();
             bu.who = _agent;
             bu.buffType = type;
             bu.value = value;
 
-            EventManager.Instance.BuffEvent?.Invoke(bu);
+            return bu;
         }
     }
 }
