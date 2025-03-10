@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Karin.BuffSystem
 {
-    [CreateAssetMenu(menuName = "SO/Karin/DeBuffPoison")]
+    [CreateAssetMenu(menuName = "SO/Karin/Buff/DeBuffPoison")]
     public class DeBuffPosionSO : BuffSO
     {
         [SerializeField] private bool _usePercent;

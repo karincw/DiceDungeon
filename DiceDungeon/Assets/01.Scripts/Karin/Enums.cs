@@ -24,6 +24,7 @@ namespace Karin
     [Flags]
     public enum AttackEffect
     {
+        None,
         penetration, // 관통
         poison,
     }
@@ -31,8 +32,10 @@ namespace Karin
     [Flags]
     public enum MoveEffect
     {
+        None, //아무것도 아님
         penetration, // 관통
         Collision, //충돌
+        Push, //밀치기
     }
 
     public enum Buff : int
