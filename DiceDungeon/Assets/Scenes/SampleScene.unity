@@ -2713,6 +2713,7 @@ MonoBehaviour:
   direction: 0
   health: {fileID: 0}
   buffContainer: {fileID: 0}
+  nowTile: {fileID: 0}
   type: 0
 --- !u!114 &1573113154
 MonoBehaviour:

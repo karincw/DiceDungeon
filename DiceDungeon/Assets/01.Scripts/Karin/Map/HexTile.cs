@@ -7,31 +7,31 @@ namespace Karin.HexMap
 {
     public class HexTile : MonoBehaviour
     {
-        public Vector2Int HexCoords => HexCoordinates.ConvertPositionToOffset(transform.position);
+
+        [Header("StateData")]
+        public Agent overAgent;
+        public bool moveAble = true;
+        public int weight = 0;
+
+        [Header("PathFindData")]
+        public float G;
+        public float H;
+        public float F => H + G;
+        public HexTile parentPath = null;
 
         private List<HexTile> neighbourTiles;
+        public Vector2Int HexCoords => HexCoordinates.ConvertPositionToOffset(transform.position);
+        public List<HexTile> GetNeighbourTiles => neighbourTiles;
 
         private void Awake()
         {
             neighbourTiles = new List<HexTile>();
             for (int i = 0; i <= 5; i++)
             {
-                var tileCoords = HexCoordinates.GetDirection((Direction)i);
-                neighbourTiles.Add(MapManager.Instance.GetTile((Vector2)transform.position + tileCoords));
-            }
-        }
-
-        [ContextMenu("DebugCoords")]
-        private void DebugCoords()
-        {
-            Debug.Log(HexCoords);
-        }
-        [ContextMenu("DebugNeighbours")]
-        private void DebugNeighbours()
-        {
-            foreach (var tile in neighbourTiles)
-            {
-                Debug.Log(tile);
+                var tileCoords = HexCoordinates.GetDirectionToVector((Direction)i);
+                var tile = MapManager.Instance.GetTile((Vector2)transform.position + tileCoords);
+                if (tile != null)
+                    neighbourTiles.Add(tile);
             }
         }
 
@@ -44,16 +44,16 @@ namespace Karin.HexMap
                     agents = neighbourTiles.Where(t => t.overAgent != null).Select(t => t.overAgent).ToList();
                     break;
                 case AttackType.Front:
-                    if(neighbourTiles[(int)dir].overAgent != null)
+                    if (neighbourTiles[(int)dir].overAgent != null)
                     {
                         agents.Add(neighbourTiles[(int)dir].overAgent);
                     }
                     break;
                 case AttackType.Fan:
-                    
-                    for(int i = (int)dir - 1; i <= (int)dir + 1; i++)
+
+                    for (int i = (int)dir - 1; i <= (int)dir + 1; i++)
                     {
-                        if(i == -1)
+                        if (i == -1)
                         {
                             if (neighbourTiles[5].overAgent != null)
                             {
@@ -76,9 +76,6 @@ namespace Karin.HexMap
             }
             return agents;
         }
-
-        public Agent overAgent;
-        public bool moveAble = true;
 
     }
 }

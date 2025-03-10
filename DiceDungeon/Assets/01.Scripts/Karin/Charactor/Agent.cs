@@ -2,6 +2,7 @@ using UnityEngine;
 using Karin.HexMap;
 using Karin.BuffSystem;
 using Karin.Event;
+using UnityEditor.U2D.Aseprite;
 
 namespace Karin.Charactor
 {
@@ -10,6 +11,7 @@ namespace Karin.Charactor
         public Direction direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
+        [HideInInspector] public HexTile underTile;
 
         private void Awake()
         {
@@ -44,17 +46,17 @@ namespace Karin.Charactor
 
         public virtual void MoveEnd()
         {
-            var nowTile = MapManager.Instance.GetTile(transform.position);
-            nowTile.overAgent = this;
-            nowTile.moveAble = false;
+            var tile = MapManager.Instance.GetTile(transform.position);
+            tile.overAgent = this;
+            tile.moveAble = false;
+            underTile = tile;
         }
 
         public virtual void MoveStart(Direction dir)
         {
             direction = dir;
-            var nowTile = MapManager.Instance.GetTile(transform.position);
-            nowTile.overAgent = null;
-            nowTile.moveAble = true;
+            underTile.overAgent = null;
+            underTile.moveAble = true;
         }
     }
 }

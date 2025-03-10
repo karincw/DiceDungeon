@@ -78,7 +78,7 @@ namespace Karin.Event
 
             for (var i = 1; i <= md.distance; i++)
             {
-                targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirection(md.direction) * i;
+                targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * i;
                 HexTile targetTile = MapManager.Instance.GetTile(targetPos);
 
                 if (targetTile == null || targetTile.moveAble == false)
@@ -86,7 +86,7 @@ namespace Karin.Event
                     Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}만큼 이동할수 없음");
                     if (i == 1) return;
 
-                    targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirection(md.direction) * (i - 1);
+                    targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * (i - 1);
                     break;
                 }
             }
