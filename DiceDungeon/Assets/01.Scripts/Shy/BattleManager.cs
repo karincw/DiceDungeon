@@ -1,4 +1,5 @@
 using Karin.Charactor;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,13 @@ namespace SHY
 {
     public class BattleManager : MonoBehaviour
     {
-        [SerializeField] private DiceManager diceManager;
         public Player player;
         public List<Agent> enemys;
 
+        public Action<PlayerData> Initialize;
+
         public void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                Init();
-            }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 OnPlayerTurn();
@@ -26,19 +24,15 @@ namespace SHY
             }
         }
 
-        public void Init()
-        {
-
-        }
 
         public void OnPlayerTurn()
         {
-            diceManager.Init();
+            //diceManager.Init();
         }
 
         public void ExitPlayerTurn()
         {
-            diceManager.UseDice(player);
+            //diceManager.UseDice(player);
         }
 
         public void OnEnemyTurn()

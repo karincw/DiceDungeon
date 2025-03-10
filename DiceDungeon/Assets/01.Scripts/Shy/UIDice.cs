@@ -30,13 +30,17 @@ namespace SHY
 
         public bool SelectCheck() => checker.activeSelf;
 
-        public void Init()
+        public void Init(DiceSO _so)
         {
-            icon.sprite = diceData.Roll();
-            checker.SetActive(false);
+            diceData = _so;
+            Roll();
         }
 
-
+        public void Roll()
+        {
+            icon.sprite = diceData.Roll();
+            gameObject.SetActive(false);
+        }
 
         public void ReturnPos(float t = 0.1f)
         {
@@ -46,7 +50,6 @@ namespace SHY
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isDrager) return;
-
             checker.SetActive(!SelectCheck());
         }
 
@@ -75,10 +78,8 @@ namespace SHY
             ReturnPos();
 
             if (!SelectCheck())
-            {
                 transform.parent.SetSiblingIndex(sibleIdx);
-            }
-            
+
             isDrager = false;
         }
 

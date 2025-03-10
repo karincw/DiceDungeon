@@ -8,6 +8,7 @@ namespace SHY
     {
         public List<UIDice> dices;
         [SerializeField] private BarrelShaker shaker;
+        [SerializeField] private BattleManager battleManager;
         private int rollcnt;
 
         private void Awake()
@@ -17,14 +18,24 @@ namespace SHY
                 foreach (UIDice item in dices)
                 {
                     item.gameObject.SetActive(true);
+                    //item À§Ä¡
                 }
             };
+
+            battleManager.Initialize += Init;
         }
 
-        public void Init()
+        public void Init(PlayerData _data)
+        {
+            for (int i = 0; i < 5; i++)
+                dices[i].Init(_data.dices[i]);
+
+            shaker.Disappear(0, 0);
+        }
+
+        public void TurnInit()
         {
             rollcnt = 3;
-            shaker.Disappear(0, 0);
             Roll(true);
         }
 
@@ -37,8 +48,7 @@ namespace SHY
                 if(dices[i].SelectCheck() || _resetAll)
                 {
                     dices[i].transform.position = Vector3.zero;
-                    dices[i].gameObject.SetActive(false);
-                    dices[i].Init();
+                    dices[i].Roll();
                 }
             }
             shaker.Shake();
