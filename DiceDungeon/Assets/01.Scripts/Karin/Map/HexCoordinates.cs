@@ -31,7 +31,7 @@ namespace Karin.HexMap
             return new Vector2(x + offsetPos.x, y + offsetPos.y);
         }
 
-        public static Vector2 GetDirection(Direction dir)
+        public static Vector2 GetDirectionToVector(Direction dir)
         {
             switch (dir)
             {
@@ -48,8 +48,27 @@ namespace Karin.HexMap
                 case Direction.BottomRight:
                     return new Vector2(xOffset / 2, -yOffset);
             }
-            Debug.LogError("Error Vector");
+            Debug.LogError("Error Dir");
             return new Vector2(0, 0);
+        }
+
+        public static Direction GetVectorToDirection(Vector2 dirVector)
+        {
+            if (dirVector == new Vector2(-xOffset, 0))
+                return Direction.Left;
+            if (dirVector == new Vector2(xOffset, 0))
+                return Direction.Right;
+            if (dirVector == new Vector2(-xOffset / 2, yOffset))
+                return Direction.TopLeft;
+            if (dirVector == new Vector2(xOffset / 2, yOffset))
+                return Direction.TopRight;
+            if (dirVector == new Vector2(-xOffset / 2, -yOffset))
+                return Direction.BottomLeft;
+            if (dirVector == new Vector2(xOffset / 2, -yOffset))
+                return Direction.BottomRight;
+
+            Debug.LogError("Error Vector");
+            return Direction.Left;
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : Agent
 {
     [SerializeField] AttackType type;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))

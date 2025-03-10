@@ -8,11 +8,11 @@ namespace Karin.Charactor
     public class EnemyDataSO : ScriptableObject
     {
 
-        [SerializeField] private string _name = "Dummy";
-        [SerializeField] private int _maxHealth = 10;
+        public string name = "Dummy";
+        public int maxHealth = 10;
 
-        [SerializeField] private int _maxMoveCount = 1;
-        [SerializeField] private List<EyeSO> useAbleAbilitys;
+        public int maxMoveCount = 1;
+        public List<EyeSO> useAbleAbilitys;
         
     }
 }

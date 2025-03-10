@@ -21,15 +21,17 @@ namespace Karin.HexMap
 
         private List<HexTile> neighbourTiles;
         public Vector2Int HexCoords => HexCoordinates.ConvertPositionToOffset(transform.position);
-        public List<HexTile> GetNeighbourTile => neighbourTiles;
+        public List<HexTile> GetNeighbourTiles => neighbourTiles;
 
         private void Awake()
         {
             neighbourTiles = new List<HexTile>();
             for (int i = 0; i <= 5; i++)
             {
-                var tileCoords = HexCoordinates.GetDirection((Direction)i);
-                neighbourTiles.Add(MapManager.Instance.GetTile((Vector2)transform.position + tileCoords));
+                var tileCoords = HexCoordinates.GetDirectionToVector((Direction)i);
+                var tile = MapManager.Instance.GetTile((Vector2)transform.position + tileCoords);
+                if (tile != null)
+                    neighbourTiles.Add(tile);
             }
         }
 

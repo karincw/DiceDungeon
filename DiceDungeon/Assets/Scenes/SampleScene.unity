@@ -2713,6 +2713,7 @@ MonoBehaviour:
   direction: 0
   health: {fileID: 0}
   buffContainer: {fileID: 0}
+  nowTile: {fileID: 0}
   type: 0
 --- !u!114 &1573113154
 MonoBehaviour:
@@ -3765,10 +3766,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6976476194860286427, guid: 0b96a2e1d1eebe34cab8d9424a0938e2, type: 3}
-      propertyPath: _eData
-      value: 
-      objectReference: {fileID: 11400000, guid: a6808cb72af772f478f2ee56f209f983, type: 2}
     - target: {fileID: 7158471637314150161, guid: 0b96a2e1d1eebe34cab8d9424a0938e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.3

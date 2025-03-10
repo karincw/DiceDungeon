@@ -68,8 +68,16 @@ namespace Karin.HexMap
                     {
                         result.Add(nextRoute.transform.position);
                         nextRoute = nextRoute.parentPath;
+                        warningIdx++;
+                        if (warningIdx >= 1000)
+                        {
+                            Debug.LogError("CannotMakeResultRoute in 1000 steps");
+                            return null;
+                        }
                     }
                     result.Reverse();
+                    _closedList.ForEach(t => t.parentPath = null);
+                    _openList.ForEach(t => t.parentPath = null);
                     return result;
                 }
 
@@ -78,17 +86,18 @@ namespace Karin.HexMap
                 warningIdx++;
                 if (warningIdx >= 1000)
                 {
-                    break;
+                    Debug.LogError("CannotFindPath in 1000 steps");
+                    return null;
                 }
             }
-            Debug.LogError("CannotFindPath in 1000 steps");
+
+            Debug.LogError("CannotFindPath");
             return null;
         }
 
         private void AddOpenList(HexTile tile)
         {
-            Debug.Log($"AddOpenList > {tile}");
-            List<HexTile> tiles = tile.GetNeighbourTile;
+            List<HexTile> tiles = tile.GetNeighbourTiles;
             for (int i = 0; i < tiles.Count; i++)
             {
                 if (tiles[i] != null && !_openList.Contains(tiles[i]) && !_closedList.Contains(tiles[i]) && tiles[i].moveAble)
