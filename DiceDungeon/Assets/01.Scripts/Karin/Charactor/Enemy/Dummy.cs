@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Karin.Charactor
 {
 
-    public class Dummy : Agent
+    public class Dummy : Enemy
     {
 
     }
