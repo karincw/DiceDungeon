@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a06e034d58ec3449861b8d96e290513, type: 3}
   m_Name: Dummy
   m_EditorClassIdentifier: 
-  _name: Dummy
-  _maxHealth: 10
-  _maxMoveCount: 1
+  name: Dummy
+  maxHealth: 10
+  maxMoveCount: 3
   useAbleAbilitys:
   - {fileID: 11400000, guid: af821cb692d1b124aaaa19acb48a3ab4, type: 2}

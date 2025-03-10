@@ -11,9 +11,8 @@ namespace Karin.Charactor
         public string name = "Dummy";
         public int maxHealth = 10;
 
-        public int maxMoveCount = 1;
+        [Range(1, 5)] public int maxMoveCount = 1;
         public List<EyeSO> useAbleAbilitys;
-        
+
     }
 }
- 
