@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace Karin.HexMap
 {
@@ -54,7 +55,7 @@ namespace Karin.HexMap
 
         public static Direction GetVectorToDirection(Vector2 dirVector)
         {
-            dirVector.Normalize();
+            dirVector = dirVector.normalized;
             if (dirVector == new Vector2(-xOffset, 0).normalized)
                 return Direction.Left;
             if (dirVector == new Vector2(xOffset, 0).normalized)

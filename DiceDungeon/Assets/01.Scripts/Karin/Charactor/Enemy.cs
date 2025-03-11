@@ -1,9 +1,11 @@
 using DG.Tweening;
 using Karin.HexMap;
 using SHY;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Karin.Charactor
 {
@@ -17,12 +19,28 @@ namespace Karin.Charactor
         protected virtual void Awake()
         {
             _pathfinder = new Pathfinder();
+
         }
 
-        protected virtual void ReservationAttack()
+        private void OnDestroy()
         {
+
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                PlayMove();
+            }
+        }
+
+        protected virtual void ReservationAttack(bool playReservation)
+        {
+            if (playReservation == false) return;
             //나중에 매니저에서 가져오는걸로 교체
             Agent player = FindFirstObjectByType<Player>();
+            //Agent player = BattleManager.Instance.player;
             Direction dir = HexCoordinates.GetVectorToDirection(player.transform.position - transform.position);
             direction = dir;
         }
@@ -34,31 +52,33 @@ namespace Karin.Charactor
 
         public virtual void PlayMove()
         {
-            if (MoveOnAttackablePos(_eData.maxMoveCount))
-            {
-                ReservationAttack();
-            }
+            MoveOnAttackablePos(_eData.maxMoveCount);
         }
 
-        protected bool MoveOnAttackablePos(int maxMoveCount)
+        protected void MoveOnAttackablePos(int maxMoveCount)
         {
             //나중에 매니저에서 가져오는걸로 교체
             Agent player = FindFirstObjectByType<Player>();
+            //Agent player = BattleManager.Instance.player;
 
             var attackEyes = _eData.useAbleAbilitys.Where(d => d is AttackEyeSO).Select(d => d as AttackEyeSO).ToList();
             _selectedAttack = attackEyes[Random.Range(0, attackEyes.Count)];
-            
-            List<HexTile> attackAbleTiles = player.underTile.GetNeighbourTiles;
+
+            List<HexTile> attackAbleTiles = _selectedAttack.range.Get()
+                .Select(t => MapManager.Instance.GetTile(
+                    HexCoordinates.ConvertPositionToOffset(player.transform.position) + new Vector2Int((int)t.x, (int)t.y)))
+                .Where(t => t is not null)
+                .ToList();
             var route = _pathfinder.PathFind(underTile, attackAbleTiles);
 
-            Mover(route, 1, maxMoveCount);
-            return route.Count <= maxMoveCount;
+            Mover(route, 1, maxMoveCount, play => ReservationAttack(play));
         }
 
-        protected virtual void Mover(List<Vector2> route, int idx, int max, float duration = 0.1f)
+        protected virtual void Mover(List<Vector2> route, int idx, int max, Action<bool> callbackAction = null, float duration = 0.1f)
         {
             if (route.Count < idx + 1)
             {
+                callbackAction?.Invoke(route.Count <= max);
                 return;
             }
             MoveStart(HexCoordinates.GetVectorToDirection(route[idx] - route[idx - 1]));
@@ -68,10 +88,9 @@ namespace Karin.Charactor
                 if (max > idx)
                 {
                     idx++;
-                    Mover(route, idx, max);
+                    Mover(route, idx, max, callbackAction);
                 }
             });
-
         }
 
     }
