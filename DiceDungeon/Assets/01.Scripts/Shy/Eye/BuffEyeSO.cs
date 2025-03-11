@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SHY
 {
     [CreateAssetMenu(fileName = "BufEyeSO", menuName = "SO/Eye/Buf")]
-    public class BufEyeSO : EyeSO
+    public class BuffEyeSO : EyeSO
     {
         public Buff type;
 

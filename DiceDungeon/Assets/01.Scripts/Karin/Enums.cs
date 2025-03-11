@@ -25,8 +25,7 @@ namespace Karin
     public enum AttackEffect
     {
         None,
-        penetration, // 관통
-        poison,
+        EnchantBuff = 1,
     }
 
     [Flags]
@@ -35,7 +34,6 @@ namespace Karin
         None, //아무것도 아님
         penetration, // 관통
         Collision, //충돌
-        Push, //밀치기
     }
 
     public enum Buff : int

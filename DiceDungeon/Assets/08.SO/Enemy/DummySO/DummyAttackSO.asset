@@ -17,4 +17,5 @@ MonoBehaviour:
   value: 5000
   range: {fileID: 11400000, guid: 8f216b4e18435504486e9d416efd5fe5, type: 2}
   attackType: 0
-  attackEffect: 0
+  attackEffect: -1
+  buffEye: {fileID: 11400000, guid: 1f636b470d64be042b09dfe1f1353caf, type: 2}
