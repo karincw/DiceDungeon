@@ -20,6 +20,7 @@ namespace Karin
         public int damage;
         //무슨 효과를 지니는지
         public AttackEffect effect;
+        public BuffData buffData;
     }
 
     [System.Serializable]

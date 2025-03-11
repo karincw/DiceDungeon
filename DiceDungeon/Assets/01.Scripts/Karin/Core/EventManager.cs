@@ -54,6 +54,16 @@ namespace Karin.Event
             attackTargets.ForEach(t =>
             {
                 t.health.DecreaseHealth(ad.damage);
+                switch (ad.effect)
+                {
+                    case AttackEffect.None:
+                        break;
+                    case AttackEffect.EnchantBuff:
+                        var bd = ad.buffData;
+                        bd.who = t;
+                        BuffEvent?.Invoke(bd);
+                        break;
+                }
             });
         }
 

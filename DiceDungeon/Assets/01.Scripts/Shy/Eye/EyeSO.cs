@@ -1,7 +1,5 @@
-using UnityEngine;
 using Karin.Charactor;
-using Karin;
-using Karin.Event;
+using UnityEngine;
 
 namespace SHY
 {
@@ -10,7 +8,6 @@ namespace SHY
         public string eyeName;
         public Sprite icon;
         public int value;
-        public RangeSO range;
 
         public abstract void OnUse(Agent _agent);
     }

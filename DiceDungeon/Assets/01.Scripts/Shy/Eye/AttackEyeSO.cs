@@ -8,8 +8,10 @@ namespace SHY
     [CreateAssetMenu(fileName = "AttackEyeSO", menuName = "SO/Eye/Attack")]
     public class AttackEyeSO : EyeSO
     {
+        public RangeSO range;
         public AttackType attackType;
         public AttackEffect attackEffect;
+        public BuffEyeSO buffEye;
 
         public override void OnUse(Agent _agent)
         {
@@ -26,7 +28,10 @@ namespace SHY
             at.attackType = attackType;
             at.damage = value;
             at.effect = attackEffect;
-
+            if (at.effect == AttackEffect.EnchantBuff)
+            {
+                at.buffData = buffEye.GetData(_agent);
+            }
             return at;
         }
     }
