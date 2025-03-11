@@ -6,7 +6,7 @@ namespace Karin.HexMap
     public class HexCoordinates
     {
         public static float xOffset = 2.3f, yOffset = 1.2f;
-        public static Vector2 offsetPos = new Vector2(0, 1.8f);
+        public static Vector2 offsetPos = new Vector2(0, 0.8f);
 
         public static Vector2Int ConvertPositionToOffset(Vector2 position)
         {
