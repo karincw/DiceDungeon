@@ -49,12 +49,10 @@ namespace Karin.Event
 
             var ownerHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
-            Debug.Log($"Owner Attack HsxCoord{ownerHex + offsetPos}");
 
             var attackTargets = targetTile.GetNeighbourData(ad.direction, ad.attackType);
             attackTargets.ForEach(t =>
             {
-                Debug.Log($"targets : {t}");
                 t.health.DecreaseHealth(ad.damage);
             });
         }
