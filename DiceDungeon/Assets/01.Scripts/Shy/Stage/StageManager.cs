@@ -14,8 +14,28 @@ namespace SHY
         [SerializeField] private Transform backGround;
 
         private StageUI[,] stageTree = new StageUI[1, 5];
+        private List<StageUI> stageList;
 
-        private Vector2 nowPlayerPos;
+        private Vector2Int playerPos;
+
+        public void Move(StageUI _stage)
+        {
+            bool canMove = false;
+
+            for (int x = 0; x < 5; x++)
+            {
+                if(stageTree[playerPos.y + 1, x] == _stage)
+                {
+                    playerPos = new Vector2Int(x, playerPos.y + 1);
+                    canMove = true;
+                    break;
+                }
+            }
+
+            if (!canMove) return;
+
+            PlayerImg.Instance.DoMove(stageTree[playerPos.y, playerPos.x].transform.position);
+        }
 
 
         private void Update()
@@ -78,6 +98,7 @@ namespace SHY
                 if (stageTree[y, curX] == null)
                 {
                     st = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
+                    stageList.Add(st);
                 }
                 else
                 {
@@ -101,6 +122,7 @@ namespace SHY
         public void MapInit()
         {
             stageTree = new StageUI[yStageCnt + 1, 5];
+            stageList = new List<StageUI>();
 
             //맨 윗 놈
             StageUI fr = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
@@ -112,23 +134,17 @@ namespace SHY
             la.transform.position = new Vector3(0, -yDistance * yStageCnt, 0);
             stageTree[yStageCnt, 2] = la;
 
+            stageList.Add(la);
+            stageList.Add(fr);
+
             for (int i = 0; i < 5; i++) Gener2();
 
-            stageTree[0, 2].LineRender();
-
-            for (int y = 1; y < yStageCnt; y++)
+            for (int i = 0; i < stageList.Count; i++)
             {
-                for (int x = 0; x < 5; x++)
-                {
-                    if(stageTree[y, x] != null)
-                    {
-                        //여기서 데이터 넣어주면 될 듯
-                        stageTree[y, x].LineRender();
-                    }
-                }
+                stageList[i].Init();
             }
 
-            nowPlayerPos = new Vector2(2, 0);
+            playerPos = new Vector2Int(2, 0);
         }
     }
 }

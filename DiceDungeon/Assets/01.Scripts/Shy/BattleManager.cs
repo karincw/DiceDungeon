@@ -8,7 +8,7 @@ namespace SHY
     public class BattleManager : SingleTon<BattleManager>
     {
         public Player player;
-        public List<Agent> enemys;
+        public List<Enemy> enemys;
 
         public Action<PlayerData> Initialize;
         public Action playerTurnStart;
@@ -34,11 +34,15 @@ namespace SHY
         {
             Debug.Log("Reset");
 
-            //player.TurnReset();
+            player.TurnReset();
+
             for (int i = 0; i < enemys.Count; i++)
             {
+                //if(enemys[i])
+
                 //¿¡³Ê¹Ì Á×Àº ³ðµé ¾ø¾Ö°í
-                //enemys[i].TurnReset();
+                enemys[i].TurnReset();
+                enemys[i].PlayMove();
             }
         }
 

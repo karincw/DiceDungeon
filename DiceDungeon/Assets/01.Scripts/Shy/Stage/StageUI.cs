@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +9,14 @@ namespace SHY
     {
         public StageSO data;
         public List<StageUI> childs = new List<StageUI>();
+        private StageManager stageManager;
+
+        public void Init()
+        {
+            if(stageManager == null) stageManager = FindFirstObjectByType<StageManager>();
+
+            LineRender();
+        }
 
         public void LineRender()
         {
@@ -26,7 +35,7 @@ namespace SHY
         {
             //PlayerImg.Instance.DoMove(transform.position);
 
-
+            stageManager.Move(this);
         }
     }
 }
