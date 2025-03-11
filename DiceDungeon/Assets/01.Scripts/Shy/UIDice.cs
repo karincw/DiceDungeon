@@ -10,7 +10,7 @@ namespace SHY
     {
         private Vector2 clickPos;
         private bool isDrager = false;
-        private int sibleIdx;
+        internal int sibleIdx;
 
         public DiceSO diceData;
 
@@ -34,6 +34,7 @@ namespace SHY
         {
             diceData = _so;
             Roll();
+            sibleIdx = transform.parent.GetSiblingIndex();
         }
 
         public void Roll()
@@ -83,6 +84,12 @@ namespace SHY
             isDrager = false;
         }
 
+        public void SetSible(int _sible)
+        {
+            sibleIdx = _sible;
+            transform.parent.SetSiblingIndex(sibleIdx);
+        }
+
         private void OnTriggerEnter2D(Collider2D _col)
         {
             if (!isDrager || SelectCheck(_col.transform)) return;
@@ -93,7 +100,7 @@ namespace SHY
 
             seq.Append(_col.transform.DOLocalMove(Vector3.zero, 0.1f));
 
-            _col.transform.parent.SetSiblingIndex(sibleIdx);
+            _col.GetComponent<UIDice>().SetSible(sibleIdx);
             sibleIdx = transform.parent.GetSiblingIndex();
             transform.parent.SetAsLastSibling();
         }

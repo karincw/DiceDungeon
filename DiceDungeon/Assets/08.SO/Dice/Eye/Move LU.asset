@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 419196c824ab0ba44bb00d36bfd2d196, type: 3}
-  m_Name: Test Move
+  m_Name: Move LU
   m_EditorClassIdentifier: 
   eyeName: "\uBC29\uD5A5"
-  icon: {fileID: 695318567, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
+  icon: {fileID: 21300000, guid: 7a46531c2436e014a9f8a73e366de91e, type: 3}
   value: 1
-  range: {fileID: 0}
-  dir: 0
+  dir: 1
   moveEffect: 0

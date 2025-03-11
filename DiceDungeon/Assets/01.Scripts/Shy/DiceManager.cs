@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SHY
@@ -65,11 +66,14 @@ namespace SHY
 
         private IEnumerator UseDice()
         {
+            dices = dices.OrderBy(dice => dice.sibleIdx).ToList();
+
             Debug.Log("use dice");
-            foreach (UIDice item in dices)
+
+            foreach (UIDice dice in dices)
             {
                 yield return new WaitForSeconds(2);
-                item.diceData.OnUse(BattleManager.Instance.player);
+                dice.diceData.OnUse(BattleManager.Instance.player);
             }
 
             yield return new WaitForSeconds(3.5f);

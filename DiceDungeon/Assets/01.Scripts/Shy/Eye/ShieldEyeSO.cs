@@ -12,11 +12,18 @@ namespace SHY
         {
             Debug.Log("¹æ¾î");
 
+            
+
+            EventManager.Instance.ShieldEvent?.Invoke(GetData(_agent));
+        }
+
+        public ShieldData GetData(Agent _agent)
+        {
             ShieldData sh = new ShieldData();
             sh.who = _agent;
             sh.shield = value;
 
-            EventManager.Instance.ShieldEvent?.Invoke(sh);
+            return sh;
         }
     }
 }

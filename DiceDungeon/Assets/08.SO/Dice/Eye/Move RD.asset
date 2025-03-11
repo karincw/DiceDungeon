@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe33d60fe355474eb746f70fb0d54d0, type: 3}
-  m_Name: Test Attack
+  m_Script: {fileID: 11500000, guid: 419196c824ab0ba44bb00d36bfd2d196, type: 3}
+  m_Name: Move RD
   m_EditorClassIdentifier: 
-  eyeName: "\uB3C5\uCE7C"
-  icon: {fileID: 21300000, guid: 649454a281ed6ff4a99af0ee8c128c14, type: 3}
+  eyeName: "\uBC29\uD5A5"
+  icon: {fileID: 21300000, guid: dc31b6e8cd4cf774086e37cf1772c730, type: 3}
   value: 1
-  range: {fileID: 0}
-  attackType: 1
-  attackEffect: 0
-  buffEye: {fileID: 0}
+  dir: 4
+  moveEffect: 0
