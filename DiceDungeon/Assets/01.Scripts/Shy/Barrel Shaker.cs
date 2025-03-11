@@ -29,12 +29,12 @@ namespace SHY
             seq.AppendInterval(1f);
 
             //Up
-            seq.Append(visual.DOMoveY(4, 0.8f).OnStart(() => openCup?.Invoke()));
-            seq.AppendInterval(1.4f);
+            seq.Append(visual.DOMoveY(5, 0.8f).OnStart(() => openCup?.Invoke()));
+            seq.AppendInterval(1.1f);
             seq.OnComplete(() => shakeFin.Invoke());
         }
         
-        public void Disappear(float _sp = 0.3f, float _de = 0.33f)
+        public void Disappear(float _sp = 0.3f, float _de = 0.2f)
         {
             Sequence seq = DOTween.Sequence();
 

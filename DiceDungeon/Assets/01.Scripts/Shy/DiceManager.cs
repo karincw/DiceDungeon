@@ -61,16 +61,18 @@ namespace SHY
         }
 
 
-        public void DiceTest() => UseDice();
+        public void UseDices() => StartCoroutine(UseDice());
 
-        public void UseDice()
+        private IEnumerator UseDice()
         {
             Debug.Log("use dice");
             foreach (UIDice item in dices)
             {
+                yield return new WaitForSeconds(2);
                 item.diceData.OnUse(BattleManager.Instance.player);
             }
 
+            yield return new WaitForSeconds(3.5f);
             BattleManager.Instance.enemyTurnStart.Invoke();
         }
     }

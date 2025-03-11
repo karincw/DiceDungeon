@@ -1,5 +1,6 @@
 using Karin.Charactor;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace SHY
         private void Awake()
         {
             playerTurnStart += OnPlayerTurn;
-            enemyTurnStart += OnEnemyTurn; 
+            enemyTurnStart += OnEnemyTurn;
         }
 
         private void OnPlayerTurn()
@@ -42,6 +43,13 @@ namespace SHY
                 enemys[i].TurnReset();
                 enemys[i].PlayMove();
             }
+        }
+
+        
+
+        private IEnumerator Tester()
+        {
+            yield return new WaitForSeconds(0);
         }
 
         private void OnEnemyTurn()
