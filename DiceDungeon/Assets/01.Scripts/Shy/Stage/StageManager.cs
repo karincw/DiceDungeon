@@ -73,7 +73,7 @@ namespace SHY
         }
 
         #region »ý¼º
-        void Gener2()
+        private void Gener2()
         {
             int curX = 2;
             StageUI st;

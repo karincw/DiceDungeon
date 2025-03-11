@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Test Buf
   m_EditorClassIdentifier: 
   eyeName: "\uAC15\uD654"
-  img: {fileID: -2205863333093305225, guid: 21ca4c7e53e565244bc45e9290871645, type: 3}
+  icon: {fileID: 355433320, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
   value: 3
+  range: {fileID: 0}
   type: 0

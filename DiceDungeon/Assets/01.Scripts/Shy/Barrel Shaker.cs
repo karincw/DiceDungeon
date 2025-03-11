@@ -21,7 +21,7 @@ namespace SHY
             Sequence seq = DOTween.Sequence();
 
             //Down
-            seq.Append(visual.DOLocalMoveY(0, 1f).OnComplete(()=>openCup?.Invoke()));
+            seq.Append(visual.DOLocalMoveY(0, 1f).SetEase(Ease.OutCubic));
             seq.AppendInterval(0.8f);
 
             //Shake
@@ -29,7 +29,7 @@ namespace SHY
             seq.AppendInterval(1f);
 
             //Up
-            seq.Append(visual.DOMoveY(4, 0.8f));
+            seq.Append(visual.DOMoveY(4, 0.8f).OnStart(() => openCup?.Invoke()));
             seq.AppendInterval(1.4f);
             seq.OnComplete(() => shakeFin.Invoke());
         }
@@ -38,7 +38,7 @@ namespace SHY
         {
             Sequence seq = DOTween.Sequence();
 
-            seq.Append(visual.DOMoveY(10, _sp));
+            seq.Append(visual.DOLocalMoveY(1080, _sp));
             seq.SetDelay(_de);
         }
     }

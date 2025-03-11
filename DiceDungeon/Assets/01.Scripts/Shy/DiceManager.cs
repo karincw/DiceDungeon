@@ -8,17 +8,14 @@ namespace SHY
     {
         public List<UIDice> dices;
         [SerializeField] private BarrelShaker shaker;
+        [SerializeField] private Vector2[] dicesSpawnPos;
         private int rollcnt;
 
         private void Awake()
         {
             shaker.shakeFin += ReturnDice;
             shaker.openCup += () => {
-                foreach (UIDice item in dices)
-                {
-                    item.gameObject.SetActive(true);
-                    //item À§Ä¡
-                }
+                foreach (UIDice item in dices) item.gameObject.SetActive(true);
             };
 
             BattleManager.Instance.Initialize += Init;
@@ -47,7 +44,7 @@ namespace SHY
             {
                 if(dices[i].SelectCheck() || _resetAll)
                 {
-                    dices[i].transform.position = new Vector3(Random.Range(-1.8f, 1.8f), Random.Range(-1.8f, 1.9f), 0);
+                    dices[i].transform.position = dicesSpawnPos[i];
                     dices[i].Roll();
                 }
             }
@@ -64,14 +61,17 @@ namespace SHY
         }
 
 
-        public void DiceTest() => UseDice(null);
+        public void DiceTest() => UseDice();
 
-        public void UseDice(Player _p)
+        public void UseDice()
         {
+            Debug.Log("use dice");
             foreach (UIDice item in dices)
             {
-                item.diceData.OnUse(_p);
+                item.diceData.OnUse(BattleManager.Instance.player);
             }
+
+            BattleManager.Instance.enemyTurnStart.Invoke();
         }
     }
 }

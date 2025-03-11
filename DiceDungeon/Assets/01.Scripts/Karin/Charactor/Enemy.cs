@@ -45,7 +45,7 @@ namespace Karin.Charactor
             direction = dir;
         }
 
-        protected virtual void PlayAttack()
+        public virtual void PlayAttack()
         {
             _selectedAttack.OnUse(this);
         }

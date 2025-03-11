@@ -13,7 +13,6 @@ namespace SHY
         public override void OnUse(Agent _agent)
         {
             Debug.Log("น๖วม");
-            return;
 
             EventManager.Instance.BuffEvent?.Invoke(GetData(_agent));
         }

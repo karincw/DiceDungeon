@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Test Move
   m_EditorClassIdentifier: 
   eyeName: "\uBC29\uD5A5"
-  img: {fileID: 8819977675518671219, guid: 4ea26124965658449bc6bbebfe82586c, type: 3}
+  icon: {fileID: 695318567, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
   value: 1
+  range: {fileID: 0}
   dir: 0
   moveEffect: 0

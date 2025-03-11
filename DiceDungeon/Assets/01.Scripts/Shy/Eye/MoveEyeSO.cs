@@ -14,7 +14,6 @@ namespace SHY
         public override void OnUse(Agent _agent)
         {
             Debug.Log("¿Ãµø");
-            return;
 
             MoveData mo = new MoveData();
             mo.who = _agent;

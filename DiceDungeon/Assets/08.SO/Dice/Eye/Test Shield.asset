@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Test Shield
   m_EditorClassIdentifier: 
   eyeName: "\uBC29\uC5B4"
-  img: {fileID: -6955612410638202120, guid: f34d4515b12e7b74ba70714fb7a21398, type: 3}
+  icon: {fileID: -852710679, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
   value: 3
+  range: {fileID: 0}

@@ -12,22 +12,20 @@ namespace SHY
 
         public Action<PlayerData> Initialize;
         public Action playerTurnStart;
+        public Action enemyTurnStart;
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 playerTurnStart?.Invoke();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                OnEnemyTurn();
             }
         }
 
         private void Awake()
         {
             playerTurnStart += OnPlayerTurn;
+            enemyTurnStart += OnEnemyTurn; 
         }
 
         private void OnPlayerTurn()
@@ -49,6 +47,17 @@ namespace SHY
         private void OnEnemyTurn()
         {
             //enemy들의 행동
+            Debug.Log("Enemy 행동");
+
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                //if(enemys[i])
+
+                //에너미 죽은 놈들 없애고
+                enemys[i].PlayAttack();
+            }
+
+            playerTurnStart.Invoke();
         }
     }
 }

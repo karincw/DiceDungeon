@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Test Attack
   m_EditorClassIdentifier: 
   eyeName: "\uB3C5\uCE7C"
-  icon: {fileID: 0}
+  icon: {fileID: 1665033724, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
   value: 1
-  range: {fileID: 11400000, guid: 3e3bdd42092b50e46b9bac00a4ad741b, type: 2}
+  range: {fileID: 0}
   attackType: 1
   attackEffect: -1
