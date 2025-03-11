@@ -27,14 +27,6 @@ namespace Karin.Charactor
 
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F10))
-            {
-                PlayMove();
-            }
-        }
-
         protected virtual void ReservationAttack(bool playReservation)
         {
             if (playReservation == false) return;

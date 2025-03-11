@@ -25,18 +25,6 @@ namespace Karin.Charactor
             MoveEnd();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                BuffData bd = new BuffData();
-                bd.who = this;
-                bd.buffType = Buff.Poison;
-                bd.value = 10;
-                EventManager.Instance.BuffEvent?.Invoke(bd);
-            }
-        }
-
         //다시 내텀이 돌아왔을때 실행
         public virtual void TurnReset()
         {
