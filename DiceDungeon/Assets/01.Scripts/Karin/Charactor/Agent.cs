@@ -13,14 +13,14 @@ namespace Karin.Charactor
         [HideInInspector] public BuffContainer buffContainer;
         [HideInInspector] public HexTile underTile;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             health = GetComponent<AgentHealth>();
             buffContainer = GetComponent<BuffContainer>();
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             MoveEnd();
         }
