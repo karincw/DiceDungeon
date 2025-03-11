@@ -20,39 +20,30 @@ public class RangeSO : ScriptableObject
         }
     }
 
-    private Vector2[,] GetV()
+    private Vector2Int[,] GetV()
     {
-        Vector2[,] vArr = new Vector2[7, 7];
+        Vector2Int[,] vArr = new Vector2Int[7, 7];
 
         for (int y = 0; y < 7; y++)
         {
-            int half = Mathf.CeilToInt(arrX[y] * .5f);
+            int half = Mathf.FloorToInt(arrX[y] * .5f);
             
             for (int x = 0; x < arrX[y]; x++)
             {
                 int xValue = x;
-                if (y % 2 == 0) xValue = x - x / half;
+                //if (y % 2 == 0) xValue = x - x / half;
 
-                vArr[y, x] = new Vector2(xValue - half + 1, 3 - y);
+                vArr[y, x] = new Vector2Int(xValue - half, 3 - y);
             }
         }
-
-        //string s = "";
-        //for (int y = 0; y < 7; y++)
-        //{
-        //    for (int x = 0; x < arrX[y]; x++) s += _v[y, x].x;
-
-        //    s += "\n";
-        //}
-        //Debug.Log(s);
 
         return vArr;
     }
 
-    public List<Vector2> Get()
+    public List<Vector2Int> Get()
     {
-        List<Vector2> _arr = new List<Vector2>();
-        Vector2[,] vArr = GetV();
+        List<Vector2Int> _arr = new List<Vector2Int>();
+        Vector2Int[,] vArr = GetV();
 
         int leng = 0;
 
