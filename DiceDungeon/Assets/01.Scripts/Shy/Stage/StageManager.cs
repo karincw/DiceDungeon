@@ -89,118 +89,38 @@ namespace SHY
                 }
 
                 st.parents.Add(par);
-                st.transform.position = new Vector3((curX - 2) * 3, yDistance * y * -1, 0 );
+
+                st.transform.position = new Vector3(
+                    (curX - 2) * 3 + Random.Range(-.3f, .4f), 
+                    yDistance * y * -1 + Random.Range(-.3f, .4f)
+                    , 0 );
 
                 stageTree[y, curX] = st;
-                st.LineRender();
             }
         }
 
         public void MapGenerate()
         {
             stageTree = new StageUI[yStageCnt + 2, 5];
-            float xDistance = 3f;
 
-            //StageUI start = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
-            //start.transform.position = Vector3.zero;
-            ////start.Init(baseStage, null, null);
-            //
-            //stageTree[0, 2] = start;
-            int ra = RandByArr(new int[] { 15, 100, 70 }) + 2, curX = 0;
-
-
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Gener2();
             }
-            
 
+            //Boss Stage Make
 
-
-            //float yPos = 0, aX;
-
-            //for (int yNum = 1; yNum <= yStageCnt; yNum++)
-            //{
-            //    yPos -= yDistance;
-
-            //    int xCnt = RandByArr(new int[] { 15, 100, 70, 10 });
-
-            //    aX = (5 - (5 - xCnt) * 0.5f) * 2;
-            //    Vector2 xPosAbs = new Vector2(-aX / 2, aX / xCnt - aX / 2);
-
-            //    #region 생성
-            //    for (int xNum = 0; xNum < xCnt; xNum++)
-            //    {
-            //        StageUI stage = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
-
-            //        float calc = aX / xCnt * xNum;
-            //        stage.transform.position = new Vector3(
-            //            Random.Range(xPosAbs.x + calc + xDistance, xPosAbs.y + calc) - xDistance / 2, 
-            //            Random.Range(yPos + .2f, yPos - .3f), 0);
-            //        //stageTree[yNum].Add(stage);
-            //    }
-            //    #endregion
-            //}
-
-            ////마지막 아래 생성
-            //yPos -= yDistance;
-            //StageUI lastStage = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
-            //lastStage.transform.position = new Vector3(0, yPos, 0);
-            //stageTree[yStageCnt + 1, 2] = lastStage;
-
-
-
-
-
-            #region 연결
-
-            //StageConnect(0);
-
-            //for (int y = 1; y < stageTree.Length - 1; y++)
-            //{
-            //    for (int x = 0; x < stageTree[y].Count; x++)
-            //    {
-            //        //윗 놈들을 모아서
-            //        List<StageUI> parentTrees = stageTree[y - 1].ToList();
-            //        List<StageUI> childTrees = stageTree[y + 1].ToList();
-
-                    
-            //        //윗 놈들 개수를 구하고
-            //        int childCnt = childTrees.Count; // 1~4
-
-            //        if (childCnt >= 2) childCnt = RandByArr(new int[] { 190, 10 });
-
-            //        while (1 < parentTrees.Count)
-            //        {
-            //            parentTrees.RemoveAt(Random.Range(0, parentTrees.Count));
-            //        }
-
-            //        while (childCnt < childTrees.Count)
-            //        {
-            //            childTrees.RemoveAt(Random.Range(0, childTrees.Count));
-            //        }
-
-            //        stageTree[y][x].Init(GetStage(), parentTrees.ToArray(), childTrees.ToArray(), true);
-            //    }
-
-
-            //}
-            #endregion
+            for (int y = 1; y < yStageCnt; y++)
+            {
+                for (int x = 0; x < 5; x++)
+                {
+                    if(stageTree[y, x] != null)
+                    {
+                        //여기서 데이터 넣어주면 될 듯
+                        stageTree[y, x].LineRender();
+                    }
+                }
+            }
         }
-
-        //public void StageConnect(int _yValue)
-        //{
-        //    if (_yValue == stageTree.Length) return;
-
-        //    foreach (var stage in stageTree[_yValue])
-        //    {
-
-        //    }
-
-        //    //StageConnect(_yValue + 1);
-        //}
-
-
     }
-
 }
