@@ -21,7 +21,7 @@ namespace SHY
         {
             AttackData at = new AttackData();
             at.who = _agent;
-            //where
+            at.where = new Vector2Int(0, 0);
             at.direction = _agent.direction;
             at.attackType = attackType;
             at.damage = value;

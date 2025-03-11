@@ -16,23 +16,10 @@ namespace Karin.Charactor
         private AttackEyeSO _selectedAttack;
         private Pathfinder _pathfinder;
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _pathfinder = new Pathfinder();
-
-        }
-
-        private void OnDestroy()
-        {
-
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F10))
-            {
-                PlayMove();
-            }
         }
 
         protected virtual void ReservationAttack(bool playReservation)

@@ -41,7 +41,7 @@ namespace Karin.HexMap
             switch (type)
             {
                 case AttackType.Around:
-                    agents = neighbourTiles.Where(t => t.overAgent != null).Select(t => t.overAgent).ToList();
+                    agents = neighbourTiles.Where(t => t.overAgent is not null).Select(t => t.overAgent).ToList();
                     break;
                 case AttackType.Front:
                     if (neighbourTiles[(int)dir].overAgent != null)
