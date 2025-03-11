@@ -54,17 +54,18 @@ namespace Karin.HexMap
 
         public static Direction GetVectorToDirection(Vector2 dirVector)
         {
-            if (dirVector == new Vector2(-xOffset, 0))
+            dirVector.Normalize();
+            if (dirVector == new Vector2(-xOffset, 0).normalized)
                 return Direction.Left;
-            if (dirVector == new Vector2(xOffset, 0))
+            if (dirVector == new Vector2(xOffset, 0).normalized)
                 return Direction.Right;
-            if (dirVector == new Vector2(-xOffset / 2, yOffset))
+            if (dirVector == new Vector2(-xOffset / 2, yOffset).normalized)
                 return Direction.TopLeft;
-            if (dirVector == new Vector2(xOffset / 2, yOffset))
+            if (dirVector == new Vector2(xOffset / 2, yOffset).normalized)
                 return Direction.TopRight;
-            if (dirVector == new Vector2(-xOffset / 2, -yOffset))
+            if (dirVector == new Vector2(-xOffset / 2, -yOffset).normalized)
                 return Direction.BottomLeft;
-            if (dirVector == new Vector2(xOffset / 2, -yOffset))
+            if (dirVector == new Vector2(xOffset / 2, -yOffset).normalized)
                 return Direction.BottomRight;
 
             Debug.LogError("Error Vector");
