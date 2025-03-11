@@ -11,7 +11,7 @@ namespace Karin.Charactor
     public class Enemy : Agent
     {
         [SerializeField] private EnemyDataSO _eData;
-        private AttackData _selectedAttackData;
+        private AttackEyeSO _selectedAttack;
         private Pathfinder _pathfinder;
 
         protected virtual void Awake()
@@ -19,31 +19,35 @@ namespace Karin.Charactor
             _pathfinder = new Pathfinder();
         }
 
-        private void Update()
+        protected virtual void ReservationAttack()
         {
-
-        }
-
-        public virtual void TurnAction()
-        {
-            if (MoveOnAttackablePos(_eData.maxMoveCount))
-            {
-                PlayAttack();
-            }
+            //나중에 매니저에서 가져오는걸로 교체
+            Agent player = FindFirstObjectByType<Player>();
+            Direction dir = HexCoordinates.GetVectorToDirection(player.transform.position - transform.position);
+            direction = dir;
         }
 
         protected virtual void PlayAttack()
         {
+            _selectedAttack.OnUse(this);
+        }
 
+        public virtual void PlayMove()
+        {
+            if (MoveOnAttackablePos(_eData.maxMoveCount))
+            {
+                ReservationAttack();
+            }
         }
 
         protected bool MoveOnAttackablePos(int maxMoveCount)
         {
             //나중에 매니저에서 가져오는걸로 교체
             Agent player = FindFirstObjectByType<Player>();
+
             var attackEyes = _eData.useAbleAbilitys.Where(d => d is AttackEyeSO).Select(d => d as AttackEyeSO).ToList();
-            //_selectedAttackData = attackEyes[Random.Range(0, _eData.useAbleAbilitys.Count)];
-            //나중에 AttackData에있는 상대좌표로 가져오게 교체
+            _selectedAttack = attackEyes[Random.Range(0, attackEyes.Count)];
+            
             List<HexTile> attackAbleTiles = player.underTile.GetNeighbourTiles;
             var route = _pathfinder.PathFind(underTile, attackAbleTiles);
 
