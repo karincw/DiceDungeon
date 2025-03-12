@@ -67,7 +67,7 @@ namespace Karin.Event
         private void ShieldEventHandler(ShieldData sd)
         {
             var owner = sd.who;
-            owner.health.shield += sd.shield;
+            owner.health.shield += sd.value;
         }
 
         private void MoveEventHandler(MoveData md)
@@ -76,14 +76,14 @@ namespace Karin.Event
                 return;
 
             var owner = md.who;
-            owner.MoveStart(md.direction);
-            var startHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
+            owner.MoveStart(md.direction, md.rewriteTile);
+            Vector2 startPos = owner.transform.position;
             Vector2 targetPos = new();
             Action callback = null;
 
             for (var i = 1; i <= md.distance; i++)
             {
-                targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * i;
+                targetPos = startPos + HexCoordinates.GetDirectionToVector(md.direction) * i;
                 HexTile targetTile = MapManager.Instance.GetTile(targetPos);
 
                 if (md.effect == MoveEffect.Collision)
@@ -99,19 +99,28 @@ namespace Karin.Event
                     else if (targetTile.moveAble == false)
                     {
                         Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}거리에 충돌체를 확인함");
+
                         var colTarget = targetTile.overAgent;
                         targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * i;
-                        callback = () => 
+                        var colPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * (i + 1);
+                        targetTile = MapManager.Instance.GetTile(colPos);
+                        if (targetTile != null)
                         {
-                            MoveData colTargetMD = new MoveData();
-                            colTargetMD.who = colTarget;
-                            colTargetMD.distance = 1;
-                            colTargetMD.direction = md.direction;
-                            colTargetMD.effect = MoveEffect.None;
-                            colTargetMD.additionalValue = 0;
-                            MoveEvent?.Invoke(colTargetMD);
-                            colTarget.health.DecreaseHealth(md.additionalValue);
-                        };
+                            callback = () =>
+                            {
+                                MoveData colTargetMD = new MoveData(colTarget, md.direction, MoveEffect.None, 1, 0);
+                                MoveEvent?.Invoke(colTargetMD);
+                            };
+                        }
+                        else
+                        {
+                            callback = () =>
+                            {
+                                MoveData returnOwnerMD = new MoveData(owner, HexCoordinates.InvertDirection(md.direction), MoveEffect.None, 1, 0, false);
+                                MoveEvent?.Invoke(returnOwnerMD);
+                            };
+                        }
+                        colTarget.health.DecreaseHealth(md.additionalValue);
                         break;
                     }
                 }
@@ -129,16 +138,16 @@ namespace Karin.Event
                 }
             }
 
-            MoveAgent(owner, targetPos, callback);
+            MoveAgent(owner, targetPos, md, callback);
         }
 
-        private void MoveAgent(Agent agent, Vector2 destination, Action callbackAction = null)
+        private void MoveAgent(Agent agent, Vector2 destination, MoveData md, Action callbackAction = null)
         {
             agent.transform
                 .DOMove(destination, 0.5f).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    agent.MoveEnd();
+                    agent.MoveEnd(md.rewriteTile);
                     if (callbackAction != null)
                     {
                         callbackAction?.Invoke();

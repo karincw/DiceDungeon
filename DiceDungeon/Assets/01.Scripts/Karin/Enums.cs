@@ -13,7 +13,7 @@ namespace Karin
 
     public enum Direction : int
     {
-        Left,
+        Left = 0,
         TopLeft,
         TopRight,
         Right,

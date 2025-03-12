@@ -19,7 +19,7 @@ namespace SHY
         {
             ShieldData sh = new ShieldData();
             sh.who = _agent;
-            sh.shield = value;
+            sh.value = value;
 
             return sh;
         }

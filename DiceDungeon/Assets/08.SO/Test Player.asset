@@ -16,8 +16,8 @@ MonoBehaviour:
   hp: 10
   gold: 0
   dices:
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
+  - {fileID: 11400000, guid: 1614bfa7199aeba4d8163d634125ac42, type: 2}
+  - {fileID: 11400000, guid: 1614bfa7199aeba4d8163d634125ac42, type: 2}
   - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
   - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
   - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}

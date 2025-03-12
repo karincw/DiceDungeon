@@ -311,8 +311,8 @@ MonoBehaviour:
   direction: 3
   health: {fileID: 0}
   buffContainer: {fileID: 0}
-  underTile: {fileID: 0}
   _eData: {fileID: 11400000, guid: a6808cb72af772f478f2ee56f209f983, type: 2}
+  isReservation: 0
 --- !u!1001 &1556920981666366410
 PrefabInstance:
   m_ObjectHideFlags: 0

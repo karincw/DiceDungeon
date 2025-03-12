@@ -12,7 +12,8 @@ namespace Karin.Charactor
         public Direction direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
-        [HideInInspector] public HexTile underTile
+        [HideInInspector]
+        public HexTile underTile
         {
             get => _underTile;
             set
@@ -45,19 +46,38 @@ namespace Karin.Charactor
             buffContainer.TurnReset();
         }
 
-        public virtual void MoveEnd()
+        public virtual void MoveEnd(bool ReWrite = true)
         {
             var tile = MapManager.Instance.GetTile(transform.position);
-            tile.overAgent = this;
-            tile.moveAble = false;
-            underTile = tile;
+            if (ReWrite)
+            {
+                tile.overAgent = this;
+                tile.moveAble = false;
+                underTile = tile;
+                return;
+            }
+            if (underTile.overAgent != null)
+            {
+                tile.overAgent = this;
+                tile.moveAble = false;
+                underTile = tile;
+            }
         }
 
-        public virtual void MoveStart(Direction dir)
+        public virtual void MoveStart(Direction dir, bool ReWrite = true)
         {
             direction = dir;
-            underTile.overAgent = null;
-            underTile.moveAble = true;
+            if (ReWrite)
+            {
+                underTile.overAgent = null;
+                underTile.moveAble = true;
+                return;
+            }
+            if (underTile.overAgent != null)
+            {
+                underTile.overAgent = null;
+                underTile.moveAble = true;
+            }
         }
     }
 }

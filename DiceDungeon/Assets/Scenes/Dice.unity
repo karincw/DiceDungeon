@@ -764,22 +764,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 2136646385
-      objectReference: {fileID: 0}
-    - target: {fileID: 1894630300503536098, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6006700752565764833, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_Name
       value: HPGauge
@@ -1744,7 +1728,6 @@ MonoBehaviour:
   direction: 3
   health: {fileID: 0}
   buffContainer: {fileID: 0}
-  underTile: {fileID: 0}
 --- !u!4 &413556414
 Transform:
   m_ObjectHideFlags: 0
@@ -2692,10 +2675,6 @@ PrefabInstance:
     - target: {fileID: 8349387023076171548, guid: 0b96a2e1d1eebe34cab8d9424a0938e2, type: 3}
       propertyPath: m_Name
       value: Dummy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8349387023076171548, guid: 0b96a2e1d1eebe34cab8d9424a0938e2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4171,22 +4150,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 650000457546694447, guid: 941f221127af55843987f182e50750b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 1423342209196737444, guid: 941f221127af55843987f182e50750b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Move
-      objectReference: {fileID: 0}
-    - target: {fileID: 1481470873373911738, guid: 941f221127af55843987f182e50750b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Buff
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124216105329912430, guid: 941f221127af55843987f182e50750b0, type: 3}
-      propertyPath: moveSO
-      value: 
-      objectReference: {fileID: 11400000, guid: a0ee7a2b85e06dd42b3e612ac46f5de7, type: 2}
     - target: {fileID: 6907228992718722969, guid: 941f221127af55843987f182e50750b0, type: 3}
       propertyPath: m_Name
       value: DEBUG_Controller

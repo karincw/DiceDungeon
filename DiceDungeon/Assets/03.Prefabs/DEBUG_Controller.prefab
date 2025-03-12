@@ -544,7 +544,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6124216105329912430}
         m_TargetAssemblyTypeName: DEBUGController, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: Move
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -857,7 +857,7 @@ MonoBehaviour:
   attackSO: {fileID: 11400000, guid: af821cb692d1b124aaaa19acb48a3ab4, type: 2}
   shieldSO: {fileID: 0}
   buffSO: {fileID: 0}
-  moveSO: {fileID: 0}
+  moveSO: {fileID: 11400000, guid: a0ee7a2b85e06dd42b3e612ac46f5de7, type: 2}
 --- !u!1 &3862873512175768923
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +981,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6124216105329912430}
         m_TargetAssemblyTypeName: DEBUGController, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: Shield
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1460,7 +1460,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6124216105329912430}
         m_TargetAssemblyTypeName: DEBUGController, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: Buff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

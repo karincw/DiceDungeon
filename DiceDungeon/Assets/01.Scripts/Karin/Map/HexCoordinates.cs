@@ -8,6 +8,8 @@ namespace Karin.HexMap
         public static float xOffset = 2.3f, yOffset = 1.2f;
         public static Vector2 offsetPos = new Vector2(0, 0.8f);
 
+        public static Direction InvertDirection(Direction dir) => dir - 3 >= 0 ? dir - 3 : dir + 3;
+
         public static Vector2Int ConvertPositionToOffset(Vector2 position)
         {
             int y = Mathf.RoundToInt((position.y - offsetPos.y) / yOffset);

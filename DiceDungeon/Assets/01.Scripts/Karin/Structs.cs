@@ -21,6 +21,17 @@ namespace Karin
         //무슨 효과를 지니는지
         public AttackEffect effect;
         public BuffData buffData;
+
+        public AttackData(Agent _who, Vector2Int _where, Direction _direction, AttackType _attackType, int _damage, AttackEffect _effect, BuffData _buffData = default)
+        {
+            who = _who;
+            where = _where;
+            direction = _direction;
+            attackType = _attackType;
+            damage = _damage;
+            effect = _effect;
+            buffData = _buffData;
+        }
     }
 
     [System.Serializable]
@@ -29,7 +40,13 @@ namespace Karin
         //누가
         public Agent who;
         //어느정도의 쉴드량을 얻는지
-        public int shield;
+        public int value;
+
+        public ShieldData(Agent _who, int _value)
+        {
+            who = _who;
+            value = _value;
+        }
     }
 
     [System.Serializable]
@@ -44,6 +61,17 @@ namespace Karin
         //어떤 효과를 지니는지
         public MoveEffect effect;
         public int additionalValue;
+        public bool rewriteTile;
+
+        public MoveData(Agent _who, Direction _direction, MoveEffect _effect, int _distance, int _additionalValue, bool _reWriteTile = true)
+        {
+            who = _who;
+            direction = _direction;
+            effect = _effect;
+            distance = _distance;
+            additionalValue = _additionalValue;
+            rewriteTile = _reWriteTile;
+        }
     }
 
     [System.Serializable]
@@ -55,6 +83,13 @@ namespace Karin
         public Buff buffType;
         ///몇 턴 동안 지속할지 infinite : -1
         public int value;
+
+        public BuffData(Agent _who, Buff _buffType, int _value)
+        {
+            who = _who;
+            buffType = _buffType;
+            value = _value;
+        }
     }
 
 }
