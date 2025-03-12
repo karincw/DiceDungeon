@@ -44,7 +44,7 @@ namespace Karin.Event
                 owner.buffContainer.RemoveBuff(Buff.Strength);
             }
 
-            var ownerHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
+            var ownerHex = owner.underTile.HexCoords;
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
 
             var attackTargets = targetTile.GetNeighbourData(ad.direction, ad.attackType);
@@ -79,31 +79,71 @@ namespace Karin.Event
             owner.MoveStart(md.direction);
             var startHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
             Vector2 targetPos = new();
-
+            Action callback = null;
 
             for (var i = 1; i <= md.distance; i++)
             {
                 targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * i;
                 HexTile targetTile = MapManager.Instance.GetTile(targetPos);
 
-                if (targetTile == null || targetTile.moveAble == false)
+                if (md.effect == MoveEffect.Collision)
                 {
-                    Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}만큼 이동할수 없음");
-                    if (i == 1) return;
+                    if (targetTile == null)
+                    {
+                        Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}만큼 이동할수 없음");
+                        if (i == 1) return;
 
-                    targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * (i - 1);
-                    break;
+                        targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * (i - 1);
+                        break;
+                    }
+                    else if (targetTile.moveAble == false)
+                    {
+                        Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}거리에 충돌체를 확인함");
+                        var colTarget = targetTile.overAgent;
+                        targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * i;
+                        callback = () => 
+                        {
+                            MoveData colTargetMD = new MoveData();
+                            colTargetMD.who = colTarget;
+                            colTargetMD.distance = 1;
+                            colTargetMD.direction = md.direction;
+                            colTargetMD.effect = MoveEffect.None;
+                            colTargetMD.additionalValue = 0;
+                            MoveEvent?.Invoke(colTargetMD);
+                            colTarget.health.DecreaseHealth(md.additionalValue);
+                        };
+                        break;
+                    }
+                }
+                else
+                {
+
+                    if (targetTile == null || targetTile.moveAble == false)
+                    {
+                        Debug.Log($"{md.who}가 {md.direction}방향으로 {md.distance}만큼 이동할수 없음");
+                        if (i == 1) return;
+
+                        targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(md.direction) * (i - 1);
+                        break;
+                    }
                 }
             }
 
-            MoveAgent(owner, targetPos);
+            MoveAgent(owner, targetPos, callback);
         }
 
-        private void MoveAgent(Agent agent, Vector2 destination)
+        private void MoveAgent(Agent agent, Vector2 destination, Action callbackAction = null)
         {
             agent.transform
                 .DOMove(destination, 0.5f).SetEase(Ease.Linear)
-                .OnComplete(() => agent.MoveEnd());
+                .OnComplete(() =>
+                {
+                    agent.MoveEnd();
+                    if (callbackAction != null)
+                    {
+                        callbackAction?.Invoke();
+                    }
+                });
         }
 
         private void BuffEventHandler(BuffData bd)

@@ -3,6 +3,7 @@ using Karin.HexMap;
 using Karin.BuffSystem;
 using Karin.Event;
 using UnityEditor.U2D.Aseprite;
+using System;
 
 namespace Karin.Charactor
 {
@@ -11,7 +12,19 @@ namespace Karin.Charactor
         public Direction direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
-        [HideInInspector] public HexTile underTile;
+        [HideInInspector] public HexTile underTile
+        {
+            get => _underTile;
+            set
+            {
+                if (_underTile == value) return;
+
+                onUndertileChanged?.Invoke();
+                _underTile = value;
+            }
+        }
+        protected Action onUndertileChanged;
+        private HexTile _underTile;
 
         protected virtual void Awake()
         {

@@ -11,6 +11,7 @@ namespace SHY
         public RangeSO range;
         public AttackType attackType;
         public AttackEffect attackEffect;
+        [Header("AttackEffectValues")]
         public BuffEyeSO buffEye;
 
         public override void OnUse(Agent _agent)

@@ -43,6 +43,7 @@ namespace Karin
         public int distance;
         //어떤 효과를 지니는지
         public MoveEffect effect;
+        public int additionalValue;
     }
 
     [System.Serializable]

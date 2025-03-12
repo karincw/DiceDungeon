@@ -21,19 +21,17 @@ namespace Karin
         BottomLeft,
     }
 
-    [Flags]
     public enum AttackEffect
     {
         None,
         EnchantBuff = 1,
     }
 
-    [Flags]
     public enum MoveEffect
     {
         None, //아무것도 아님
-        penetration, // 관통
         Collision, //충돌
+        //Repeat, //맵 밖으로 나가면 반대편에서 나옴
     }
 
     public enum Buff : int
