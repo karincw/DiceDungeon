@@ -1,14 +1,14 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
-using Karin.HexMap;
-using Karin.Charactor;
-using Karin.BuffSystem;
+using karin.HexMap;
+using karin.Charactor;
+using karin.BuffSystem;
 
-namespace Karin.Event
+namespace karin.Event
 {
 
-    public class EventManager : SingleTon<EventManager>
+    public class EventManager : MonoSingleton<EventManager>
     {
         public Action<AttackData> AttackEvent;
         public Action<ShieldData> ShieldEvent;

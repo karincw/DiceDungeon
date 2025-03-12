@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Karin
+namespace karin
 {
     public class Gauge : MonoBehaviour
     {

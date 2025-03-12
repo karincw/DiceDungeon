@@ -1,6 +1,6 @@
-using Karin;
-using Karin.Charactor;
-using Karin.Event;
+using karin;
+using karin.Charactor;
+using karin.Event;
 using SHY;
 using UnityEngine;
 using UnityEngine.UI;

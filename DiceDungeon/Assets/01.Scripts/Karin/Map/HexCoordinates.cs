@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
-namespace Karin.HexMap
+namespace karin.HexMap
 {
     public class HexCoordinates
     {

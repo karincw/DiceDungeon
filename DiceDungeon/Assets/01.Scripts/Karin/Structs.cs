@@ -1,9 +1,9 @@
 
-using Karin.Charactor;
-using Karin.BuffSystem;
+using karin.Charactor;
+using karin.BuffSystem;
 using UnityEngine;
 
-namespace Karin
+namespace karin
 {
     [System.Serializable]
     public struct AttackData
@@ -89,6 +89,21 @@ namespace Karin
             who = _who;
             buffType = _buffType;
             value = _value;
+        }
+    }
+
+    [System.Serializable]
+    public struct InvenData
+    {
+        public ItemNames itemName;
+        public Sprite image;
+        public int count;
+
+        public InvenData(ItemNames _itemNames, Sprite _sprite, int _count)
+        {
+            itemName = _itemNames;
+            image = _sprite;
+            count = _count;
         }
     }
 

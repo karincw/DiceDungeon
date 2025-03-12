@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Karin.HexMap;
+using karin.HexMap;
 using SHY;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Karin.Charactor
+namespace karin.Charactor
 {
 
     public class Enemy : Agent

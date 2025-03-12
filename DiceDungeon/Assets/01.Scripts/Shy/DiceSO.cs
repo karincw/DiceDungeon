@@ -1,5 +1,5 @@
 using UnityEngine;
-using Karin.Charactor;
+using karin.Charactor;
 
 namespace SHY
 {

@@ -1,4 +1,4 @@
-using Karin.Charactor;
+using karin.Charactor;
 using System;
 using System.Collections;
 using System.Collections.Generic;

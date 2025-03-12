@@ -1,7 +1,7 @@
-using Karin.BuffSystem;
+using karin.BuffSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/Karin/Buff/BuffStrength")]
+[CreateAssetMenu(menuName = "SO/karin/Buff/BuffStrength")]
 public class BuffStrength : BuffSO
 {
     public override void HandleOnValueChanged()

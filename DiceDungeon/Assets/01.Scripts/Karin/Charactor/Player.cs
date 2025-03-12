@@ -1,4 +1,4 @@
-using Karin.Charactor;
+using karin.Charactor;
 
 public class Player : Agent
 {

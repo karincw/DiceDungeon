@@ -1,9 +1,9 @@
-using Karin.Charactor;
+using karin.Charactor;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Karin.HexMap
+namespace karin.HexMap
 {
     public class HexTile : MonoBehaviour
     {

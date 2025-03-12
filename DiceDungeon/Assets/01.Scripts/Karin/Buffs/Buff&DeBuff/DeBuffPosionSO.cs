@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Karin.BuffSystem
+namespace karin.BuffSystem
 {
-    [CreateAssetMenu(menuName = "SO/Karin/Buff/DeBuffPoison")]
+    [CreateAssetMenu(menuName = "SO/karin/Buff/DeBuffPoison")]
     public class DeBuffPosionSO : BuffSO
     {
         public override void TurnEndSetting()

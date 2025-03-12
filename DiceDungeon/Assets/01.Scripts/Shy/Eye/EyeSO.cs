@@ -1,4 +1,4 @@
-using Karin.Charactor;
+using karin.Charactor;
 using UnityEngine;
 
 namespace SHY
