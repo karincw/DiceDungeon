@@ -31,17 +31,6 @@ namespace Karin.Event
             BuffEvent -= BuffEventHandler;
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                foreach (var item in FindObjectsByType<Agent>(FindObjectsSortMode.None))
-                {
-                    item.TurnReset();
-                }
-            }
-        }
-
         private void AttackEventHandler(AttackData ad)
         {
             var owner = ad.who;

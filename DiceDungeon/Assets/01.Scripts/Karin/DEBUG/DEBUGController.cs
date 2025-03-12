@@ -15,15 +15,17 @@ public class DEBUGController : MonoBehaviour
     [SerializeField] private Button BotLeftMoveBtn;
 
     [SerializeField] private AttackEyeSO attackSO;
+    [SerializeField] private ShieldEyeSO shieldSO;
+    [SerializeField] private BuffEyeSO   buffSO;
 
     private void OnEnable()
     {
-        LeftMoveBtn.onClick.AddListener(() => Move(Direction.Left));
-        TopLeftMoveBtn.onClick.AddListener(() => Move(Direction.TopLeft));
+        LeftMoveBtn.onClick    .AddListener(() => Move(Direction.Left));
+        TopLeftMoveBtn.onClick .AddListener(() => Move(Direction.TopLeft));
         TopRightMoveBtn.onClick.AddListener(() => Move(Direction.TopRight));
-        RightMoveBtn.onClick.AddListener(() => Move(Direction.Right));
+        RightMoveBtn.onClick   .AddListener(() => Move(Direction.Right));
         BotRightMoveBtn.onClick.AddListener(() => Move(Direction.BottomRight));
-        BotLeftMoveBtn.onClick.AddListener(() => Move(Direction.BottomLeft));
+        BotLeftMoveBtn.onClick .AddListener(() => Move(Direction.BottomLeft));
     }
 
     private void OnDisable()
@@ -38,9 +40,7 @@ public class DEBUGController : MonoBehaviour
 
     private void Move(Direction dir)
     {
-        //나중에 매니저에서 가져오는걸로 교체
-        Agent player = FindFirstObjectByType<Player>();
-        //Agent player = BattleManager.Instance.player;
+        Agent player = BattleManager.Instance.player;
         MoveData md = new();
         md.who = player;
         md.direction = dir;
@@ -50,9 +50,17 @@ public class DEBUGController : MonoBehaviour
     }
     public void Attack()
     {
-        //나중에 매니저에서 가져오는걸로 교체
-        Agent player = FindFirstObjectByType<Player>();
-        //Agent player = BattleManager.Instance.player;
+        Agent player = BattleManager.Instance.player;
         EventManager.Instance.AttackEvent?.Invoke(attackSO.GetData(player));
+    }
+    //public void Shield()
+    //{
+    //    Agent player = BattleManager.Instance.player;
+    //    EventManager.Instance.ShieldEvent?.Invoke(shieldSO.GetData(player));
+    //}
+    public void Buff()
+    {
+        Agent player = BattleManager.Instance.player;
+        EventManager.Instance.BuffEvent?.Invoke(buffSO.GetData(player));
     }
 }
