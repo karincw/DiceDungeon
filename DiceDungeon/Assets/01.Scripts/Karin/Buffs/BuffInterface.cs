@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Karin.BuffSystem
+namespace karin.BuffSystem
 {
     public class BuffInterface : MonoBehaviour
     {

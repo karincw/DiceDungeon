@@ -2,9 +2,9 @@ using SHY;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Karin.Charactor
+namespace karin.Charactor
 {
-    [CreateAssetMenu(menuName = "SO/Karin/Charactor/EnemyDataSO")]
+    [CreateAssetMenu(menuName = "SO/karin/Charactor/EnemyDataSO")]
     public class EnemyDataSO : ScriptableObject
     {
 

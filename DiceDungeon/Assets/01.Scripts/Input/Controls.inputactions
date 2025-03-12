@@ -1,0 +1,57 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "InGame",
+            "id": "6d975390-4b10-482c-b205-87783eadbcb3",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "UI",
+            "id": "1166f386-0cca-43e2-8639-a0f95f31264b",
+            "actions": [
+                {
+                    "name": "UxmlClick",
+                    "type": "Button",
+                    "id": "9f8f4167-9a9c-4891-b0fe-09288e8f0f6a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e4284f14-51c4-4c4b-b07e-8775ff8847e4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "UxmlClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

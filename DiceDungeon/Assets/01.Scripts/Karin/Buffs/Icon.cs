@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Karin.BuffSystem
+namespace karin.BuffSystem
 {
     public class Icon : MonoBehaviour
     {

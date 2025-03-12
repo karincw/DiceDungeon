@@ -1,6 +1,6 @@
-using Karin;
-using Karin.Charactor;
-using Karin.Event;
+using karin;
+using karin.Charactor;
+using karin.Event;
 using UnityEngine;
 
 namespace SHY

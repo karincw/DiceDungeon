@@ -1,7 +1,7 @@
 
 using System;
 
-namespace Karin
+namespace karin
 {
     public enum AttackType
     {
@@ -40,6 +40,10 @@ namespace Karin
         Strength
     }
 
+    public enum ItemNames : int
+    {
+        Cockatrice = 0
+    }
 
 
 }

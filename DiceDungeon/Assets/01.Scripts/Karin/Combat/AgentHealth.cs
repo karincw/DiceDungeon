@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Karin.Charactor
+namespace karin.Charactor
 {
     public class AgentHealth : MonoBehaviour
     {

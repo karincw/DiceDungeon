@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Karin.BuffSystem
+namespace karin.BuffSystem
 {
-    public class BuffManager : SingleTon<BuffManager>
+    public class BuffManager : MonoSingleton<BuffManager>
     {
         public List<BuffSO> BuffList;
     }

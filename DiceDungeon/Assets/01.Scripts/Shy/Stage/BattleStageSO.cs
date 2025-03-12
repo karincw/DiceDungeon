@@ -1,4 +1,4 @@
-using Karin.Charactor;
+using karin.Charactor;
 using System.Collections.Generic;
 using UnityEngine;
 

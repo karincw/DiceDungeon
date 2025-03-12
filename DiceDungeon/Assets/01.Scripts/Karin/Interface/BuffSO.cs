@@ -1,8 +1,8 @@
-using Karin.Charactor;
+using karin.Charactor;
 using System;
 using UnityEngine;
 
-namespace Karin.BuffSystem
+namespace karin.BuffSystem
 {
     public abstract class BuffSO : ScriptableObject
     {

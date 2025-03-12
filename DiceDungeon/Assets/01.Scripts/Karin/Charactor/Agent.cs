@@ -1,11 +1,11 @@
 using UnityEngine;
-using Karin.HexMap;
-using Karin.BuffSystem;
-using Karin.Event;
+using karin.HexMap;
+using karin.BuffSystem;
+using karin.Event;
 using UnityEditor.U2D.Aseprite;
 using System;
 
-namespace Karin.Charactor
+namespace karin.Charactor
 {
     public abstract class Agent : MonoBehaviour
     {
