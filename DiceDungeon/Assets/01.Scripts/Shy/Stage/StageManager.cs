@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace SHY
 {
-
-    public class StageManager : MonoBehaviour
+    public class StageManager : SceneManager
     {
         [SerializeField] private float yDistance = 3;
         [SerializeField] private int yStageCnt = 15;
@@ -18,7 +17,7 @@ namespace SHY
 
         private Vector2Int playerPos;
 
-        public void Move(StageUI _stage)
+        public void MoveCheck(StageUI _stage)
         {
             bool canMove = false;
 
@@ -34,20 +33,7 @@ namespace SHY
 
             if (!canMove) return;
 
-            PlayerImg.Instance.DoMove(stageTree[playerPos.y, playerPos.x].transform.position);
-        }
-
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                for (int i = backGround.transform.childCount; i > 0; i--)
-                {
-                    Destroy(backGround.transform.GetChild(i - 1).gameObject);
-                }
-                MapInit();
-            }
+            StagePlayer.Instance.DoMove(stageTree[playerPos.y, playerPos.x].transform.position);
         }
 
         private StageSO GetStage() => otherStageSO[Random.Range(0, otherStageSO.Count)];
@@ -72,7 +58,32 @@ namespace SHY
             return 99;
         }
 
+
         #region 积己
+        public override void Init(PlayerData _data)
+        {
+            stageTree = new StageUI[yStageCnt + 1, 5];
+            stageList = new List<StageUI>();
+
+            //盖 拉 仇
+            StageUI fr = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
+            fr.transform.position = Vector3.zero;
+            stageTree[0, 2] = fr;
+
+            //Boss Stage Make
+            StageUI la = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
+            la.transform.position = new Vector3(0, -yDistance * yStageCnt, 0);
+            stageTree[yStageCnt, 2] = la;
+
+            stageList.Add(la);
+            stageList.Add(fr);
+
+            for (int i = 0; i < 5; i++) Gener2();
+            for (int i = 0; i < stageList.Count; i++) stageList[i].Init();
+
+            playerPos = new Vector2Int(2, 0);
+        }
+
         private void Gener2()
         {
             int curX = 2;
@@ -119,32 +130,6 @@ namespace SHY
         }
         #endregion
 
-        public void MapInit()
-        {
-            stageTree = new StageUI[yStageCnt + 1, 5];
-            stageList = new List<StageUI>();
 
-            //盖 拉 仇
-            StageUI fr = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
-            fr.transform.position = Vector3.zero;
-            stageTree[0, 2] = fr;
-
-            //Boss Stage Make
-            StageUI la = Pooling.Instance.GetItem(PoolEnum.StageUI, backGround).GetComponent<StageUI>();
-            la.transform.position = new Vector3(0, -yDistance * yStageCnt, 0);
-            stageTree[yStageCnt, 2] = la;
-
-            stageList.Add(la);
-            stageList.Add(fr);
-
-            for (int i = 0; i < 5; i++) Gener2();
-
-            for (int i = 0; i < stageList.Count; i++)
-            {
-                stageList[i].Init();
-            }
-
-            playerPos = new Vector2Int(2, 0);
-        }
     }
 }

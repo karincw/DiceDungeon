@@ -19,7 +19,8 @@ namespace SHY
             gold = _data.gold;
             for (int i = 0; i < 5; i++)
             {
-                dices[i] = new DiceSO(_data.dices[i]);
+                dices[i] = CreateInstance<DiceSO>();
+                dices[i].Reflect(_data.dices[i]);
             }
         }
     }

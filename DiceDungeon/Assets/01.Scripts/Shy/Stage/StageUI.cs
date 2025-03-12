@@ -33,9 +33,7 @@ namespace SHY
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //PlayerImg.Instance.DoMove(transform.position);
-
-            stageManager.Move(this);
+            stageManager.MoveCheck(this);
         }
     }
 }

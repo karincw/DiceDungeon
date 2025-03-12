@@ -6,8 +6,7 @@ namespace SHY
     [CreateAssetMenu(menuName = "SO/Dice")]
     public class DiceSO : ScriptableObject
     {
-        public DiceSO() { }
-        public DiceSO(DiceSO _dice) 
+        public void  Reflect(DiceSO _dice) 
         {
             eyes = _dice.eyes;
             eyeNum = 0;

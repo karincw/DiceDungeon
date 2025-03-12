@@ -48,6 +48,7 @@ namespace SHY
             if (_parent != null) obj.transform.SetParent(_parent);
 
             obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
             obj.SetActive(_active);
             return obj;
         }
