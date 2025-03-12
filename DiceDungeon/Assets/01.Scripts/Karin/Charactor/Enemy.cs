@@ -15,24 +15,36 @@ namespace Karin.Charactor
         [SerializeField] private EnemyDataSO _eData;
         private AttackEyeSO _selectedAttack;
         private Pathfinder _pathfinder;
+        private List<HexTile> _warningtiles;
 
         protected override void Awake()
         {
             base.Awake();
             _pathfinder = new Pathfinder();
+            _warningtiles = new List<HexTile>();
         }
 
         protected virtual void ReservationAttack(bool playReservation)
         {
             if (playReservation == false) return;
             Agent player = BattleManager.Instance.player;
+
             Direction dir = HexCoordinates.GetVectorToDirection(player.transform.position - transform.position);
             direction = dir;
+
+            var ad = _selectedAttack.GetData(this);
+            var myHex = HexCoordinates.ConvertPositionToOffset(transform.position);
+            HexTile targetTile = MapManager.Instance.GetTile(myHex + ad.where);
+
+            var warningTiles = targetTile.GetNeighbourTiles(ad.direction, ad.attackType);
+            _warningtiles = warningTiles;
+            _warningtiles.ForEach(tile => tile.warning = true);
         }
 
         public virtual void PlayAttack()
         {
             _selectedAttack.OnUse(this);
+            _warningtiles.ForEach(tile => tile.warning = false);
         }
 
         public virtual void PlayMove()
@@ -42,9 +54,7 @@ namespace Karin.Charactor
 
         protected void MoveOnAttackablePos(int maxMoveCount)
         {
-            //나중에 매니저에서 가져오는걸로 교체
-            Agent player = FindFirstObjectByType<Player>();
-            //Agent player = BattleManager.Instance.player;
+            Agent player = BattleManager.Instance.player;
 
             var attackEyes = _eData.useAbleAbilitys.Where(d => d is AttackEyeSO).Select(d => d as AttackEyeSO).ToList();
             _selectedAttack = attackEyes[Random.Range(0, attackEyes.Count)];

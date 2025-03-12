@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.85}
+  m_AnchoredPosition: {x: 0, y: -0.55}
   m_SizeDelta: {x: 100, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8913311888509662379
@@ -86,9 +86,9 @@ Transform:
   m_GameObject: {fileID: 4205464045973815352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 0.75, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7158471637314150161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   direction: 3
   health: {fileID: 0}
   buffContainer: {fileID: 0}
-  nowTile: {fileID: 0}
+  underTile: {fileID: 0}
   _eData: {fileID: 11400000, guid: a6808cb72af772f478f2ee56f209f983, type: 2}
 --- !u!1001 &1556920981666366410
 PrefabInstance:
@@ -323,11 +323,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 637056669799595330, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 637056669799595330, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 637056669799595330, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -360,6 +360,18 @@ PrefabInstance:
     - target: {fileID: 637056669799595330, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416335318271986122, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2136646385
       objectReference: {fileID: 0}
     - target: {fileID: 1894630300503536098, guid: 0f08e3f010f5d98428d24917c2e03d6b, type: 3}
       propertyPath: m_Mesh

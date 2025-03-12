@@ -11,6 +11,20 @@ namespace Karin.HexMap
         [Header("StateData")]
         public Agent overAgent;
         public bool moveAble = true;
+        public bool warning
+        {
+            get { return _warning; }
+            set
+            {
+                if (value)
+                    _spriteRenderer.sprite = sprites[(int)HexState.Warning];
+                else
+                    _spriteRenderer.sprite = sprites[(int)HexState.None];
+
+                _warning = value;
+            }
+        }
+        private bool _warning = false;
         public int weight = 0;
 
         [Header("PathFindData")]
@@ -19,13 +33,15 @@ namespace Karin.HexMap
         public float F => H + G;
         public HexTile parentPath = null;
 
+        [SerializeField] private Sprite[] sprites;
+        private SpriteRenderer _spriteRenderer;
         private List<HexTile> neighbourTiles;
         public Vector2Int HexCoords => HexCoordinates.ConvertPositionToOffset(transform.position);
-        public List<HexTile> GetNeighbourTiles => neighbourTiles;
 
         private void Awake()
         {
             neighbourTiles = new List<HexTile>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             for (int i = 0; i <= 5; i++)
             {
                 var tileCoords = HexCoordinates.GetDirectionToVector((Direction)i);
@@ -76,6 +92,51 @@ namespace Karin.HexMap
             }
             return agents;
         }
+        public List<HexTile> GetNeighbourTiles(Direction dir, AttackType type)
+        {
+            List<HexTile> tiles = new List<HexTile>();
+            switch (type)
+            {
+                case AttackType.Around:
+                    tiles = neighbourTiles;
+                    break;
+                case AttackType.Front:
+                    if (neighbourTiles[(int)dir].overAgent != null)
+                    {
+                        tiles.Add(neighbourTiles[(int)dir]);
+                    }
+                    break;
+                case AttackType.Fan:
+
+                    for (int i = (int)dir - 1; i <= (int)dir + 1; i++)
+                    {
+                        if (i == -1)
+                        {
+                            if (neighbourTiles[5].overAgent != null)
+                            {
+                                tiles.Add(neighbourTiles[5]);
+                            }
+                        }
+                        if (neighbourTiles[i].overAgent != null)
+                        {
+                            tiles.Add(neighbourTiles[i]);
+                        }
+                    }
+                    break;
+                case AttackType.AllAround:
+                    tiles = neighbourTiles;
+                    tiles.Add(this);
+                    break;
+            }
+            return tiles;
+        }
 
     }
+
+    public enum HexState
+    {
+        None = 0,
+        Warning = 1
+    }
+
 }

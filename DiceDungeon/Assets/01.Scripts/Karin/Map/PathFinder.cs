@@ -97,7 +97,7 @@ namespace Karin.HexMap
 
         private void AddOpenList(HexTile tile)
         {
-            List<HexTile> tiles = tile.GetNeighbourTiles;
+            List<HexTile> tiles = tile.GetNeighbourTiles(Direction.Left, AttackType.Around);
             for (int i = 0; i < tiles.Count; i++)
             {
                 if (tiles[i] != null && !_openList.Contains(tiles[i]) && !_closedList.Contains(tiles[i]) && tiles[i].moveAble)
