@@ -25,9 +25,7 @@ namespace Karin.Charactor
         protected virtual void ReservationAttack(bool playReservation)
         {
             if (playReservation == false) return;
-            //나중에 매니저에서 가져오는걸로 교체
-            Agent player = FindFirstObjectByType<Player>();
-            //Agent player = BattleManager.Instance.player;
+            Agent player = BattleManager.Instance.player;
             Direction dir = HexCoordinates.GetVectorToDirection(player.transform.position - transform.position);
             direction = dir;
         }
