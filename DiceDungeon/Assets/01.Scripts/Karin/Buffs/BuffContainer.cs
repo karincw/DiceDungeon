@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +9,20 @@ namespace Karin.BuffSystem
         private List<BuffSO> _buffs = new();
         [SerializeField] private List<BuffInterface> _interfaces;
 
+        public BuffSO GetBuff(Buff buffType)
+        {
+            return _buffs.Find(b => b.buffType == buffType);
+        }
+
         public void AddBuff(BuffSO buffSO, int value)
         {
-            if (_buffs.Contains(buffSO))
+            //기존에 버프가 있다면
+            var buff = _buffs.Find(b => b.buffType == buffSO.buffType);
+            if (buff != null)
             {
-                var buff = _buffs.Find(b => b == buffSO);
+                //값을 업데이트하고
                 buff.value += value;
+                //가지고있는 모든 인터페이스들에게 업데이트 시킴
                 _interfaces.ForEach(T => T.UpdateIcon(buff.icon, buff.value));
                 return;
             }
@@ -24,6 +33,13 @@ namespace Karin.BuffSystem
 
         public void RemoveBuff(BuffSO buffSO)
         {
+            _interfaces.ForEach(T => T.RemoveIcon(buffSO.icon));
+            _buffs.Remove(buffSO);
+        }
+        public void RemoveBuff(Buff buffType)
+        {
+            BuffSO buffSO = GetBuff(buffType);
+            if (buffSO == null) return;
             _interfaces.ForEach(T => T.RemoveIcon(buffSO.icon));
             _buffs.Remove(buffSO);
         }

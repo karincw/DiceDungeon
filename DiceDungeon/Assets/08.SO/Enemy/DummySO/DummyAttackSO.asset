@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyeName: DummyAttack
   icon: {fileID: 0}
-  value: 5000
+  value: 10
   range: {fileID: 11400000, guid: 8f216b4e18435504486e9d416efd5fe5, type: 2}
   attackType: 0
   attackEffect: -1

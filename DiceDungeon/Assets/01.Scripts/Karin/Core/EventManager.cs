@@ -35,6 +35,14 @@ namespace Karin.Event
         {
             var owner = ad.who;
             var offsetPos = ad.where;
+            var damage = ad.damage;
+
+            var strength = owner.buffContainer.GetBuff(Buff.Strength);
+            if (strength != null)
+            {
+                damage = Mathf.RoundToInt(damage * 1.5f);
+                owner.buffContainer.RemoveBuff(Buff.Strength);
+            }
 
             var ownerHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
@@ -42,7 +50,7 @@ namespace Karin.Event
             var attackTargets = targetTile.GetNeighbourData(ad.direction, ad.attackType);
             attackTargets.ForEach(t =>
             {
-                t.health.DecreaseHealth(ad.damage);
+                t.health.DecreaseHealth(damage);
                 switch (ad.effect)
                 {
                     case AttackEffect.None:

@@ -26,8 +26,8 @@ namespace Karin.BuffSystem
             if (!_iconDictionary.ContainsKey(iconSprite))
                 Debug.LogWarning("존재하지 않는 버프를 업데이트함");
 
-            _iconDictionary[iconSprite].countText.text = value.ToString();
             _iconDictionary[iconSprite].value = value;
+            _iconDictionary[iconSprite].countText.text = value.ToString();
         }
         public void RemoveIcon(Sprite iconSprite)
         {

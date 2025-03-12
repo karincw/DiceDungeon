@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BuffEyeSO
   m_EditorClassIdentifier: 
   eyeName: 
-  icon: {fileID: 1377833214, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
+  icon: {fileID: 1665033724, guid: 8009d3cf76d83af4994fe2e795f0b203, type: 3}
   value: 1
-  type: 0
+  type: 1

@@ -38,7 +38,8 @@ namespace Karin
 
     public enum Buff : int
     {
-        Poison = 0
+        Poison = 0,
+        Strength
     }
 
 

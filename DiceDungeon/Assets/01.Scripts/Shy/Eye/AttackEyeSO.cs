@@ -15,7 +15,7 @@ namespace SHY
 
         public override void OnUse(Agent _agent)
         {
-            Debug.Log("공격");
+            Debug.Log($"{_agent.gameObject.name} 공격");
             EventManager.Instance.AttackEvent?.Invoke(GetData(_agent));
         }
 
