@@ -16,7 +16,11 @@ namespace SHY
         {
             shaker.shakeFin += ReturnDice;
             shaker.openCup += () => {
-                foreach (UIDice item in dices) item.gameObject.SetActive(true);
+                foreach (UIDice item in dices)
+                {
+                    item.gameObject.SetActive(true);
+
+                }
             };
 
             BattleManager.Instance.Initialize += Init;
@@ -33,6 +37,7 @@ namespace SHY
 
         private void TurnInit()
         {
+            Debug.Log("Turn Init");
             rollcnt = 3;
             Roll(true);
         }
@@ -77,6 +82,7 @@ namespace SHY
             }
 
             yield return new WaitForSeconds(3.5f);
+
             BattleManager.Instance.enemyTurnStart.Invoke();
         }
     }

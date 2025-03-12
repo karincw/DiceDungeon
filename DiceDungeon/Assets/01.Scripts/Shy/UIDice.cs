@@ -40,6 +40,7 @@ namespace SHY
         public void Roll()
         {
             icon.sprite = diceData.Roll();
+            checker.SetActive(false);
             gameObject.SetActive(false);
         }
 

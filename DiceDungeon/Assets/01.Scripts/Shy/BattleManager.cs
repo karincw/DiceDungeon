@@ -2,6 +2,7 @@ using Karin.Charactor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SHY
@@ -10,6 +11,7 @@ namespace SHY
     {
         public Player player;
         public List<Enemy> enemys;
+        private List<Enemy> attackEnemys = new List<Enemy>();
 
         public Action<PlayerData> Initialize;
         public Action playerTurnStart;
@@ -19,17 +21,17 @@ namespace SHY
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                playerTurnStart?.Invoke();
+                StartCoroutine(OnPlayerTurn());
             }
         }
 
         private void Awake()
         {
-            playerTurnStart += OnPlayerTurn;
-            enemyTurnStart += OnEnemyTurn;
+            enemyTurnStart += EnemyTurnStart;
         }
 
-        private void OnPlayerTurn()
+
+        private IEnumerator OnPlayerTurn()
         {
             Debug.Log("Reset");
 
@@ -40,32 +42,34 @@ namespace SHY
                 //if(enemys[i])
 
                 //에너미 죽은 놈들 없애고
+                yield return new WaitForSeconds(0.5f);
                 enemys[i].TurnReset();
                 enemys[i].PlayMove();
             }
+
+            yield return new WaitForSeconds(1f);
+
+            playerTurnStart.Invoke();
         }
 
-        
+        private void EnemyTurnStart() => StartCoroutine(OnEnemyTurn());
 
-        private IEnumerator Tester()
+        private IEnumerator OnEnemyTurn()
         {
-            yield return new WaitForSeconds(0);
-        }
+            attackEnemys = enemys.ToList();
 
-        private void OnEnemyTurn()
-        {
             //enemy들의 행동
             Debug.Log("Enemy 행동");
 
-            for (int i = 0; i < enemys.Count; i++)
+            foreach (Enemy en in attackEnemys)
             {
-                //if(enemys[i])
-
-                //에너미 죽은 놈들 없애고
-                enemys[i].PlayAttack();
+                en.PlayAttack();
+                yield return new WaitForSeconds(1.3f);
             }
 
-            playerTurnStart.Invoke();
+
+            yield return new WaitForSeconds(1.2f);
+            StartCoroutine(OnPlayerTurn());
         }
     }
 }

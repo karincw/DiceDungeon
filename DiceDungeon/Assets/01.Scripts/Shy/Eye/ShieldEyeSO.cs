@@ -12,8 +12,6 @@ namespace SHY
         {
             Debug.Log("¹æ¾î");
 
-            
-
             EventManager.Instance.ShieldEvent?.Invoke(GetData(_agent));
         }
 

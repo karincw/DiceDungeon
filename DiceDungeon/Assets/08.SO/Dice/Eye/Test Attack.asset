@@ -16,6 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 649454a281ed6ff4a99af0ee8c128c14, type: 3}
   value: 1
   range: {fileID: 0}
-  attackType: 1
+  attackType: 0
   attackEffect: 0
   buffEye: {fileID: 0}

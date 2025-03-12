@@ -20,6 +20,8 @@ namespace SHY
         {
             Sequence seq = DOTween.Sequence();
 
+            seq.SetDelay(0.7f);
+
             //Down
             seq.Append(visual.DOLocalMoveY(0, 1f).SetEase(Ease.OutCubic));
             seq.AppendInterval(0.8f);
