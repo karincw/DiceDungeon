@@ -12,27 +12,30 @@ namespace SHY
         public static BattleManager Instance;
 
         public Player player;
-        private List<Enemy> enemys;
+        private List<Enemy> enemys = new List<Enemy>();
 
-        public Action<PlayerData> Initialize;
+        internal Action<PlayerData> Initialize;
         public Action playerTurnStart;
         public Action enemyTurnStart;
         
 
         private void Awake()
         {
-            if (Instance == null) Instance = new BattleManager();
+            if (Instance == null) Instance = this;
             else Destroy(this);
 
             enemyTurnStart += EnemyTurnStart;
         }
 
-        public override void Init(PlayerData _data) => Initialize?.Invoke(_data);
+        public override void Init(PlayerData _data)
+        {
+            Debug.Log("Battle Manager Init");
+            Initialize.Invoke(_data);
+            StartCoroutine(OnPlayerTurn());
+        }
 
         private IEnumerator OnPlayerTurn()
         {
-            Debug.Log("Reset");
-
             player.TurnReset();
 
             for (int i = 0; i < enemys.Count; i++)
@@ -47,7 +50,7 @@ namespace SHY
 
             yield return new WaitForSeconds(1f);
 
-            playerTurnStart.Invoke();
+            playerTurnStart?.Invoke();
         }
 
         private void EnemyTurnStart() => StartCoroutine(OnEnemyTurn());

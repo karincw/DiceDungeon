@@ -10,9 +10,7 @@ namespace SHY
         public int gold = 0;
         public DiceSO[] dices = new DiceSO[5];
 
-        
-        public PlayerData() { }
-        public PlayerData(PlayerData _data)
+        public PlayerData Reflect (PlayerData _data)
         {
             characterName = _data.characterName;
             hp = _data.hp;
@@ -22,6 +20,8 @@ namespace SHY
                 dices[i] = CreateInstance<DiceSO>();
                 dices[i].Reflect(_data.dices[i]);
             }
+
+            return this;
         }
     }
 }

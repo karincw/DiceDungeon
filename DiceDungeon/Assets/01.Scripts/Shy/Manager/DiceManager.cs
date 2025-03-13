@@ -7,19 +7,20 @@ namespace SHY
 {
     public class DiceManager : MonoBehaviour
     {
-        public List<UIDice> dices;
+        public List<DiceUI> dices;
         [SerializeField] private BarrelShaker shaker;
         [SerializeField] private Vector2[] dicesSpawnPos;
         private int rollcnt;
 
         private void Awake()
         {
+            Debug.Log("Dice Manager Awake");
+
             shaker.shakeFin += ReturnDice;
             shaker.openCup += () => {
-                foreach (UIDice item in dices)
+                foreach (DiceUI item in dices)
                 {
                     item.gameObject.SetActive(true);
-
                 }
             };
 
@@ -29,6 +30,8 @@ namespace SHY
 
         private void Init(PlayerData _data)
         {
+            Debug.Log("Dice Init");
+
             for (int i = 0; i < 5; i++)
                 dices[i].Init(_data.dices[i]);
 
@@ -42,9 +45,17 @@ namespace SHY
             Roll(true);
         }
 
+        private void RollButton()
+        {
+            if (CanClick.clickAble) Roll();
+        }
+
         private void Roll(bool _resetAll = false)
         {
-            if (rollcnt-- <= 0) return;
+            if (rollcnt <= 0 && !_resetAll) return;
+
+            rollcnt--;
+            CanClick.False();
 
             for (int i = 0; i < dices.Count; i++)
             {
@@ -59,15 +70,22 @@ namespace SHY
 
         private void ReturnDice()
         {
-            foreach (UIDice item in dices)
+            foreach (DiceUI item in dices)
             {
                 item.ReturnPos(.4f);
             }
             shaker.Disappear();
+            CanClick.True();
         }
 
 
-        public void UseDices() => StartCoroutine(UseDice());
+        public void UseDices()
+        {
+            if (!CanClick.clickAble) return;
+
+            CanClick.False();
+            StartCoroutine(UseDice());
+        }
 
         private IEnumerator UseDice()
         {
@@ -75,7 +93,7 @@ namespace SHY
 
             Debug.Log("use dice");
 
-            foreach (UIDice dice in dices)
+            foreach (DiceUI dice in dices)
             {
                 yield return new WaitForSeconds(2);
                 dice.diceData.OnUse(BattleManager.Instance.player);

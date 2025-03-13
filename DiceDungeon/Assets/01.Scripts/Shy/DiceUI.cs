@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace SHY
 {
-    public class UIDice : MonoBehaviour, IPointerClickHandler, 
+    public class DiceUI : MonoBehaviour, IPointerClickHandler, 
         IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 clickPos;
@@ -17,13 +17,11 @@ namespace SHY
         private Image icon;
         private GameObject checker;
         
-        private Sequence seq;
 
         private void Awake()
         {
             icon = transform.Find("Icon").GetComponent<Image>();
             checker = transform.Find("Check").gameObject;
-            seq = DOTween.Sequence();
         }
 
         private bool SelectCheck(Transform _trm) => _trm.Find("Check").gameObject.activeSelf;
@@ -51,7 +49,7 @@ namespace SHY
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (isDrager) return;
+            if (isDrager || !CanClick.clickAble) return;
             checker.SetActive(!SelectCheck());
         }
 
@@ -62,14 +60,14 @@ namespace SHY
 
             isDrager = true;
 
-            if (SelectCheck()) return;
+            if (SelectCheck() || !CanClick.clickAble) return;
             sibleIdx = transform.parent.GetSiblingIndex();
             transform.parent.SetAsLastSibling();
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!isDrager || SelectCheck()) return;
+            if (!isDrager || !CanClick.clickAble || SelectCheck()) return;
 
             transform.localPosition += new Vector3(eventData.position.x - clickPos.x, eventData.position.y - clickPos.y);
             clickPos = eventData.position;
@@ -99,9 +97,9 @@ namespace SHY
             _col.transform.SetParent(transform.parent);
             transform.SetParent(newParent);
 
-            seq.Append(_col.transform.DOLocalMove(Vector3.zero, 0.1f));
+            _col.transform.DOLocalMove(Vector3.zero, 0.1f);
 
-            _col.GetComponent<UIDice>().SetSible(sibleIdx);
+            _col.GetComponent<DiceUI>().SetSible(sibleIdx);
             sibleIdx = transform.parent.GetSiblingIndex();
             transform.parent.SetAsLastSibling();
         }

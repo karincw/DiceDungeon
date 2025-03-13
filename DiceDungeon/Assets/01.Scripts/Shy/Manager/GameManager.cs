@@ -25,7 +25,8 @@ namespace SHY
 
         private void Awake()
         {
-            playerData = new PlayerData(playerData);
+            playerData = ScriptableObject.CreateInstance<PlayerData>().Reflect(playerData);
+
             StagePlayer.Instance.fin += SceneChange;
         }
 
@@ -44,6 +45,7 @@ namespace SHY
 
                 if(isScene)
                 {
+                    Debug.Log(playerData);
                     scenes[i].manager.Init(playerData);
                 }
             }
