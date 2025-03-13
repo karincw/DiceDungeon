@@ -1,11 +1,13 @@
-using karin.BuffSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/karin/Buff/BuffStrength")]
-public class BuffStrength : BuffSO
+namespace karin.BuffSystem
 {
-    public override void HandleOnValueChanged()
+    [CreateAssetMenu(menuName = "SO/karin/Buff/BuffStrength")]
+    public class BuffStrength : BuffSO
     {
-        _value = Mathf.Clamp(_value, 0, 1);
+        public override void HandleOnValueChanged()
+        {
+            _value = Mathf.Clamp(_value, 0, 1);
+        }
     }
 }

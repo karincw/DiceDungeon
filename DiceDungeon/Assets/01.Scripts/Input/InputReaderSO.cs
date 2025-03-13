@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Controls;
 
-[CreateAssetMenu(menuName = "SO/InputReader")]
+[CreateAssetMenu(menuName = "SO/Core/InputReader")]
 public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
 {
     public Controls control;
@@ -12,20 +12,6 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     public Action<bool> OnMLBHoldEvent;
     public Action OnMLBUpEvent;
     public Action<bool> OnLCtrlEvent;
-
-    public void OnUxmlClick(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            OnMLBDownEvent?.Invoke();
-            OnMLBHoldEvent?.Invoke(true);
-        }
-        else if (context.canceled)
-        {
-            OnMLBHoldEvent?.Invoke(false);
-            OnMLBUpEvent?.Invoke();
-        }
-    }
 
     private void OnEnable()
     {
@@ -46,4 +32,25 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
         control.UI.Disable();
     }
 
+    public void OnMLBClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnMLBDownEvent?.Invoke();
+            OnMLBHoldEvent?.Invoke(true);
+        }
+        else if (context.canceled)
+        {
+            OnMLBHoldEvent?.Invoke(false);
+            OnMLBUpEvent?.Invoke();
+        }
+    }
+
+    public void OnLCtrlPress(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnLCtrlEvent?.Invoke(true);
+        else if (context.canceled)
+            OnLCtrlEvent?.Invoke(false);
+    }
 }

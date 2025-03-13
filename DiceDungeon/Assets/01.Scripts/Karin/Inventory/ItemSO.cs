@@ -1,4 +1,3 @@
-using karin;
 using UnityEngine;
 
 namespace karin.Inventory
@@ -10,6 +9,7 @@ namespace karin.Inventory
         public ItemNames itemName;
         public Sprite image;
         public int count;
+        public int maxCount;
 
         public ItemSO()
         {
@@ -20,9 +20,10 @@ namespace karin.Inventory
             itemName = data.itemName;
             image = data.image;
             count = data.count;
+            maxCount = data.maxCount;
         }
 
-        public static implicit operator ItemSO(InvenData v)
+        public static implicit operator ItemSO(InvenData v) 
         {
             return new ItemSO(v);
         }

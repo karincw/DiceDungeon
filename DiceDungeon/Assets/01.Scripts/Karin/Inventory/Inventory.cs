@@ -1,4 +1,3 @@
-using karin;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +51,7 @@ namespace karin.Inventory
             bool condition2 = true;
             if (slot2.resource != null)
             {
+                condition1 = condition1 || slot1.resource.count <= slot2.maxCount;
                 condition2 = slot1.maxCount >= slot2.resource.count;
             }
 
@@ -86,6 +86,7 @@ namespace karin.Inventory
             _inputReader.OnMLBDownEvent -= HandleMouseDownEvent;
             _inputReader.OnMLBHoldEvent -= HandleMouseHoldEvent;
             _inputReader.OnMLBUpEvent -= HandleMouseUpEvent;
+            _inputReader.OnLCtrlEvent -= HandleLCtrlEvent;
             SaveItemData();
         }
 
@@ -99,6 +100,15 @@ namespace karin.Inventory
             }
         }
 
+        public ItemSO MakeNewItem(ItemNames name, Sprite image)
+        {
+            ItemSO so = Instantiate(_itemBase);
+            so.itemName = name;
+            so.image = image;
+            so.count = 1;
+            return so;
+        }
+
         [ContextMenu("Save")]
         public void SaveItemData()
         {
@@ -106,7 +116,7 @@ namespace karin.Inventory
             foreach (var slot in _slots)
             {
                 if (slot.resource == null) continue;
-                InvenData invenData = new InvenData(slot.resource.itemName, slot.resource.image, slot.resource.count);
+                InvenData invenData = new InvenData(slot.resource.itemName, slot.resource.image, slot.resource.count, slot.maxCount);
                 data.list.Add(invenData);
             }
         }
@@ -122,9 +132,7 @@ namespace karin.Inventory
             for (int i = 0; i < data.list.Count; i++)
             {
                 ItemSO so = Instantiate(_itemBase);
-                so.itemName = data.list[i].itemName;
-                so.image = data.list[i].image;
-                so.count = 1;
+                MakeNewItem(data.list[i].itemName, data.list[i].image);
                 AddItem(so, data.list[i].count);
             }
         }
@@ -408,6 +416,7 @@ namespace karin.Inventory
             }
 
             int value = slot2.MaxAdd(); // slot2에 넣을수있는 최대 개수
+            if (value <= 0) return;
             int currentValue = Mathf.Min(slot1.resource.count, value); // 옯길수있는 최대값
             slot1.resource.count -= currentValue; // 원래슬롯에서 그만큼 지우고
 

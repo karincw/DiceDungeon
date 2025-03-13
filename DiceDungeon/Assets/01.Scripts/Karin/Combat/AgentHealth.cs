@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace karin.Charactor
@@ -29,9 +28,9 @@ namespace karin.Charactor
                 shield -= value;
                 value -= shield < value ? shield : value;
             }
-                
+
             currentHealth = Mathf.Clamp(currentHealth - value, 0, maxHealth);
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 Die();
             }

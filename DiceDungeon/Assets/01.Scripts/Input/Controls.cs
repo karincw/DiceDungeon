@@ -34,9 +34,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""id"": ""1166f386-0cca-43e2-8639-a0f95f31264b"",
             ""actions"": [
                 {
-                    ""name"": ""UxmlClick"",
+                    ""name"": ""MLBClick"",
                     ""type"": ""Button"",
                     ""id"": ""9f8f4167-9a9c-4891-b0fe-09288e8f0f6a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LCtrlPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""27b5492c-f0d0-455f-a362-d24cd6430c54"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -51,7 +60,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";PC"",
-                    ""action"": ""UxmlClick"",
+                    ""action"": ""MLBClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab7ba22f-7044-4afb-8ed6-04698282254f"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LCtrlPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -81,7 +101,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_UxmlClick = m_UI.FindAction("UxmlClick", throwIfNotFound: true);
+        m_UI_MLBClick = m_UI.FindAction("MLBClick", throwIfNotFound: true);
+        m_UI_LCtrlPress = m_UI.FindAction("LCtrlPress", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -187,12 +208,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_UxmlClick;
+    private readonly InputAction m_UI_MLBClick;
+    private readonly InputAction m_UI_LCtrlPress;
     public struct UIActions
     {
         private @Controls m_Wrapper;
         public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @UxmlClick => m_Wrapper.m_UI_UxmlClick;
+        public InputAction @MLBClick => m_Wrapper.m_UI_MLBClick;
+        public InputAction @LCtrlPress => m_Wrapper.m_UI_LCtrlPress;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -202,16 +225,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @UxmlClick.started += instance.OnUxmlClick;
-            @UxmlClick.performed += instance.OnUxmlClick;
-            @UxmlClick.canceled += instance.OnUxmlClick;
+            @MLBClick.started += instance.OnMLBClick;
+            @MLBClick.performed += instance.OnMLBClick;
+            @MLBClick.canceled += instance.OnMLBClick;
+            @LCtrlPress.started += instance.OnLCtrlPress;
+            @LCtrlPress.performed += instance.OnLCtrlPress;
+            @LCtrlPress.canceled += instance.OnLCtrlPress;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @UxmlClick.started -= instance.OnUxmlClick;
-            @UxmlClick.performed -= instance.OnUxmlClick;
-            @UxmlClick.canceled -= instance.OnUxmlClick;
+            @MLBClick.started -= instance.OnMLBClick;
+            @MLBClick.performed -= instance.OnMLBClick;
+            @MLBClick.canceled -= instance.OnMLBClick;
+            @LCtrlPress.started -= instance.OnLCtrlPress;
+            @LCtrlPress.performed -= instance.OnLCtrlPress;
+            @LCtrlPress.canceled -= instance.OnLCtrlPress;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -243,6 +272,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnUxmlClick(InputAction.CallbackContext context);
+        void OnMLBClick(InputAction.CallbackContext context);
+        void OnLCtrlPress(InputAction.CallbackContext context);
     }
 }
