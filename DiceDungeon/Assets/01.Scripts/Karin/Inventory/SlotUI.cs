@@ -80,17 +80,24 @@ namespace karin.Inventory
             Refresh();
         }
 
-        public bool CanAdd(int count) => maxCount >= resource.count + count;
-        public bool CanRemove(int count) => resource.count - count >= 0;
-        public int MaxAdd()
+        public virtual bool CanAdd(int count)
+        {
+            return maxCount >= resource.count + count && resource.maxCount >= resource.count + count;
+        }
+        public virtual bool CanRemove(int count)
+        {
+            return resource.count - count >= 0;
+        }
+        public virtual int MaxAdd()
         {
             if (resource != null)
-                return maxCount - resource.count;
+            {
+                return Mathf.Min(maxCount - resource.count, resource.maxCount - resource.count);
+            }
             else
                 return maxCount;
         }
-
-        public void Refresh()
+        public virtual void Refresh()
         {
             if (resource == null || resource.count == 0)
             {
@@ -103,8 +110,7 @@ namespace karin.Inventory
             Icon.sprite = resource.image;
             CountText.text = resource.count.ToString();
         }
-
-        public void EnableBorder(bool state)
+        public virtual void EnableBorder(bool state)
         {
             Border.gameObject.SetActive(state);
         }

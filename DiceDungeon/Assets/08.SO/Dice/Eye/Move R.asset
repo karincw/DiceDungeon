@@ -15,5 +15,7 @@ MonoBehaviour:
   eyeName: "\uBC29\uD5A5"
   icon: {fileID: 21300000, guid: 49ee931d99e3a3f4ba4984c67ce13c84, type: 3}
   value: 1
+  itemName: 3
   dir: 3
   moveEffect: 0
+  CollisionDamage: 0

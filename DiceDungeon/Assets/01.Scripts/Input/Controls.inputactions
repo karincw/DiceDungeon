@@ -12,9 +12,18 @@
             "id": "1166f386-0cca-43e2-8639-a0f95f31264b",
             "actions": [
                 {
-                    "name": "UxmlClick",
+                    "name": "MLBClick",
                     "type": "Button",
                     "id": "9f8f4167-9a9c-4891-b0fe-09288e8f0f6a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LCtrlPress",
+                    "type": "Button",
+                    "id": "27b5492c-f0d0-455f-a362-d24cd6430c54",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -29,7 +38,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
-                    "action": "UxmlClick",
+                    "action": "MLBClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab7ba22f-7044-4afb-8ed6-04698282254f",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LCtrlPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

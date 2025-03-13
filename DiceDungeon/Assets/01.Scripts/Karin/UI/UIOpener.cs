@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace karin.Inventory
@@ -11,6 +12,9 @@ namespace karin.Inventory
         [SerializeField] private Button _openButton;
         [SerializeField] private RectTransform _uI;
         [SerializeField] private AnimationCurve _animCurve;
+
+        public UnityEvent OnPanelClosedEvent;
+        public UnityEvent OnPanelOpenedEvent;
 
         private Vector2 _startPos, _movePos;
         private CanvasGroup _canvasGroup;
@@ -75,7 +79,8 @@ namespace karin.Inventory
                 .AppendCallback(() =>
                 {
                     _canvasGroup.interactable = true;
-                });
+                })
+                .OnComplete(() => { OnPanelOpenedEvent?.Invoke(); });
         }
 
         private void CloseUI()
@@ -87,7 +92,8 @@ namespace karin.Inventory
                 .AppendCallback(() =>
                 {
                     _canvasGroup.interactable = false;
-                });
+                })
+                .OnComplete(() => { OnPanelClosedEvent?.Invoke(); });
         }
 
         public void BtnInteract(bool state)

@@ -9,7 +9,7 @@ namespace SHY
         Stage, Battle
     }
 
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingleTon<GameManager>
     {
         [System.Serializable]
         private class Scene
@@ -19,7 +19,7 @@ namespace SHY
             public SceneManager manager;
         }
 
-        [SerializeField] private PlayerData playerData;
+        public PlayerData playerData;
 
         [SerializeField] private List<Scene> scenes;
 
