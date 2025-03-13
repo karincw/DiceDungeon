@@ -27,11 +27,11 @@ namespace SHY
             seq.AppendInterval(0.8f);
 
             //Shake
-            seq.Append(visual.DOShakePosition(1.25f, new Vector3(120, 0), 10, 0, false, false));
+            seq.Append(visual.DOShakePosition(0.9f, new Vector3(120, 0), 10, 0, false, false));
             seq.AppendInterval(1f);
 
             //Up
-            seq.Append(visual.DOMoveY(5, 0.8f).OnStart(() => openCup?.Invoke()));
+            seq.Append(visual.DOMoveY(5, 0.5f).OnStart(() => openCup?.Invoke()));
             seq.AppendInterval(1.1f);
             seq.OnComplete(() => shakeFin.Invoke());
         }

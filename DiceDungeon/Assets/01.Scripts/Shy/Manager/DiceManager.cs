@@ -72,7 +72,7 @@ namespace SHY
         {
             foreach (DiceUI item in dices)
             {
-                item.ReturnPos(.4f);
+                item.ReturnPos(.25f);
             }
             shaker.Disappear();
             CanClick.True();
@@ -99,7 +99,7 @@ namespace SHY
                 dice.diceData.OnUse(BattleManager.Instance.player);
             }
 
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(2.5f);
 
             BattleManager.Instance.enemyTurnStart.Invoke();
         }
