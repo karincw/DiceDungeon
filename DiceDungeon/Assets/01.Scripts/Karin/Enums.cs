@@ -1,6 +1,3 @@
-
-using System;
-
 namespace karin
 {
     public enum AttackType
@@ -38,11 +35,6 @@ namespace karin
     {
         Poison = 0,
         Strength
-    }
-
-    public enum ItemNames : int
-    {
-        Cockatrice = 0
     }
 
 

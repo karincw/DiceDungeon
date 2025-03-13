@@ -1,9 +1,7 @@
-using UnityEngine;
-using karin.HexMap;
 using karin.BuffSystem;
-using karin.Event;
-using UnityEditor.U2D.Aseprite;
+using karin.HexMap;
 using System;
+using UnityEngine;
 
 namespace karin.Charactor
 {

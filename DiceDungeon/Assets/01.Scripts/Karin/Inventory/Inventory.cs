@@ -1,4 +1,3 @@
-using karin;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -86,6 +85,7 @@ namespace karin.Inventory
             _inputReader.OnMLBDownEvent -= HandleMouseDownEvent;
             _inputReader.OnMLBHoldEvent -= HandleMouseHoldEvent;
             _inputReader.OnMLBUpEvent -= HandleMouseUpEvent;
+            _inputReader.OnLCtrlEvent -= HandleLCtrlEvent;
             SaveItemData();
         }
 
@@ -106,7 +106,7 @@ namespace karin.Inventory
             foreach (var slot in _slots)
             {
                 if (slot.resource == null) continue;
-                InvenData invenData = new InvenData(slot.resource.itemName, slot.resource.image, slot.resource.count);
+                InvenData invenData = new InvenData(slot.resource.itemName, slot.resource.image, slot.resource.count, slot.maxCount);
                 data.list.Add(invenData);
             }
         }
@@ -408,6 +408,7 @@ namespace karin.Inventory
             }
 
             int value = slot2.MaxAdd(); // slot2에 넣을수있는 최대 개수
+            if (value <= 0) return;
             int currentValue = Mathf.Min(slot1.resource.count, value); // 옯길수있는 최대값
             slot1.resource.count -= currentValue; // 원래슬롯에서 그만큼 지우고
 

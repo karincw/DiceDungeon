@@ -1,12 +1,15 @@
 using karin;
 using karin.Charactor;
 using karin.Event;
+using karin.Inventory;
 using SHY;
 using UnityEngine;
 using UnityEngine.UI;
 
+[SelectionBase]
 public class DEBUGController : MonoBehaviour
 {
+    [Header("Player-Controller")]
     [SerializeField] private Button LeftMoveBtn;
     [SerializeField] private Button TopLeftMoveBtn;
     [SerializeField] private Button TopRightMoveBtn;
@@ -18,6 +21,10 @@ public class DEBUGController : MonoBehaviour
     [SerializeField] private ShieldEyeSO shieldSO;
     [SerializeField] private BuffEyeSO buffSO;
     [SerializeField] private MoveEyeSO moveSO;
+
+    [Header("Inventory-Controller")]
+    [SerializeField] private ItemSO addItemBase;
+    [SerializeField] private ItemSO removeItemBase;
 
     private void OnEnable()
     {
@@ -72,5 +79,13 @@ public class DEBUGController : MonoBehaviour
         if (moveSO == null) return;
         Agent player = BattleManager.Instance.player;
         EventManager.Instance.MoveEvent?.Invoke(moveSO.GetData(player));
+    }
+    public void AddInventoryItem()
+    {
+        Inventory.Instance.AddItem(addItemBase);
+    }
+    public void RemoveInventoryItem()
+    {
+        Inventory.Instance.RemoveItem(removeItemBase);
     }
 }
