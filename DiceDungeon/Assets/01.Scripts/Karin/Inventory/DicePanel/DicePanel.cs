@@ -1,3 +1,4 @@
+using SHY;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,12 +10,11 @@ namespace karin.Inventory
     {
         public List<DiceSelect> selects;
         private bool interactable = true;
+        [SerializeField] private EyeItemSO _itemBase;
         public int viewIdx;
 
         private void Start()
         {
-            selects[0].SetUpDiagram();
-            viewIdx = 0;
             foreach (DiceSelect select in selects)
             {
                 select.ButtonAddListener(() =>
@@ -39,6 +39,22 @@ namespace karin.Inventory
                 selects.ForEach(s => s.SetInteractable(interactable));
             }
 
+        }
+
+        public void OpenSetUp()
+        {
+            viewIdx = 0;
+            selects[viewIdx].SetUpDiagram();
+        }
+
+        public EyeItemSO MakeNewItem(ItemNames name, Sprite image, EyeSO eye)
+        {
+            EyeItemSO so = Instantiate(_itemBase);
+            so.itemName = name;
+            so.image = image;
+            so.count = 1;
+            so.eye = eye;
+            return so;
         }
 
         private bool IsAllValidate()

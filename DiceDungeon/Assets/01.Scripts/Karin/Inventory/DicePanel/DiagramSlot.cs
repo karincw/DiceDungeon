@@ -20,7 +20,6 @@ namespace karin.Inventory
 
         public EyeItemSO GetResource()
         {
-            Debug.Log(resource as EyeItemSO);
             return resource as EyeItemSO;
         }
     }

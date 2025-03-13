@@ -46,7 +46,7 @@ namespace karin.Inventory
 
         public void ReWriteDiceData()
         {
-            _currentDice.eyes = _diagram.GetData().Select(s => s.eye).ToArray();
+            _currentDice.eyes = _diagram.GetData().Select(s => s.eye).ToList();
         }
     }
 
