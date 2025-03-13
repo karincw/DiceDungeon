@@ -51,6 +51,7 @@ namespace karin.Inventory
             bool condition2 = true;
             if (slot2.resource != null)
             {
+                condition1 = condition1 || slot1.resource.count <= slot2.maxCount;
                 condition2 = slot1.maxCount >= slot2.resource.count;
             }
 
@@ -99,6 +100,15 @@ namespace karin.Inventory
             }
         }
 
+        public ItemSO MakeNewItem(ItemNames name, Sprite image)
+        {
+            ItemSO so = Instantiate(_itemBase);
+            so.itemName = name;
+            so.image = image;
+            so.count = 1;
+            return so;
+        }
+
         [ContextMenu("Save")]
         public void SaveItemData()
         {
@@ -122,9 +132,7 @@ namespace karin.Inventory
             for (int i = 0; i < data.list.Count; i++)
             {
                 ItemSO so = Instantiate(_itemBase);
-                so.itemName = data.list[i].itemName;
-                so.image = data.list[i].image;
-                so.count = 1;
+                MakeNewItem(data.list[i].itemName, data.list[i].image);
                 AddItem(so, data.list[i].count);
             }
         }

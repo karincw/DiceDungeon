@@ -15,6 +15,7 @@ MonoBehaviour:
   eyeName: "\uBAB8\uD1B5\uBC15\uCE58\uAE30"
   icon: {fileID: 0}
   value: 2
+  itemName: 8
   dir: 3
   moveEffect: 1
   CollisionDamage: 10

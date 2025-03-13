@@ -15,6 +15,7 @@ MonoBehaviour:
   eyeName: "\uCE7C"
   icon: {fileID: 21300000, guid: 649454a281ed6ff4a99af0ee8c128c14, type: 3}
   value: 10
+  itemName: 6
   range: {fileID: 0}
   attackType: 0
   attackEffect: 0

@@ -3,8 +3,18 @@ namespace karin.Inventory
 
     public enum ItemNames : int
     {
-        Test = 0,
-        Test2
+        MoveL =0,
+        MoveTL,
+        MoveTR,
+        MoveR,
+        MoveBR,
+        MoveBL,
+        AttackTest,
+        AttackDummy, 
+        AttackRush, 
+        BuffStrength,
+        DeBuffPoison,
+        shieldtest,
     }
 
 }

@@ -17,5 +17,11 @@ namespace karin.Inventory
             }
             return false;
         }
+
+        public EyeItemSO GetResource()
+        {
+            Debug.Log(resource as EyeItemSO);
+            return resource as EyeItemSO;
+        }
     }
 }
