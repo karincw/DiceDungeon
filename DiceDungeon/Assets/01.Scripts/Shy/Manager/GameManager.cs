@@ -32,7 +32,7 @@ namespace SHY
 
         private void Start()
         {
-            SceneChange(SceneType.Stage);
+            SceneChange(SceneType.Battle);
         }
 
         private void SceneChange(SceneType _scene)

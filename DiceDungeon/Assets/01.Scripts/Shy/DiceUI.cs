@@ -9,19 +9,25 @@ namespace SHY
         IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 clickPos;
+        private Vector2 lastLPos;
         private bool isDrager = false;
         internal int sibleIdx;
+        private int loopCnt = 5;
 
         public DiceSO diceData;
 
         private Image icon;
         private GameObject checker;
+        private Animator anime;
+        private BoxCollider2D boxCollider;
         
 
         private void Awake()
         {
             icon = transform.Find("Icon").GetComponent<Image>();
             checker = transform.Find("Check").gameObject;
+            anime = GetComponent<Animator>();
+            boxCollider = GetComponent<BoxCollider2D>();
         }
 
         private bool SelectCheck(Transform _trm) => _trm.Find("Check").gameObject.activeSelf;
@@ -32,19 +38,34 @@ namespace SHY
         {
             diceData = _so;
             Roll();
-            sibleIdx = transform.parent.GetSiblingIndex();
+            sibleIdx = transform.GetSiblingIndex();
+            lastLPos = transform.localPosition;
+
+            VInit();
+        }
+
+        public void VInit()
+        {
+            icon.sprite = diceData.Roll();
+            icon.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         public void Roll()
         {
-            icon.sprite = diceData.Roll();
             checker.SetActive(false);
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            anime.SetBool("Roll", true);
         }
 
-        public void ReturnPos(float t = 0.1f)
+        public void RollCheck()
         {
-            transform.DOLocalMove(Vector2.zero, t);
+            if (--loopCnt == 0)
+            {
+                anime.SetBool("Roll", false);
+                icon.gameObject.SetActive(true);
+                loopCnt = 5;
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -58,16 +79,15 @@ namespace SHY
         {
             clickPos = eventData.position;
 
-            isDrager = true;
-
             if (SelectCheck() || !CanClick.clickAble) return;
-            sibleIdx = transform.parent.GetSiblingIndex();
-            transform.parent.SetAsLastSibling();
+
+            isDrager = true;
+            transform.SetAsLastSibling();
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!isDrager || !CanClick.clickAble || SelectCheck()) return;
+            if (!CanClick.clickAble || SelectCheck()) return;
 
             transform.localPosition += new Vector3(eventData.position.x - clickPos.x, eventData.position.y - clickPos.y);
             clickPos = eventData.position;
@@ -75,33 +95,41 @@ namespace SHY
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            ReturnPos();
-
-            if (!SelectCheck())
-                transform.parent.SetSiblingIndex(sibleIdx);
-
             isDrager = false;
+            ReturnPos();
         }
 
-        public void SetSible(int _sible)
+        private void PosUpdate(DiceUI _dice)
         {
-            sibleIdx = _sible;
-            transform.parent.SetSiblingIndex(sibleIdx);
+            //Last LPos 교환
+            Vector2 temp = lastLPos;
+            lastLPos = _dice.lastLPos;
+            _dice.lastLPos = temp;
+
+            //Sibling 교환
+            int temp2 = _dice.sibleIdx;
+            _dice.sibleIdx = sibleIdx;
+            sibleIdx = temp2;
+
+            //위치 전환
+            ReturnPos();
+        }
+
+        private void ReturnPos(float t = 0.1f)
+        {
+            boxCollider.enabled = false;
+            transform.SetSiblingIndex(sibleIdx);
+            transform.DOLocalMove(lastLPos, t).OnComplete(() => boxCollider.enabled = true);
         }
 
         private void OnTriggerEnter2D(Collider2D _col)
         {
             if (!isDrager || SelectCheck(_col.transform)) return;
 
-            Transform newParent = _col.transform.parent;
-            _col.transform.SetParent(transform.parent);
-            transform.SetParent(newParent);
-
-            _col.transform.DOLocalMove(Vector3.zero, 0.1f);
-
-            _col.GetComponent<DiceUI>().SetSible(sibleIdx);
-            sibleIdx = transform.parent.GetSiblingIndex();
-            transform.parent.SetAsLastSibling();
+            DiceUI colDice = _col.GetComponent<DiceUI>();
+            colDice.PosUpdate(this);
+            
+            transform.SetAsLastSibling();
         }
         #endregion
     }
