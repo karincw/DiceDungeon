@@ -38,6 +38,7 @@ namespace SHY
         {
             diceData = _so;
             Roll();
+            checker.SetActive(false);
             sibleIdx = transform.GetSiblingIndex();
             lastLPos = transform.localPosition;
 

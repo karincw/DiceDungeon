@@ -52,7 +52,7 @@ namespace SHY
 
             for (int i = 0; i < dices.Count; i++)
             {
-                if (dices[i].SelectCheck()) dices[i].VInit();
+                if (dices[i].SelectCheck() || _resetAll) dices[i].VInit();
             }
 
             StartCoroutine(SpawnDices(_resetAll));
@@ -93,7 +93,7 @@ namespace SHY
 
             foreach (DiceUI dice in dices)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1.3f);
                 dice.diceData.OnUse(BattleManager.Instance.player);
             }
 
