@@ -2970,7 +2970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &741638211
 Transform:
   m_ObjectHideFlags: 0
@@ -10255,7 +10255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1432557447
 Transform:
   m_ObjectHideFlags: 0
@@ -10291,6 +10291,7 @@ MonoBehaviour:
   - mapObj: {fileID: 1453181385}
     sceneType: 1
     manager: {fileID: 448629177}
+  debuggingScene: 0
 --- !u!1 &1453181385
 GameObject:
   m_ObjectHideFlags: 0
