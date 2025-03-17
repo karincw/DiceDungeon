@@ -13,7 +13,7 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     public Action OnMLBUpEvent;
     public Action<bool> OnLCtrlEvent;
 
-    public Action OpenInventoryEvent;
+    public Action OnOpenInventoryEvent;
 
     private void OnEnable()
     {
@@ -59,6 +59,6 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     public void OnOpenInventory(InputAction.CallbackContext context)
     {
         if (context.performed)
-            OpenInventoryEvent?.Invoke();
+            OnOpenInventoryEvent?.Invoke();
     }
 }
