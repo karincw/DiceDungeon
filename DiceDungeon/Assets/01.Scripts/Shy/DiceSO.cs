@@ -27,7 +27,6 @@ namespace SHY
         public Sprite Roll()
         {
             eyeNum = Random.Range(0, 6);
-            Debug.Log(eyeNum);
             return eyes[eyeNum].icon;
         }
 

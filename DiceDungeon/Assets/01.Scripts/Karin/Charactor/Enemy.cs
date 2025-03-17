@@ -66,9 +66,10 @@ namespace karin.Charactor
 
         public virtual void PlayAttack()
         {
-            isReservation = false;
+            if (!isReservation) return;
             _selectedAttack.OnUse(this);
             _warningtiles.ForEach(tile => tile.warning = false);
+            isReservation = false;
         }
 
         public virtual void PlayMove()

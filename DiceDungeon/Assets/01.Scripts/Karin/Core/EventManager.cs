@@ -4,6 +4,7 @@ using UnityEngine;
 using karin.HexMap;
 using karin.Charactor;
 using karin.BuffSystem;
+using static UnityEngine.GraphicsBuffer;
 
 namespace karin.Event
 {
@@ -44,24 +45,29 @@ namespace karin.Event
                 owner.buffContainer.RemoveBuff(Buff.Strength);
             }
 
-            var ownerHex = owner.underTile.HexCoords;
+            var ownerHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
 
             var attackTargets = targetTile.GetNeighbourData(ad.direction, ad.attackType);
             attackTargets.ForEach(t =>
             {
                 t.health.DecreaseHealth(damage);
-                switch (ad.effect)
-                {
-                    case AttackEffect.None:
-                        break;
-                    case AttackEffect.EnchantBuff:
-                        var bd = ad.buffData;
-                        bd.who = t;
-                        BuffEvent?.Invoke(bd);
-                        break;
-                }
+                AttackEffectHandler(ad, ad.effect, t);
             });
+        }
+
+        private void AttackEffectHandler(AttackData ad, AttackEffect af, Agent target)
+        {
+            switch (af)
+            {
+                case AttackEffect.None:
+                    break;
+                case AttackEffect.EnchantBuff:
+                    var bd = ad.buffData;
+                    bd.who = target;
+                    BuffEvent?.Invoke(bd);
+                    break;
+            }
         }
 
         private void ShieldEventHandler(ShieldData sd)
@@ -74,9 +80,7 @@ namespace karin.Event
         {
             if (md.distance <= 0)
                 return;
-
             var owner = md.who;
-            owner.MoveStart(md.direction, md.rewriteTile);
             Vector2 startPos = owner.transform.position;
             Vector2 targetPos = new();
             Action callback = null;
@@ -143,15 +147,16 @@ namespace karin.Event
 
         private void MoveAgent(Agent agent, Vector2 destination, MoveData md, Action callbackAction = null)
         {
+            agent.MoveStart(md.direction, md.rewriteTile);
+
             agent.transform
-                .DOMove(destination, 0.5f).SetEase(Ease.Linear)
+                .DOMove(destination, 0.1f).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
                     agent.MoveEnd(md.rewriteTile);
+
                     if (callbackAction != null)
-                    {
                         callbackAction?.Invoke();
-                    }
                 });
         }
 

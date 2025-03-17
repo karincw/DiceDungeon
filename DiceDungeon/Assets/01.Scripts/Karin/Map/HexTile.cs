@@ -51,13 +51,31 @@ namespace karin.HexMap
             }
         }
 
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            Debug.Log(1);
+            var lg = GetNeighbourData(Direction.Left, AttackType.Around);
+            var lt = GetNeighbourTiles(Direction.Left, AttackType.Around);
+
+            lg.ForEach(x =>
+            {
+                Debug.Log($"Agents {HexCoordinates.GetVectorToDirection(x.transform.position - transform.position)}");
+            }); 
+
+            lt.ForEach(x =>
+            {
+                Debug.Log($"Tiles {HexCoordinates.GetVectorToDirection(x.transform.position - transform.position)}");
+            });
+        }
+
         public List<Agent> GetNeighbourData(Direction dir, AttackType type)
         {
             List<Agent> agents = new List<Agent>();
             switch (type)
             {
                 case AttackType.Around:
-                    agents = neighbourTiles.Where(t => t.overAgent is not null).Select(t => t.overAgent).ToList();
+                    agents = neighbourTiles.Where(t => t.overAgent != null).Select(t => t.overAgent).ToList();
                     break;
                 case AttackType.Front:
                     if (neighbourTiles[(int)dir].overAgent != null)
