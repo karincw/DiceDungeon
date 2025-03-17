@@ -10,6 +10,7 @@ namespace SHY
     {
         public RangeSO range;
         public AttackType attackType;
+        public int rangeDistance;
         public AttackEffect attackEffect;
         [Header("AttackEffectValues")]
         public BuffEyeSO buffEye;
@@ -21,17 +22,13 @@ namespace SHY
 
         public AttackData GetData(Agent _agent)
         {
-            AttackData at = new AttackData();
-            at.who = _agent;
-            at.where = new Vector2Int(0, 0);
-            at.direction = _agent.direction;
-            at.attackType = attackType;
-            at.damage = value;
-            at.effect = attackEffect;
-            if (at.effect == AttackEffect.EnchantBuff)
+            AttackData at = new AttackData(_agent, new Vector2Int(0, 0), _agent.direction, rangeDistance, attackType, value, attackEffect);
+
+            if (attackEffect == AttackEffect.EnchantBuff)
             {
                 at.buffData = buffEye.GetData(_agent);
             }
+
             return at;
         }
     }

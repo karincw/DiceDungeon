@@ -5,7 +5,7 @@ namespace karin
         Around,
         Front,
         Fan,
-        AllAround
+        AllAround,
     }
 
     public enum Direction : int
