@@ -38,26 +38,6 @@ namespace SHY
 
         private StageSO GetStage() => otherStageSO[Random.Range(0, otherStageSO.Count)];
 
-        //(È®·ü) = RandByArr({10, 15, 10}) 10% = 1, 15% = 2, 10% = 3
-        private int RandByArr(int[] _arr)
-        {
-            int _va = 0;
-
-            for (int i = 0; i < _arr.Length; i++) _va += _arr[i];
-
-            _va = Random.Range(0, _va);
-
-            for (int i = 0; i < _arr.Length; i++)
-            {
-                _va -= _arr[i];
-                if (_va < 0) return i + 1;
-            }
-
-            Debug.LogError("Rand Error");
-
-            return 99;
-        }
-
 
         #region »ý¼º
         public override void Init(PlayerData _data)

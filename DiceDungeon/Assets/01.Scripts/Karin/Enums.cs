@@ -37,5 +37,8 @@ namespace karin
         Strength
     }
 
-
+    public enum DiceEffect
+    {
+        None,
+    }
 }

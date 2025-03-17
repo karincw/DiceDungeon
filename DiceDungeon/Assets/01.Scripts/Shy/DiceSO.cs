@@ -1,16 +1,19 @@
 using UnityEngine;
 using karin.Charactor;
 using System.Collections.Generic;
+using karin;
 
 namespace SHY
 {
-    [CreateAssetMenu(menuName = "SO/Dice")]
+    [CreateAssetMenu(menuName = "SO/Shy/Dice/Base")]
     public class DiceSO : ScriptableObject
     {
-        // 주사위 마다 이름
-        // 주사위 
-        // 주사위 설명
-        // 주사위 오리지널 색
+        public string diceName = "";
+        public Color diceColor = Color.white;
+        public string diceExplain = "";
+
+        public int value;
+        public DiceEffect effect;
 
         public void  Reflect(DiceSO _dice) 
         {
