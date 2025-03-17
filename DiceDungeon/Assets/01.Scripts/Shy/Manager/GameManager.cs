@@ -32,7 +32,13 @@ namespace SHY
 
         private void Start()
         {
-            SceneChange(SceneType.Battle);
+            //SceneChange(SceneType.Battle);
+        }
+
+        [Header("Alpha 1"), SerializeField] private SceneType debuggingScene;
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) SceneChange(debuggingScene);
         }
 
         private void SceneChange(SceneType _scene)
