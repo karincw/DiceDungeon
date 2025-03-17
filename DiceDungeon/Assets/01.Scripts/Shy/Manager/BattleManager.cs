@@ -31,6 +31,7 @@ namespace SHY
         {
             Debug.Log("Battle Manager Init");
             Initialize.Invoke(_data);
+            enemys = FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
             StartCoroutine(OnPlayerTurn());
         }
 
