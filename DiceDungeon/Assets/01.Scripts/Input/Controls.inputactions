@@ -4,8 +4,30 @@
         {
             "name": "InGame",
             "id": "6d975390-4b10-482c-b205-87783eadbcb3",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "9dc9c4ab-ee4b-4c25-93fd-cd0040f50c0e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "69f11390-0c57-43ab-8e0a-c9b1b8a3c17c",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         },
         {
             "name": "UI",
