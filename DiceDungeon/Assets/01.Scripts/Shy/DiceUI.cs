@@ -13,6 +13,7 @@ namespace SHY
         private bool isDrager = false;
         internal int sibleIdx;
         private int loopCnt = 5;
+        private static int rollingCnt = 0;
 
         public DiceSO diceData;
 
@@ -37,7 +38,6 @@ namespace SHY
         public void Init(DiceSO _so)
         {
             diceData = _so;
-            Roll();
             checker.SetActive(false);
             sibleIdx = transform.GetSiblingIndex();
             lastLPos = transform.localPosition;
@@ -56,6 +56,7 @@ namespace SHY
         {
             checker.SetActive(false);
             gameObject.SetActive(true);
+            rollingCnt++;
             anime.SetBool("Roll", true);
         }
 
@@ -66,6 +67,10 @@ namespace SHY
                 anime.SetBool("Roll", false);
                 icon.gameObject.SetActive(true);
                 loopCnt = 5;
+
+                Debug.Log(rollingCnt);
+                if(--rollingCnt == 0)
+                BattleManager.Instance.canPlayerInteract.Invoke();
             }
         }
 

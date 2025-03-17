@@ -1,32 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TurnShower : MonoBehaviour
+namespace SHY
 {
-    [SerializeField] private Transform p;
-
-    private void Update()
+    public class TurnShower : MonoBehaviour
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        private Image baseImg;
+        private Image icon;
+
+        private void Awake()
         {
-            for (int i = 0; i < p.childCount; i++)
-            {
-                if(p.GetChild(i).gameObject.activeSelf)
-                {
-                    p.GetChild(i).gameObject.SetActive(false);
-                    break;
-                }
-            }
+            baseImg = GetComponent<Image>();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+
+        public void Push(Color _color)
         {
-            for (int i = 0; i < p.childCount; i++)
-            {
-                if (!p.GetChild(i).gameObject.activeSelf)
-                {
-                    p.GetChild(i).gameObject.SetActive(true);
-                    break;
-                }
-            }
+            baseImg.color = _color;
+            gameObject.SetActive(true);
         }
     }
 }
