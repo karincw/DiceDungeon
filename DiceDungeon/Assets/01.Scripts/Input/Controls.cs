@@ -26,8 +26,30 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             ""name"": ""InGame"",
             ""id"": ""6d975390-4b10-482c-b205-87783eadbcb3"",
-            ""actions"": [],
-            ""bindings"": []
+            ""actions"": [
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""9dc9c4ab-ee4b-4c25-93fd-cd0040f50c0e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""69f11390-0c57-43ab-8e0a-c9b1b8a3c17c"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         },
         {
             ""name"": ""UI"",
@@ -99,6 +121,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
 }");
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
+        m_InGame_OpenInventory = m_InGame.FindAction("OpenInventory", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MLBClick = m_UI.FindAction("MLBClick", throwIfNotFound: true);
@@ -170,10 +193,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     // InGame
     private readonly InputActionMap m_InGame;
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
+    private readonly InputAction m_InGame_OpenInventory;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
         public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenInventory => m_Wrapper.m_InGame_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -183,10 +208,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InGameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InGameActionsCallbackInterfaces.Add(instance);
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
         {
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -269,6 +300,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     }
     public interface IInGameActions
     {
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

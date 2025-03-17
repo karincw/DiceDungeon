@@ -8,23 +8,6 @@ namespace karin.Inventory
     {
         public List<UIOpener> LeftOpener, RightOpener, TopOpener, BottomOpener;
 
-        private void Update()
-        {
-            if (Keyboard.current.tabKey.wasReleasedThisFrame || Keyboard.current.iKey.wasReleasedThisFrame)
-            {
-                LeftOpener[0].ActiveSwitch();
-            }
-        }
-
-        public void DefenceAll()
-        {
-
-        }
-        public void DefenceOpenAll()
-        {
-            OpenDefencer(null, Position.Left, true);
-            OpenDefencer(null, Position.Right, true);
-        }
 
         public void OpenDefencer(UIOpener opener, Position position, bool state = false)
         {
