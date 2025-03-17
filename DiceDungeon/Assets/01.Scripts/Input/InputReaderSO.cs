@@ -13,6 +13,8 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     public Action OnMLBUpEvent;
     public Action<bool> OnLCtrlEvent;
 
+    public Action OpenInventoryEvent;
+
     private void OnEnable()
     {
         if (control == null)
@@ -52,5 +54,11 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
             OnLCtrlEvent?.Invoke(true);
         else if (context.canceled)
             OnLCtrlEvent?.Invoke(false);
+    }
+
+    public void OnOpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OpenInventoryEvent?.Invoke();
     }
 }
