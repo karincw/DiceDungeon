@@ -48,8 +48,8 @@ namespace karin.Charactor
             var myHex = HexCoordinates.ConvertPositionToOffset(transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(myHex + ad.where);
 
-            var warningTiles = EventManager.Instance.GetTargetTiles(targetTile, direction, ad.attackType, ad.range);
-
+            var warningTiles = EventManager.GetTargetTiles(targetTile, direction, ad.attackType, ad.range);
+            Debug.Log(warningTiles.Count);
             _warningtiles = warningTiles;
             _warningtiles.ForEach(tile => tile.warning = true);
         }
@@ -100,6 +100,7 @@ namespace karin.Charactor
         {
             if (route.Count < idx + 1)
             {
+                Debug.Log(route.Count <= max);
                 callbackAction?.Invoke(route.Count <= max);
                 return;
             }

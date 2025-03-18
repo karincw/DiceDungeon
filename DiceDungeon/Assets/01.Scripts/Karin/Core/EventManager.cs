@@ -1,12 +1,11 @@
 using DG.Tweening;
-using System;
-using UnityEngine;
-using karin.HexMap;
-using karin.Charactor;
 using karin.BuffSystem;
+using karin.Charactor;
+using karin.HexMap;
+using System;
 using System.Collections.Generic;
-using UnityEngine.InputSystem.Android;
-using static UnityEngine.GraphicsBuffer;
+using System.Linq;
+using UnityEngine;
 
 namespace karin.Event
 {
@@ -52,14 +51,23 @@ namespace karin.Event
             });
         }
 
-        public List<HexTile> GetTargetTiles(HexTile hexTile, Direction direction, AttackType attackType, int rangeDistance)
+        public static List<HexTile> GetTargetTiles(HexTile hexTile, Direction direction, AttackType attackType, int rangeDistance)
         {
-            List<HexTile> targets = hexTile.GetNeighbourTiles(direction, attackType);
-
+            HashSet<HexTile> targets = hexTile.GetNeighbourTiles(direction, attackType).ToHashSet();
+            HashSet<HexTile> result = targets.ToHashSet();
             for (int i = 1; i < rangeDistance; i++)
-                targets.ForEach(t => targets.AddRange(t.GetNeighbourTiles(direction, attackType)));
+            {
+                foreach (HexTile tile in targets)
+                {
+                    HashSet<HexTile> additional = tile.GetNeighbourTiles(direction, attackType).ToHashSet();
+                    result.UnionWith(additional);
+                }
+            }
 
-            return targets;
+            if (result.Contains(hexTile))
+                result.Remove(hexTile);
+
+            return result.ToList();
         }
 
         public void DirectAttack(Agent target, AttackData ad)
@@ -120,7 +128,7 @@ namespace karin.Event
         private Vector2 GetMaxDistance(Agent owner, int maxDistance, Vector2 startPos, Direction direction)
         {
             Vector2 targetPos = new();
-            for (int i = 0; i < maxDistance; i++)
+            for (int i = 1; i <= maxDistance; i++)
             {
                 targetPos = startPos + HexCoordinates.GetDirectionToVector(direction) * i;
                 HexTile targetTile = MapManager.Instance.GetTile(targetPos);
@@ -140,7 +148,7 @@ namespace karin.Event
         {
             Vector2 targetPos = new();
             callback = null;
-            for (int i = 0; i < maxDistance; i++)
+            for (int i = 1; i <= maxDistance; i++)
             {
                 targetPos = startPos + HexCoordinates.GetDirectionToVector(direction) * i;
                 HexTile targetTile = MapManager.Instance.GetTile(targetPos);

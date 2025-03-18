@@ -11,14 +11,10 @@ namespace karin.Charactor
 
         private int _animtaionIdleHash = Animator.StringToHash("Idle");
 
-        private void Awake()
+        public void Init(Agent owner)
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
-        }
-
-        public void Init(Agent owner)
-        {
             _owner = owner;
             EndAnimation();
         }
