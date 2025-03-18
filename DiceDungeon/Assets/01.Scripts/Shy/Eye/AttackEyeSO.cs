@@ -10,7 +10,7 @@ namespace SHY
     {
         public RangeSO range;
         public AttackType attackType;
-        public int rangeDistance;
+        [Range(1, 3)] public int rangeDistance = 1;
         public AttackEffect attackEffect;
         [Header("AttackEffectValues")]
         public BuffEyeSO buffEye;

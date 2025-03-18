@@ -40,5 +40,7 @@ namespace karin
     public enum DiceEffect
     {
         None,
+        AddAttack,
+        AddShield,
     }
 }

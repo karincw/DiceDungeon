@@ -51,22 +51,9 @@ namespace karin.HexMap
             }
         }
 
-        [ContextMenu("Test")]
-        public void Test()
+        public static List<Agent> GetData(List<HexTile> tiles)
         {
-            Debug.Log(1);
-            var lg = GetNeighbourData(Direction.Left, AttackType.Around);
-            var lt = GetNeighbourTiles(Direction.Left, AttackType.Around);
-
-            lg.ForEach(x =>
-            {
-                Debug.Log($"Agents {HexCoordinates.GetVectorToDirection(x.transform.position - transform.position)}");
-            }); 
-
-            lt.ForEach(x =>
-            {
-                Debug.Log($"Tiles {HexCoordinates.GetVectorToDirection(x.transform.position - transform.position)}");
-            });
+            return tiles.Select(t => t.overAgent).Where(oa => oa != null).ToList();
         }
 
         public List<Agent> GetNeighbourData(Direction dir, AttackType type)

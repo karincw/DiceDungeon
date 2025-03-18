@@ -4,6 +4,9 @@ using UnityEngine;
 using karin.HexMap;
 using karin.Charactor;
 using karin.BuffSystem;
+using System.Collections.Generic;
+using UnityEngine.InputSystem.Android;
+using static UnityEngine.GraphicsBuffer;
 
 namespace karin.Event
 {
@@ -41,12 +44,22 @@ namespace karin.Event
             var ownerHex = HexCoordinates.ConvertPositionToOffset(owner.transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
 
-            var attackTargets = targetTile.GetNeighbourData(ad.direction, ad.attackType);
+            var attackTargets = HexTile.GetData(GetTargetTiles(targetTile, ad.direction, ad.attackType, ad.range));
             attackTargets.ForEach(t =>
             {
                 t.health.DecreaseHealth(damage);
                 AttackEffectHandler(ad, ad.effect, t);
             });
+        }
+
+        public List<HexTile> GetTargetTiles(HexTile hexTile, Direction direction, AttackType attackType, int rangeDistance)
+        {
+            List<HexTile> targets = hexTile.GetNeighbourTiles(direction, attackType);
+
+            for (int i = 1; i < rangeDistance; i++)
+                targets.ForEach(t => targets.AddRange(t.GetNeighbourTiles(direction, attackType)));
+
+            return targets;
         }
 
         public void DirectAttack(Agent target, AttackData ad)
