@@ -11,6 +11,7 @@ namespace karin.Charactor
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
         [HideInInspector] public VisualController visualController;
+        [SerializeField] private short _startHealth = 50;
 
         public HexTile underTile
         {
@@ -34,6 +35,7 @@ namespace karin.Charactor
 
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
             visualController.Init(this);
+            health.Init(this, _startHealth);
         }
 
         protected virtual void Start()
@@ -64,12 +66,14 @@ namespace karin.Charactor
                 tile.moveAble = false;
                 underTile = tile;
             }
+            visualController.EndAnimation();
         }
 
         public virtual void MoveStart(Direction dir, bool ReWrite = true)
         {
             direction = dir;
             visualController.UpdateViewDirection(direction);
+            visualController.PlayAnimation("Walk");
             if (ReWrite)
             {
                 underTile.overAgent = null;

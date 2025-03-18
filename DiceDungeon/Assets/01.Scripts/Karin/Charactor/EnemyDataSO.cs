@@ -8,7 +8,7 @@ namespace karin.Charactor
     public class EnemyDataSO : ScriptableObject
     {
 
-        public string name = "Dummy";
+        public new string name = "Dummy";
         public int maxHealth = 10;
 
         [Range(1, 5)] public int maxMoveCount = 1;

@@ -5,17 +5,22 @@ namespace karin.Charactor
     public class VisualController : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
         private Agent _owner;
         [SerializeField] private bool _viewRight;
+
+        private int _animtaionIdleHash = Animator.StringToHash("Idle");
 
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
         }
 
         public void Init(Agent owner)
         {
             _owner = owner;
+            EndAnimation();
         }
 
         public void UpdateViewDirection(Direction direction)
@@ -34,6 +39,15 @@ namespace karin.Charactor
                 _viewRight = !_viewRight;
                 _spriteRenderer.flipX = !_viewRight;
             }
+        }
+
+        public void PlayAnimation(string animationName)
+        {
+            _animator.SetTrigger(animationName);
+        }
+        public void EndAnimation()
+        {
+            _animator.SetTrigger(_animtaionIdleHash);
         }
     }
 }

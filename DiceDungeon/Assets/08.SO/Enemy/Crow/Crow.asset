@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a06e034d58ec3449861b8d96e290513, type: 3}
+  m_Name: Crow
+  m_EditorClassIdentifier: 
+  name: Dummy
+  maxHealth: 50
+  maxMoveCount: 2
+  useAbleAbilitys:
+  - {fileID: 11400000, guid: c48660ea2412dfc43971f3ac5a3f123c, type: 2}
