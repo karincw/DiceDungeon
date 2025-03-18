@@ -21,6 +21,9 @@ namespace SHY
 
             BattleManager.Instance.Initialize += Init;
             BattleManager.Instance.playerTurnStart += TurnInit;
+
+            BattleManager.Instance.canPlayerInteract += () => layoutGroup.enabled = false;
+            BattleManager.Instance.canPlayerInteract += CanClick.True;
         }
 
         private void Init(PlayerData _data)
@@ -66,15 +69,10 @@ namespace SHY
 
                 if (dices[i].SelectCheck() || _reset)
                 {
+                    yield return new WaitForSeconds(0.3f);
                     dices[i].Roll();
-                    yield return new WaitForSeconds(0.4f);
                 }
             }
-
-            layoutGroup.enabled = false;
-
-            yield return new WaitForSeconds(0.75f * 5);
-            CanClick.True();
         }
 
         public void UseDices()
@@ -96,8 +94,6 @@ namespace SHY
                 yield return new WaitForSeconds(1.3f);
                 dice.diceData.OnUse(BattleManager.Instance.player);
             }
-
-            yield return new WaitForSeconds(2.5f);
 
             BattleManager.Instance.enemyTurnStart.Invoke();
         }
