@@ -18,6 +18,7 @@ namespace SHY
         public Action playerTurnStart;
         public Action canPlayerInteract;
         public Action enemyTurnStart;
+        public Action<Agent> dieEvent;
 
         [Header("0 : Player, 1 : Enemy")]
         [SerializeField] private List<Color> signColor;
@@ -64,7 +65,6 @@ namespace SHY
                 enemys[i].TurnReset();
                 enemys[i].PlayMove();
 
-                Debug.Log(i);
                 if(i < 4) TurnImgSet(i + 1);
             }
 
