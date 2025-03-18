@@ -49,11 +49,7 @@ public class DEBUGController : MonoBehaviour
     private void Move(Direction dir)
     {
         Agent player = BattleManager.Instance.player;
-        MoveData md = new();
-        md.who = player;
-        md.direction = dir;
-        md.distance = 1;
-        md.effect = MoveEffect.None;
+        MoveData md = new MoveData(player, dir, MoveEffect.None, 1, 0);
         EventManager.Instance.MoveEvent?.Invoke(md);
     }
     public void Attack()

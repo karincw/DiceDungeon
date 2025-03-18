@@ -1,8 +1,9 @@
 using DG.Tweening;
+using karin.Event;
 using karin.HexMap;
 using SHY;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -24,6 +25,7 @@ namespace karin.Charactor
             _pathfinder = new Pathfinder();
             _warningtiles = new List<HexTile>();
             onUndertileChanged += HandleUnderTileChanged;
+            health.Init(this, _eData.maxHealth);
         }
 
         private void OnDestroy()
@@ -37,17 +39,17 @@ namespace karin.Charactor
             if (isReservation)
             {
                 _warningtiles.ForEach(tile => tile.warning = false);
-                SetWarningTile(direction, _selectedAttack.attackType);
+                SetWarningTile(_selectedAttack.GetData(this));
             }
         }
 
-        protected void SetWarningTile(Direction dir, AttackType type)
+        protected void SetWarningTile(AttackData ad)
         {
-            var ad = _selectedAttack.GetData(this);
             var myHex = HexCoordinates.ConvertPositionToOffset(transform.position);
             HexTile targetTile = MapManager.Instance.GetTile(myHex + ad.where);
 
-            var warningTiles = targetTile.GetNeighbourTiles(ad.direction, ad.attackType);
+            var warningTiles = EventManager.Instance.GetTargetTiles(targetTile, direction, ad.attackType, ad.range);
+
             _warningtiles = warningTiles;
             _warningtiles.ForEach(tile => tile.warning = true);
         }
@@ -60,15 +62,16 @@ namespace karin.Charactor
             Direction dir = HexCoordinates.GetVectorToDirection(player.transform.position - transform.position);
             direction = dir;
 
-            SetWarningTile(direction, _selectedAttack.attackType);
+            SetWarningTile(_selectedAttack.GetData(this));
             isReservation = true;
         }
 
         public virtual void PlayAttack()
         {
-            isReservation = false;
+            if (!isReservation) return;
             _selectedAttack.OnUse(this);
             _warningtiles.ForEach(tile => tile.warning = false);
+            isReservation = false;
         }
 
         public virtual void PlayMove()

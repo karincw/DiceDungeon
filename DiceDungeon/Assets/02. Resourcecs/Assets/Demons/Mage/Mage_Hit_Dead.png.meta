@@ -1,25 +1,40 @@
 fileFormatVersion: 2
-guid: 30ae14a7059d90f4298ad9f3d12ec585
+guid: 49526b0afe7526b48a1e7541decc9277
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3112916690700715366
-    second: crow_jump_0
+      213: 2958732195295406596
+    second: Mage_Hit_Dead_0
   - first:
-      213: -8268231044195119684
-    second: crow_jump_1
+      213: -3279562479211364616
+    second: Mage_Hit_Dead_1
   - first:
-      213: -1313590801716814441
-    second: crow_jump_2
+      213: 6255207131356323615
+    second: Mage_Hit_Dead_2
   - first:
-      213: -6620370737958693450
-    second: crow_jump_3
+      213: 159403791806858558
+    second: Mage_Hit_Dead_3
   - first:
-      213: -4156165174093553923
-    second: crow_jump_4
+      213: 34289323290179065
+    second: Mage_Hit_Dead_4
   - first:
-      213: -2106292963089343192
-    second: crow_jump_5
+      213: -6456774120085473444
+    second: Mage_Hit_Dead_5
+  - first:
+      213: 2920769359021007997
+    second: Mage_Hit_Dead_6
+  - first:
+      213: -8349538051441722209
+    second: Mage_Hit_Dead_7
+  - first:
+      213: -3826488148323277346
+    second: Mage_Hit_Dead_8
+  - first:
+      213: 3447455880056051225
+    second: Mage_Hit_Dead_9
+  - first:
+      213: -391643548719990705
+    second: Mage_Hit_Dead_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +67,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +81,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,10 +102,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,133 +130,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crow_jump_0
+      name: Mage_Hit_Dead_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 15
-        width: 24
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 665c99cbc3d433b20800000000000000
-      internalID: 3112916690700715366
+      spriteID: 40a281e61478f0920800000000000000
+      internalID: 2958732195295406596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crow_jump_1
+      name: Mage_Hit_Dead_1
       rect:
         serializedVersion: 2
-        x: 86
-        y: 15
-        width: 18
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbd84e91ca7514d80800000000000000
-      internalID: -8268231044195119684
+      spriteID: 8fe38ef0d47ac72d0800000000000000
+      internalID: -3279562479211364616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crow_jump_2
+      name: Mage_Hit_Dead_2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 15
-        width: 25
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79dd273202035cde0800000000000000
-      internalID: -1313590801716814441
+      spriteID: f1fdbf49eb5fec650800000000000000
+      internalID: 6255207131356323615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crow_jump_3
+      name: Mage_Hit_Dead_3
       rect:
         serializedVersion: 2
-        x: 209
-        y: 15
-        width: 27
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b5d49ad3e7bf14a0800000000000000
-      internalID: -6620370737958693450
+      spriteID: e358f7277e0563200800000000000000
+      internalID: 159403791806858558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crow_jump_4
+      name: Mage_Hit_Dead_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 15
-        width: 23
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dfedd426bc55256c0800000000000000
-      internalID: -4156165174093553923
+      spriteID: 9f5bc4635f1d97000800000000000000
+      internalID: 34289323290179065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crow_jump_5
+      name: Mage_Hit_Dead_5
       rect:
         serializedVersion: 2
-        x: 341
-        y: 15
-        width: 22
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82d972ea5b1f4c2e0800000000000000
-      internalID: -2106292963089343192
+      spriteID: c57be51b52ee466a0800000000000000
+      internalID: -6456774120085473444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage_Hit_Dead_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74ea43d148a88820800000000000000
+      internalID: 2920769359021007997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage_Hit_Dead_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c7535416b702c80800000000000000
+      internalID: -8349538051441722209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage_Hit_Dead_8
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed5e2fd7d4595eac0800000000000000
+      internalID: -3826488148323277346
       vertices: []
       indices: 
       edges: []
@@ -250,7 +331,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 74927a4ebadfa3345abd5e173bc3acf9
     internalID: 0
     vertices: []
     indices: 
@@ -259,7 +340,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mage_Hit_Dead_0: 2958732195295406596
+      Mage_Hit_Dead_1: -3279562479211364616
+      Mage_Hit_Dead_2: 6255207131356323615
+      Mage_Hit_Dead_3: 159403791806858558
+      Mage_Hit_Dead_4: 34289323290179065
+      Mage_Hit_Dead_5: -6456774120085473444
+      Mage_Hit_Dead_6: 2920769359021007997
+      Mage_Hit_Dead_7: -8349538051441722209
+      Mage_Hit_Dead_8: -3826488148323277346
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

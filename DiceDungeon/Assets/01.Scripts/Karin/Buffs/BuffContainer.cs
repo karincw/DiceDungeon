@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace karin.BuffSystem
@@ -12,11 +14,27 @@ namespace karin.BuffSystem
         {
             return _buffs.Find(b => b.buffType == buffType);
         }
+        public BuffSO GetBuff(BuffSO buffSO)
+        {
+            return _buffs.Find(b => b == buffSO);
+        }
+
+        public bool Contains(Buff buffType, out BuffSO buff)
+        {
+            var buffTypeList = _buffs.Select(b => b.buffType).ToList();
+            bool result = buffTypeList.Contains(buffType);
+            buff = result ? GetBuff(buffType) : null;
+            return result;
+        }
+        public bool Contains(Buff buffType)
+        {
+            return _buffs.Select(b => b.buffType).Contains(buffType);
+        }
 
         public void AddBuff(BuffSO buffSO, int value)
         {
             //기존에 버프가 있다면
-            var buff = _buffs.Find(b => b.buffType == buffSO.buffType);
+            var buff = GetBuff(buffSO);
             if (buff != null)
             {
                 //값을 업데이트하고

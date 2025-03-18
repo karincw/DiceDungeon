@@ -15,16 +15,7 @@ namespace SHY
 
         public override void OnUse(Agent _agent)
         {
-            Debug.Log("¿Ãµø");
-
-            MoveData mo = new MoveData();
-            mo.who = _agent;
-            mo.direction = dir;
-            mo.distance = value;
-            mo.effect = moveEffect;
-            mo.additionalValue = CollisionDamage;
-
-            EventManager.Instance.MoveEvent?.Invoke(mo);
+            EventManager.Instance.MoveEvent?.Invoke(GetData(_agent));
         }
 
         public MoveData GetData(Agent _agent)
@@ -35,6 +26,7 @@ namespace SHY
             mo.distance = value;
             mo.effect = moveEffect;
             mo.additionalValue = CollisionDamage;
+            mo.rewriteTile = true;
             return mo;
         }
     }

@@ -1,24 +1,30 @@
+using System;
 using UnityEngine;
 
 namespace karin.Charactor
 {
     public class AgentHealth : MonoBehaviour
     {
-        [SerializeField] private int maxHealth;
         [SerializeField] private Gauge _hpGauge;
-        private int currentHealth;
         public int shield;
+        private int _maxHealth;
+        private int currentHealth;
+        private Agent _owner;
 
-        private void Awake()
+        public Action<Agent> OnDeadEvent;
+
+        public void Init(Agent owner, int maxHealth)
         {
-            currentHealth = maxHealth;
-            _hpGauge.StartGauge1 = maxHealth;
-            _hpGauge.currentGauge1 = maxHealth;
+            _owner = owner;
+            _maxHealth = maxHealth;
+            currentHealth = _maxHealth;
+            _hpGauge.StartGauge1 = _maxHealth;
+            _hpGauge.currentGauge1 = _maxHealth;
         }
 
         public void IncreaseHealth(int value)
         {
-            currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
+            currentHealth = Mathf.Clamp(currentHealth + value, 0, _maxHealth);
             _hpGauge.GaugeIncrease(value);
         }
         public void DecreaseHealth(int value)
@@ -29,7 +35,7 @@ namespace karin.Charactor
                 value -= shield < value ? shield : value;
             }
 
-            currentHealth = Mathf.Clamp(currentHealth - value, 0, maxHealth);
+            currentHealth = Mathf.Clamp(currentHealth - value, 0, _maxHealth);
             if (currentHealth <= 0)
             {
                 Die();
@@ -39,7 +45,8 @@ namespace karin.Charactor
 
         private void Die()
         {
-
+            Debug.Log($"{_owner.gameObject.name}(이)가 사망했습니다.");
+            OnDeadEvent?.Invoke(_owner);
         }
     }
 }

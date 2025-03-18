@@ -10,7 +10,9 @@ namespace karin.Charactor
         public Direction direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
-        [HideInInspector]
+        [HideInInspector] public VisualController visualController;
+        [SerializeField] private short _startHealth = 50;
+
         public HexTile underTile
         {
             get => _underTile;
@@ -29,7 +31,11 @@ namespace karin.Charactor
         {
             health = GetComponent<AgentHealth>();
             buffContainer = GetComponent<BuffContainer>();
+            visualController = transform.Find("Visual").GetComponent<VisualController>();
+
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
+            visualController.Init(this);
+            health.Init(this, _startHealth);
         }
 
         protected virtual void Start()
@@ -60,11 +66,14 @@ namespace karin.Charactor
                 tile.moveAble = false;
                 underTile = tile;
             }
+            visualController.EndAnimation();
         }
 
         public virtual void MoveStart(Direction dir, bool ReWrite = true)
         {
             direction = dir;
+            visualController.UpdateViewDirection(direction);
+            visualController.PlayAnimation("Walk");
             if (ReWrite)
             {
                 underTile.overAgent = null;

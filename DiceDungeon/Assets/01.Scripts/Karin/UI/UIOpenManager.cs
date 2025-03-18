@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace karin.Inventory
 {
@@ -8,6 +9,23 @@ namespace karin.Inventory
     {
         public List<UIOpener> LeftOpener, RightOpener, TopOpener, BottomOpener;
 
+        [SerializeField] private InputReaderSO _inputReader;
+        public UnityEvent OpenInventory;
+
+        private void Awake()
+        {
+            _inputReader.OnOpenInventoryEvent += HandleInventory;
+        }
+
+        private void OnDestroy()
+        {
+            _inputReader.OnOpenInventoryEvent -= HandleInventory;
+        }
+
+        public void HandleInventory()
+        {
+            OpenInventory?.Invoke();
+        }
 
         public void OpenDefencer(UIOpener opener, Position position, bool state = false)
         {

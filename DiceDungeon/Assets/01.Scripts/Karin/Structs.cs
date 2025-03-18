@@ -13,19 +13,23 @@ namespace karin
         public Vector2Int where;
         //어디를 바라보고
         public Direction direction;
-        //어떤형태로 공격을 하는데
+        //어떤형태로
+        public int range;
+        // 어느정도의 거리까지 공격을 하는데
         public AttackType attackType;
         //그게 얼마나 강하고
         public int damage;
         //무슨 효과를 지니는지
         public AttackEffect effect;
+        //etc
         public BuffData buffData;
 
-        public AttackData(Agent _who, Vector2Int _where, Direction _direction, AttackType _attackType, int _damage, AttackEffect _effect, BuffData _buffData = default)
+        public AttackData(Agent _who, Vector2Int _where, Direction _direction, int _range, AttackType _attackType, int _damage, AttackEffect _effect, BuffData _buffData = default)
         {
             who = _who;
             where = _where;
             direction = _direction;
+            range = _range;
             attackType = _attackType;
             damage = _damage;
             effect = _effect;

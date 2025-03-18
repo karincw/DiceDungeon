@@ -21,6 +21,7 @@ namespace karin.BuffSystem
             icon.value = value;
             _iconDictionary.Add(iconSprite, icon);
         }
+
         public void UpdateIcon(Sprite iconSprite, int value)
         {
             if (!_iconDictionary.ContainsKey(iconSprite))
@@ -29,6 +30,7 @@ namespace karin.BuffSystem
             _iconDictionary[iconSprite].value = value;
             _iconDictionary[iconSprite].countText.text = value.ToString();
         }
+
         public void RemoveIcon(Sprite iconSprite)
         {
             if (!_iconDictionary.ContainsKey(iconSprite))

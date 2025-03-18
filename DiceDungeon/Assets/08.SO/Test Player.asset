@@ -17,7 +17,7 @@ MonoBehaviour:
   gold: 0
   dices:
   - {fileID: 11400000, guid: 1614bfa7199aeba4d8163d634125ac42, type: 2}
-  - {fileID: 11400000, guid: 1614bfa7199aeba4d8163d634125ac42, type: 2}
   - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
-  - {fileID: 11400000, guid: 2a211da8f29bf5945a2dbd461dfe7f72, type: 2}
+  - {fileID: 11400000, guid: d365934d38518a4448e683e2381d280b, type: 2}
+  - {fileID: 11400000, guid: ecda19fc00bac5a4c98d0246d68358b0, type: 2}
+  - {fileID: 11400000, guid: 05b2cd8e46eb6014f92c1b9043bb6171, type: 2}

@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 944ddce06da07ef43bd40c8c32e9d198
+guid: 54afe9e3df6381543bbb43bd153d6ce0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6579932958635614425
-    second: crow_death1_0
-  - first:
-      213: 5877041660546631589
-    second: crow_death1_1
-  - first:
-      213: -8368678476849245278
-    second: crow_death1_2
-  - first:
-      213: -2176121971737838696
-    second: crow_death1_3
-  - first:
-      213: -626543905009750201
-    second: crow_death1_4
+      213: -5381150636989387233
+    second: sowrd_eg2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crow_death1_0
+      name: sowrd_eg2_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 15
-        width: 22
-        height: 31
+        x: 0
+        y: 0
+        width: 960
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72f93aa06d16fa4a0800000000000000
-      internalID: -6579932958635614425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crow_death1_1
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 15
-        width: 29
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a7cd0b90427f8150800000000000000
-      internalID: 5877041660546631589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crow_death1_2
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 15
-        width: 33
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a391f3b34b7cdb80800000000000000
-      internalID: -8368678476849245278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crow_death1_3
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 15
-        width: 31
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89bb4a6a89cdcc1e0800000000000000
-      internalID: -2176121971737838696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crow_death1_4
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 15
-        width: 31
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74f25b153a11e47f0800000000000000
-      internalID: -626543905009750201
+      spriteID: f1e616791005255b0800000000000000
+      internalID: -5381150636989387233
       vertices: []
       indices: 
       edges: []
