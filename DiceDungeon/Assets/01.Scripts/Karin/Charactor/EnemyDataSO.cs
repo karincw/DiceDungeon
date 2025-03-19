@@ -9,6 +9,7 @@ namespace karin.Charactor
     {
 
         public new string name = "Dummy";
+        public Sprite icon;
         public int maxHealth = 10;
 
         [Range(1, 5)] public int maxMoveCount = 1;

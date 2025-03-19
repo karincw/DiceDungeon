@@ -13,7 +13,7 @@ namespace karin.Charactor
 
     public class Enemy : Agent
     {
-        [SerializeField] private EnemyDataSO _eData;
+        public EnemyDataSO _eData;
         private AttackEyeSO _selectedAttack;
         private Pathfinder _pathfinder;
         private List<HexTile> _warningtiles;

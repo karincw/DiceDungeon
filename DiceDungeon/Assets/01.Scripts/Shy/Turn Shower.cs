@@ -19,4 +19,12 @@ namespace SHY
             gameObject.SetActive(true);
         }
     }
+
+    public struct ShowerData
+    {
+        Color backColor;
+        Sprite icon;
+
+        //public ShowerData() {}
+    }
 }

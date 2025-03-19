@@ -8,7 +8,7 @@ namespace SHY
 {
     public class DiceManager : MonoBehaviour
     {
-        public List<DiceUI> dices;
+        [SerializeField] private List<DiceUI> dices;
         [SerializeField] private Vector2[] dicesSpawnPos;
         private int rollcnt;
         [SerializeField] private HorizontalLayoutGroup layoutGroup;
@@ -20,7 +20,7 @@ namespace SHY
             layoutGroup.enabled = false;
 
             BattleManager.Instance.Initialize += Init;
-            BattleManager.Instance.playerTurnStart += TurnInit;
+            BattleManager.Instance.playerTurnStart += OnTurn;
 
             BattleManager.Instance.canPlayerInteract += () => layoutGroup.enabled = false;
             BattleManager.Instance.canPlayerInteract += CanClick.True;
@@ -28,23 +28,20 @@ namespace SHY
 
         private void Init(PlayerData _data)
         {
-            Debug.Log("Dice Init");
+            Debug.Log("Dice Manager Init");
 
             for (int i = 0; i < 5; i++)
                 dices[i].Init(_data.dices[i]);
         }
 
-        private void TurnInit()
+        private void OnTurn()
         {
             Debug.Log("Turn Init");
             rollcnt = 3;
             Roll(true);
         }
 
-        private void RollButton()
-        {
-            if (CanClick.clickAble) Roll();
-        }
+        private void RollButton() { if (CanClick.clickAble) Roll(); }
 
         private void Roll(bool _resetAll = false)
         {
@@ -75,7 +72,7 @@ namespace SHY
             }
         }
 
-        public void UseDices()
+        private void UseDices()
         {
             if (!CanClick.clickAble) return;
 
@@ -95,7 +92,8 @@ namespace SHY
                 dice.diceData.OnUse(BattleManager.Instance.player);
             }
 
-            BattleManager.Instance.enemyTurnStart.Invoke();
+            yield return new WaitForSeconds(0.7f);
+            BattleManager.Instance.enemyTurn.Invoke();
         }
     }
 }

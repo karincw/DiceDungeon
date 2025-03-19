@@ -13,16 +13,20 @@ namespace SHY
 
         public Player player;
         private List<Enemy> enemys = new List<Enemy>();
+        private int enemyActionNum = 0;
 
-        internal Action<PlayerData> Initialize;
         public Action playerTurnStart;
         public Action canPlayerInteract;
-        public Action enemyTurnStart;
+        public Action enemyTurn;
+        public Action<PlayerData> Initialize;
         public Action<Agent> dieEvent;
 
         [Header("0 : Player, 1 : Enemy")]
         [SerializeField] private List<Color> signColor;
-        [SerializeField] private TurnShower[] turnShowers = new TurnShower[5];
+        [SerializeField] private Sprite playerIcon;
+
+        private List<ShowerData> showerDatas = new List<ShowerData>();
+        [SerializeField] private List<TurnShower> turnShowers = new List<TurnShower>();
         
 
         private void Awake()
@@ -30,8 +34,13 @@ namespace SHY
             if (Instance == null) Instance = this;
             else Destroy(this);
 
-            enemyTurnStart += () => turnShowers[0].gameObject.SetActive(false);
-            enemyTurnStart += EnemyTurnStart;
+            enemyTurn += () => StartCoroutine(OnEnemyTurn());
+            dieEvent += AgentDie;
+        }
+
+        private void AgentDie(Agent _agent)
+        {
+            enemys.Remove(_agent as Enemy);
         }
 
         public override void Init(PlayerData _data)
@@ -39,58 +48,77 @@ namespace SHY
             Debug.Log("Battle Manager Init");
             Initialize.Invoke(_data);
             enemys = FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
-            StartCoroutine(OnPlayerTurn());
+            StartCoroutine(TurnReset());
         }
 
-        private void TurnImgSet(int _idx)
+        private void TurnShowerSet(int _idx = 0, bool _isPlayer = true)
         {
-            turnShowers[_idx].Push(signColor[Mathf.Min(_idx, 1)]);
+            //Img Change
+            //turnShowers[_idx].Push(signColor[!isEnemy ? 0 : 1]);
+            if(_isPlayer)
+            {
+                
+                //showerDatas.Add(new ShowerData {  });
+            }
+            else
+            {
+                //enemys[i]._eData.icon;
+            }
+
+
         }
 
-        private IEnumerator OnPlayerTurn()
+        private void TurnShowerPop()
+        {
+            turnShowers[0].gameObject.SetActive(false);
+            turnShowers[0].transform.SetAsLastSibling();
+
+            turnShowers.Add(turnShowers[0]);
+            turnShowers.RemoveAt(0);
+        }
+
+        private IEnumerator TurnReset()
         {
             player.TurnReset();
 
-            for (int i = 0; i < 5; i++) turnShowers[i].gameObject.SetActive(false);
+            //Shower Reset
+            //for (int i = 1; i < turnShowers.Count; i++) TurnShowerPop();
+            //TurnShowerSet();
 
-            turnShowers[0].gameObject.SetActive(true);
-
-
+            //Enemy Reset + Enemy Shower Add
             for (int i = 0; i < enemys.Count; i++)
             {
-                //if(enemys[i])
-
-                //에너미 죽은 놈들 없애고
-                yield return new WaitForSeconds(0.2f);
                 enemys[i].TurnReset();
                 enemys[i].PlayMove();
 
-                if(i < 4) TurnImgSet(i + 1);
+                //TurnShowerSet(i, false);
             }
 
+            //Delay
             yield return new WaitForSeconds(0.7f);
 
             playerTurnStart?.Invoke();
         }
 
-        private void EnemyTurnStart() => StartCoroutine(OnEnemyTurn());
-
         private IEnumerator OnEnemyTurn()
         {
-            //enemy들의 행동
-            Debug.Log("Enemy 행동");
-
-            yield return new WaitForSeconds(0.75f);
-
-            for (int i = 0; i < enemys.Count; i++)
+            if (enemyActionNum == enemys.Count)
             {
-                enemys[i].PlayAttack();
-                if(i < 4) turnShowers[i + 1].gameObject.SetActive(false);
-                yield return new WaitForSeconds(0.8f);
+                enemyActionNum = 0;
+                StartCoroutine(TurnReset());
             }
+            else
+            {
+                enemyActionNum++;
 
-            yield return new WaitForSeconds(0.4f);
-            StartCoroutine(OnPlayerTurn());
+                //enemy들의 행동
+                Debug.Log("Enemy 행동");
+
+                yield return new WaitForSeconds(0.75f);
+
+                //TurnShowerPop();
+                enemys[0].PlayAttack();
+            }
         }
     }
 }
