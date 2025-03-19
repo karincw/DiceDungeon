@@ -11,32 +11,40 @@ namespace karin.HexMap
         [Header("StateData")]
         public Agent overAgent;
         public bool moveAble = true;
-        public bool warning
-        {
-            get { return _warning; }
-            set
-            {
-                if (value)
-                    _spriteRenderer.sprite = sprites[(int)HexState.Warning];
-                else
-                    _spriteRenderer.sprite = sprites[(int)HexState.None];
-
-                _warning = value;
-            }
-        }
-        private bool _warning = false;
-        public int weight = 0;
 
         [Header("PathFindData")]
         public float G;
         public float H;
         public float F => H + G;
+        public int weight = 0;
         public HexTile parentPath = null;
 
         [SerializeField] private Sprite[] sprites;
         private SpriteRenderer _spriteRenderer;
         private List<HexTile> neighbourTiles;
         public Vector2Int HexCoords => HexCoordinates.ConvertPositionToOffset(transform.position);
+        private Dictionary<object, bool> warningDic = new();
+
+        public void SetWarning(object key, bool isAdd = true)
+        {
+            if (isAdd)
+            {
+                warningDic.Add(key, true);
+            }
+            else
+            {
+                if(warningDic.ContainsKey(key))
+                {
+                    warningDic.Remove(key);
+                }
+            }
+
+            if (warningDic.Values.Where(t => t == true).ToList().Count > 0)
+                _spriteRenderer.sprite = sprites[(int)HexState.Warning];
+            else
+                _spriteRenderer.sprite = sprites[(int)HexState.None];
+
+        }
 
         private void Awake()
         {
@@ -55,7 +63,6 @@ namespace karin.HexMap
         {
             return tiles.Select(t => t.overAgent).Where(oa => oa != null).ToList();
         }
-
         public List<Agent> GetNeighbourData(Direction dir, AttackType type)
         {
             List<Agent> agents = new List<Agent>();
@@ -106,7 +113,7 @@ namespace karin.HexMap
                     tiles = neighbourTiles;
                     break;
                 case AttackType.Front:
-                    if (neighbourTiles[(int)dir].overAgent != null)
+                    if (neighbourTiles[(int)dir] != null)
                     {
                         tiles.Add(neighbourTiles[(int)dir]);
                     }
@@ -117,12 +124,12 @@ namespace karin.HexMap
                     {
                         if (i == -1)
                         {
-                            if (neighbourTiles[5].overAgent != null)
+                            if (neighbourTiles[5] != null)
                             {
                                 tiles.Add(neighbourTiles[5]);
                             }
                         }
-                        if (neighbourTiles[i].overAgent != null)
+                        else if (neighbourTiles[i] != null)
                         {
                             tiles.Add(neighbourTiles[i]);
                         }
@@ -135,7 +142,6 @@ namespace karin.HexMap
             }
             return tiles;
         }
-
     }
 
     public enum HexState

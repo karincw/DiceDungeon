@@ -52,6 +52,7 @@ namespace karin.Charactor
 
         public virtual void MoveEnd(bool ReWrite = true)
         {
+            visualController.EndAnimation();
             var tile = MapManager.Instance.GetTile(transform.position);
             if (ReWrite)
             {
@@ -60,13 +61,6 @@ namespace karin.Charactor
                 underTile = tile;
                 return;
             }
-            if (underTile.overAgent != null)
-            {
-                tile.overAgent = this;
-                tile.moveAble = false;
-                underTile = tile;
-            }
-            visualController.EndAnimation();
         }
 
         public virtual void MoveStart(Direction dir, bool ReWrite = true)
@@ -79,11 +73,6 @@ namespace karin.Charactor
                 underTile.overAgent = null;
                 underTile.moveAble = true;
                 return;
-            }
-            if (underTile.overAgent != null)
-            {
-                underTile.overAgent = null;
-                underTile.moveAble = true;
             }
         }
     }

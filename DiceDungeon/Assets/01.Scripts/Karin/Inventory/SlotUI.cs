@@ -103,10 +103,12 @@ namespace karin.Inventory
             {
                 resource = null;
                 Icon.sprite = null;
+                Icon.color = Color.clear;
                 CountText.text = string.Empty;
 
                 return;
             }
+            Icon.color = Color.white;
             Icon.sprite = resource.image;
             CountText.text = resource.count.ToString();
         }

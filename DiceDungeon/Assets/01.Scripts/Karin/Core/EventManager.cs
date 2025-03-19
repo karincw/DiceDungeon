@@ -51,25 +51,6 @@ namespace karin.Event
             });
         }
 
-        public static List<HexTile> GetTargetTiles(HexTile hexTile, Direction direction, AttackType attackType, int rangeDistance)
-        {
-            HashSet<HexTile> targets = hexTile.GetNeighbourTiles(direction, attackType).ToHashSet();
-            HashSet<HexTile> result = targets.ToHashSet();
-            for (int i = 1; i < rangeDistance; i++)
-            {
-                foreach (HexTile tile in targets)
-                {
-                    HashSet<HexTile> additional = tile.GetNeighbourTiles(direction, attackType).ToHashSet();
-                    result.UnionWith(additional);
-                }
-            }
-
-            if (result.Contains(hexTile))
-                result.Remove(hexTile);
-
-            return result.ToList();
-        }
-
         public void DirectAttack(Agent target, AttackData ad)
         {
             var owner = ad.who;
@@ -182,7 +163,7 @@ namespace karin.Event
                             callback = () =>
                             {
                                 MoveData returnOwnerMD = new MoveData(
-                                    owner, HexCoordinates.InvertDirection(direction), MoveEffect.None, 1, 0, false); //´Ù½Ã µ¹¾Æ¿È
+                                    owner, HexCoordinates.InvertDirection(direction), MoveEffect.None, 1, 0); //´Ù½Ã µ¹¾Æ¿È
                                 MoveEvent?.Invoke(returnOwnerMD);
                             };
                         }
@@ -216,6 +197,27 @@ namespace karin.Event
             var buff = Instantiate(BuffManager.Instance.BuffList[(int)bd.buffType]);
             buff.owner = agent;
             buffContainer.AddBuff(buff, bd.value);
+        }
+
+        public static List<HexTile> GetTargetTiles(HexTile hexTile, Direction direction, AttackType attackType, int rangeDistance)
+        {
+            HashSet<HexTile> targets = hexTile.GetNeighbourTiles(direction, attackType).ToHashSet();
+            HashSet<HexTile> result = targets.ToHashSet();
+
+            for (int i = 1; i < rangeDistance; i++)
+            {
+                foreach (HexTile tile in targets)
+                {
+                    HashSet<HexTile> additional = tile.GetNeighbourTiles(direction, attackType).ToHashSet();
+                    result.UnionWith(additional);
+                }
+                targets = result.ToHashSet();
+            }
+
+            if (attackType != AttackType.AllAround && result.Contains(hexTile))
+                result.Remove(hexTile);
+
+            return result.ToList();
         }
 
     }

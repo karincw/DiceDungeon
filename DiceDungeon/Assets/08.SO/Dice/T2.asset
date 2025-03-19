@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0d601c8509cdc4abc282f11efc837c, type: 3}
   m_Name: T2
   m_EditorClassIdentifier: 
+  diceName: "\uAE30\uBCF8 \uC8FC\uC0AC\uC704"
+  diceColor: {r: 1, g: 1, b: 1, a: 1}
+  description: "\uC544\uBB34\uB7F0 \uAE30\uB2A5\uC774 \uC5C6\uC5B4\uC694..."
+  value: 0
+  effect: 0
   eyes:
   - {fileID: 11400000, guid: b25caa77b4e319e4a9b91f2e6b8c176d, type: 2}
   - {fileID: 11400000, guid: b25caa77b4e319e4a9b91f2e6b8c176d, type: 2}

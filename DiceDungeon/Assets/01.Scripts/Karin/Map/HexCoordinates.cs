@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace karin.HexMap
@@ -6,6 +7,16 @@ namespace karin.HexMap
     {
         public static float xOffset = 2.3f, yOffset = 1.2f;
         public static Vector2 offsetPos = new Vector2(0, 0.8f);
+
+        private static Vector2[] directionArray =
+            {
+            new Vector2(-xOffset, 0),
+            new Vector2(xOffset, 0),
+            new Vector2(-xOffset / 2, yOffset),
+            new Vector2(xOffset / 2, yOffset),
+            new Vector2(-xOffset / 2, -yOffset),
+            new Vector2(xOffset / 2, -yOffset)
+        };
 
         public static Direction InvertDirection(Direction dir) => dir - 3 >= 0 ? dir - 3 : dir + 3;
 
@@ -38,17 +49,17 @@ namespace karin.HexMap
             switch (dir)
             {
                 case Direction.Left:
-                    return new Vector2(-xOffset, 0);
+                    return directionArray[0];
                 case Direction.Right:
-                    return new Vector2(xOffset, 0);
+                    return directionArray[1];
                 case Direction.TopLeft:
-                    return new Vector2(-xOffset / 2, yOffset);
+                    return directionArray[2];
                 case Direction.TopRight:
-                    return new Vector2(xOffset / 2, yOffset);
+                    return directionArray[3];
                 case Direction.BottomLeft:
-                    return new Vector2(-xOffset / 2, -yOffset);
+                    return directionArray[4];
                 case Direction.BottomRight:
-                    return new Vector2(xOffset / 2, -yOffset);
+                    return directionArray[5];
             }
             Debug.LogError("Error Dir");
             return new Vector2(0, 0);
@@ -57,21 +68,27 @@ namespace karin.HexMap
         public static Direction GetVectorToDirection(Vector2 dirVector)
         {
             dirVector = dirVector.normalized;
-            if (dirVector == new Vector2(-xOffset, 0).normalized)
+            if (dirVector == directionArray[0].normalized)
                 return Direction.Left;
-            if (dirVector == new Vector2(xOffset, 0).normalized)
+            if (dirVector == directionArray[1].normalized)
                 return Direction.Right;
-            if (dirVector == new Vector2(-xOffset / 2, yOffset).normalized)
+            if (dirVector == directionArray[2].normalized)
                 return Direction.TopLeft;
-            if (dirVector == new Vector2(xOffset / 2, yOffset).normalized)
+            if (dirVector == directionArray[3].normalized)
                 return Direction.TopRight;
-            if (dirVector == new Vector2(-xOffset / 2, -yOffset).normalized)
+            if (dirVector == directionArray[4].normalized)
                 return Direction.BottomLeft;
-            if (dirVector == new Vector2(xOffset / 2, -yOffset).normalized)
+            if (dirVector == directionArray[5].normalized)
                 return Direction.BottomRight;
 
-            Debug.LogError("Error Vector");
-            return Direction.Left;
+            return GetNearestDir(dirVector);
+        }
+
+        public static Direction GetNearestDir(Vector2 searchVector)
+        {
+            var directionList = directionArray.ToList();
+            var directionVector = directionList.Select(dir => dir.normalized).OrderBy(dir => Vector2.Distance(dir, searchVector)).First();
+            return GetVectorToDirection(directionVector);
         }
     }
 }
