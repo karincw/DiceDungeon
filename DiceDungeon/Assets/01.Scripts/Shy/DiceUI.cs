@@ -68,7 +68,6 @@ namespace SHY
                 icon.gameObject.SetActive(true);
                 loopCnt = 5;
 
-                Debug.Log(rollingCnt);
                 if(--rollingCnt == 0)
                 BattleManager.Instance.canPlayerInteract.Invoke();
             }

@@ -10,4 +10,4 @@ namespace karin.BuffSystem
             _value = Mathf.Clamp(_value, 0, 1);
         }
     }
-}
+} 

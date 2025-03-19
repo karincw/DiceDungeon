@@ -8,14 +8,16 @@ namespace SHY
     [CreateAssetMenu(menuName = "SO/Shy/Dice/Base")]
     public class DiceSO : ScriptableObject
     {
-        public string diceName = "";
-        public Color diceColor = Color.white;
-        public string diceExplain = "";
+        [TextArea(1, 2)] public string diceName = "";
+        [Space(5)]
+        [TextArea(1, 4)] public string description = "";
+        [Space(5)]
 
+        public Color diceColor = Color.white;
         public int value;
         public DiceEffect effect;
 
-        public void  Reflect(DiceSO _dice) 
+        public void Reflect(DiceSO _dice)
         {
             eyes = _dice.eyes;
             eyeNum = 0;

@@ -14,10 +14,6 @@ namespace karin.BuffSystem
         {
             return _buffs.Find(b => b.buffType == buffType);
         }
-        public BuffSO GetBuff(BuffSO buffSO)
-        {
-            return _buffs.Find(b => b == buffSO);
-        }
 
         public bool Contains(Buff buffType, out BuffSO buff)
         {
@@ -33,9 +29,8 @@ namespace karin.BuffSystem
 
         public void AddBuff(BuffSO buffSO, int value)
         {
-            //기존에 버프가 있다면
-            var buff = GetBuff(buffSO);
-            if (buff != null)
+            var buff = GetBuff(buffSO.buffType);
+            if (buff != null) //기존에 버프가 있다면
             {
                 //값을 업데이트하고
                 buff.value += value;

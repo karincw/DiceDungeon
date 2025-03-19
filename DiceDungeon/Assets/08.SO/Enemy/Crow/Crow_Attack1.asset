@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyeName: Crow_Attack1
   icon: {fileID: 0}
-  value: 5
+  value: 20
   itemName: 0
-  range: {fileID: 11400000, guid: a78c0597f640fe340b042e452ca4309c, type: 2}
-  attackType: 0
+  range: {fileID: 11400000, guid: 039751acb44637a4689285731ef8db7e, type: 2}
+  attackType: 1
   rangeDistance: 2
   attackEffect: 1
   buffEye: {fileID: 11400000, guid: f2bace1f83240f04bbdd9820faadd744, type: 2}
