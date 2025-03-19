@@ -20,10 +20,13 @@ namespace SHY
             layoutGroup.enabled = false;
 
             BattleManager.Instance.Initialize += Init;
-            BattleManager.Instance.playerTurnStart += OnTurn;
+            BattleManager.Instance.playerTurnInit += OnTurn;
 
-            BattleManager.Instance.canPlayerInteract += () => layoutGroup.enabled = false;
-            BattleManager.Instance.canPlayerInteract += CanClick.True;
+            BattleManager.Instance.playerStart += () =>
+            {
+                layoutGroup.enabled = false;
+                CanClick.True();
+            };
         }
 
         private void Init(PlayerData _data)
@@ -93,7 +96,9 @@ namespace SHY
             }
 
             yield return new WaitForSeconds(0.7f);
-            BattleManager.Instance.enemyTurn.Invoke();
+
+            Debug.Log("Use Dice Fin");
+            BattleManager.Instance.enemyAction.Invoke(true);
         }
     }
 }

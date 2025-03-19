@@ -7,7 +7,6 @@ public class RangeSO : ScriptableObject
     [HideInInspector] public List<bool> arr = new List<bool>(37);
     [HideInInspector] public int[] arrX = { 4, 5, 6, 7, 6, 5, 4 };
 
-
     private void OnEnable()
     {
         if(arr.Count < 37)
@@ -17,6 +16,17 @@ public class RangeSO : ScriptableObject
             {
                 arr.Add(false);
             }
+        }
+    }
+
+    [ContextMenu("Tester")]
+    private void Test()
+    {
+        List<Vector2Int> a = Get();
+
+        for (int i = 0; i < a.Count; i++)
+        {
+            Debug.Log(a[i]);
         }
     }
 
@@ -46,12 +56,12 @@ public class RangeSO : ScriptableObject
         Vector2Int[,] vArr = GetV();
 
         int leng = 0;
-
         for (int y = 0; y < 7; y++)
         {
             for (int x = 0; x < arrX[y]; x++)
             {
-                if(arr[leng++])
+                
+                if (arr[leng++])
                 {
                     _arr.Add(vArr[y, x]);
                 }

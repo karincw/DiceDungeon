@@ -69,7 +69,7 @@ namespace SHY
                 loopCnt = 5;
 
                 if(--rollingCnt == 0)
-                BattleManager.Instance.canPlayerInteract.Invoke();
+                BattleManager.Instance.playerStart.Invoke();
             }
         }
 

@@ -13,11 +13,12 @@ namespace SHY
 
         public Player player;
         private List<Enemy> enemys = new List<Enemy>();
-        private int enemyActionNum = 0;
+        private int loopCnt = 0;
 
-        public Action playerTurnStart;
-        public Action canPlayerInteract;
-        public Action enemyTurn;
+        public Action playerTurnInit;
+        public Action playerStart;
+        public Action<bool> enemyAction;
+
         public Action<PlayerData> Initialize;
         public Action<Agent> dieEvent;
 
@@ -34,7 +35,7 @@ namespace SHY
             if (Instance == null) Instance = this;
             else Destroy(this);
 
-            enemyTurn += () => StartCoroutine(OnEnemyTurn());
+            enemyAction += (attack) => StartCoroutine(OnEnemyAction(attack));
             dieEvent += AgentDie;
         }
 
@@ -48,7 +49,7 @@ namespace SHY
             Debug.Log("Battle Manager Init");
             Initialize.Invoke(_data);
             enemys = FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
-            StartCoroutine(TurnReset());
+            TurnReset();
         }
 
         private void TurnShowerSet(int _idx = 0, bool _isPlayer = true)
@@ -77,47 +78,47 @@ namespace SHY
             turnShowers.RemoveAt(0);
         }
 
-        private IEnumerator TurnReset()
+
+        private void TurnReset()
         {
             player.TurnReset();
 
-            //Shower Reset
-            //for (int i = 1; i < turnShowers.Count; i++) TurnShowerPop();
-            //TurnShowerSet();
+            //Turn Show
 
-            //Enemy Reset + Enemy Shower Add
-            for (int i = 0; i < enemys.Count; i++)
-            {
-                enemys[i].TurnReset();
-                enemys[i].PlayMove();
-
-                //TurnShowerSet(i, false);
-            }
-
-            //Delay
-            yield return new WaitForSeconds(0.7f);
-
-            playerTurnStart?.Invoke();
+            enemyAction.Invoke(false);
         }
 
-        private IEnumerator OnEnemyTurn()
+        private IEnumerator OnEnemyAction(bool _isAttack)
         {
-            if (enemyActionNum == enemys.Count)
+            if (loopCnt == enemys.Count)
             {
-                enemyActionNum = 0;
-                StartCoroutine(TurnReset());
+                loopCnt = 0;
+
+                if(_isAttack) //적 공격이 모두 끝났을 때
+                {
+                    TurnReset();
+                }
+                else //적 초기화가 모두 끝났을 때
+                {
+                    playerTurnInit.Invoke();
+                }
             }
             else
             {
-                enemyActionNum++;
-
                 //enemy들의 행동
-                Debug.Log("Enemy 행동");
+                Debug.Log(loopCnt + "번 Enemy 행동 " + _isAttack);
 
                 yield return new WaitForSeconds(0.75f);
 
-                //TurnShowerPop();
-                enemys[0].PlayAttack();
+                if(_isAttack)
+                {
+                    enemys[loopCnt++].PlayAttack();
+                }
+                else
+                {
+                    enemys[loopCnt].TurnReset();
+                    enemys[loopCnt++].PlayMove();
+                }
             }
         }
     }

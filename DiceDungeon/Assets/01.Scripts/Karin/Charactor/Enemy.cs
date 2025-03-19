@@ -63,14 +63,19 @@ namespace karin.Charactor
 
             SetWarningTile(_selectedAttack.GetData(this));
             isReservation = true;
+
+            BattleManager.Instance.enemyAction.Invoke(false);
         }
 
         public virtual void PlayAttack()
         {
-            if (!isReservation) return;
-            _selectedAttack.OnUse(this);
-            _warningtiles.ForEach(tile => tile.SetWarning(this, false));
-            isReservation = false;
+            if (isReservation)
+            {
+                _selectedAttack.OnUse(this);
+                _warningtiles.ForEach(tile => tile.SetWarning(this, false));
+                isReservation = false;
+            }
+            BattleManager.Instance.enemyAction.Invoke(true);
         }
 
         public virtual void PlayMove()
