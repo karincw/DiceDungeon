@@ -5,8 +5,10 @@ namespace SHY
 {
     public enum PoolEnum
     {
+        None,
         LR, //LineRenderer
         StageUI,
+        TurnShower
     }
 
     public class Pooling : SingleTon<Pooling>
@@ -14,7 +16,7 @@ namespace SHY
         [System.Serializable]
         private class PoolData
         {
-            public PoolEnum callName;
+            public PoolEnum callName = PoolEnum.None;
             public GameObject obj;
             public int spawnCnt;
         }

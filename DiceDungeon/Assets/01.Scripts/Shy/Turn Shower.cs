@@ -11,20 +11,26 @@ namespace SHY
         private void Awake()
         {
             baseImg = GetComponent<Image>();
+            icon = transform.Find("Icon").GetComponent<Image>();
         }
 
-        public void Push(Color _color)
+        public void UpdateImg(ShowerData _sd)
         {
-            baseImg.color = _color;
+            baseImg.color = _sd.backColor;
+            icon.sprite = _sd.icon;
             gameObject.SetActive(true);
         }
     }
 
     public struct ShowerData
     {
-        Color backColor;
-        Sprite icon;
+        public Color backColor;
+        public Sprite icon;
 
-        //public ShowerData() {}
+        public ShowerData(Color _color, Sprite _icon) 
+        {
+            backColor = _color;
+            icon = _icon;
+        }
     }
 }

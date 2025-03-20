@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Crow
   m_EditorClassIdentifier: 
   name: Dummy
+  icon: {fileID: -19073062547071739, guid: 5021563498b3ff340a33a9391a31e4aa, type: 3}
   maxHealth: 50
   maxMoveCount: 2
   useAbleAbilitys:

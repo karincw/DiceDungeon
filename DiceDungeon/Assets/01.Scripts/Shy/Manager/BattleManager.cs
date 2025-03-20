@@ -27,7 +27,8 @@ namespace SHY
         [SerializeField] private Sprite playerIcon;
 
         private List<ShowerData> showerDatas = new List<ShowerData>();
-        [SerializeField] private List<TurnShower> turnShowers = new List<TurnShower>();
+        [SerializeField] private Transform showerPos;
+        private List<TurnShower> tsList = new List<TurnShower>();
         
 
         private void Awake()
@@ -35,6 +36,7 @@ namespace SHY
             if (Instance == null) Instance = this;
             else Destroy(this);
 
+            enemyAction += ShowerPop;
             enemyAction += (attack) => StartCoroutine(OnEnemyAction(attack));
             dieEvent += AgentDie;
         }
@@ -52,30 +54,37 @@ namespace SHY
             TurnReset();
         }
 
-        private void TurnShowerSet(int _idx = 0, bool _isPlayer = true)
+        private void ShowerSet()
         {
-            //Img Change
-            //turnShowers[_idx].Push(signColor[!isEnemy ? 0 : 1]);
-            if(_isPlayer)
-            {
-                
-                //showerDatas.Add(new ShowerData {  });
-            }
-            else
-            {
-                //enemys[i]._eData.icon;
-            }
+            showerDatas.Add(new ShowerData(signColor[0], playerIcon));
 
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                showerDatas.Add(new ShowerData(signColor[1], enemys[i]._eData.icon));
+            }
+        }
 
+        private void OnShower()
+        {
+            for (int i = 0; i < showerDatas.Count; i++)
+            {
+                TurnShower ts = Pooling.Instance.GetItem(PoolEnum.TurnShower, showerPos, false).GetComponent<TurnShower>();
+                tsList.Add(ts);
+                ts.UpdateImg(showerDatas[i]);
+            }
+        }
+
+        private void ShowerPop(bool _pop)
+        {
+            if (_pop) TurnShowerPop();
         }
 
         private void TurnShowerPop()
         {
-            turnShowers[0].gameObject.SetActive(false);
-            turnShowers[0].transform.SetAsLastSibling();
-
-            turnShowers.Add(turnShowers[0]);
-            turnShowers.RemoveAt(0);
+            Debug.Log("pop");
+            Pooling.Instance.ReturnItem(tsList[0].gameObject);
+            tsList.RemoveAt(0);
+            showerDatas.RemoveAt(0);
         }
 
 
@@ -84,6 +93,8 @@ namespace SHY
             player.TurnReset();
 
             //Turn Show
+            ShowerSet();
+            OnShower();
 
             enemyAction.Invoke(false);
         }
@@ -96,6 +107,7 @@ namespace SHY
 
                 if(_isAttack) //적 공격이 모두 끝났을 때
                 {
+                    yield return new WaitForSeconds(0.5f);
                     TurnReset();
                 }
                 else //적 초기화가 모두 끝났을 때
