@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -349,6 +351,11 @@ namespace karin.Inventory
         private void EndDrag(SlotUI slotUI)
         {
             if (slotUI == null || _beginDragSlot == slotUI) return;
+            if (_beginDragSlot is DiagramSlot && slotUI is TrashSlot)
+            {
+                Debug.Log("다이어그램에 속한 주사위를 직접적으로 삭제할수없음");
+                return;
+            }
 
             if (slotUI.resource == null) // 드래그할 슬롯이 비어있다면
             {

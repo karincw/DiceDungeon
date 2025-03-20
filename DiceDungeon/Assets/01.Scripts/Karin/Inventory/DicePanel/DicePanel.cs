@@ -1,6 +1,4 @@
-using SHY;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace karin.Inventory
@@ -47,13 +45,15 @@ namespace karin.Inventory
             selects[viewIdx].SetUpDiagram();
         }
 
-        public EyeItemSO MakeNewItem(ItemNames name, Sprite image, EyeSO eye)
+        public void Close()
+        {
+            selects[viewIdx].ReWriteDiceData();
+        }
+
+        public EyeItemSO MakeNoneItem()
         {
             EyeItemSO so = Instantiate(_itemBase);
-            so.itemName = name;
-            so.image = image;
             so.count = 1;
-            so.eye = eye;
             return so;
         }
 

@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bf1b6822089fde4986821e2d15d36b5, type: 3}
-  m_Name: eyeitem
+  m_Name: NoneItem
   m_EditorClassIdentifier: 
-  itemName: 1
-  image: {fileID: 0}
+  itemName: 0
+  image: {fileID: 21300000, guid: 1015512b5bcd9ff4ab9f21a2235164e4, type: 3}
   count: 1
   maxCount: 1
-  description: 
-  eye: {fileID: 11400000, guid: af821cb692d1b124aaaa19acb48a3ab4, type: 2}
+  eye: {fileID: 11400000, guid: 507c5035b013ee148b01f9ff0ea7fc9e, type: 2}

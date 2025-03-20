@@ -14,6 +14,7 @@ namespace SHY
         public AttackEffect attackEffect;
         [Header("AttackEffectValues")]
         public BuffEyeSO buffEye;
+        public int addtionalValue;
 
         public override void OnUse(Agent _agent)
         {
@@ -22,7 +23,8 @@ namespace SHY
 
         public AttackData GetData(Agent _agent)
         {
-            AttackData at = new AttackData(_agent, new Vector2Int(0, 0), _agent.direction, rangeDistance, attackType, value, attackEffect);
+            AttackData at = new AttackData(
+                _agent, new Vector2Int(0, 0), _agent.direction, rangeDistance, attackType, value, attackEffect, addtionalValue);
 
             if (attackEffect == AttackEffect.EnchantBuff)
             {
