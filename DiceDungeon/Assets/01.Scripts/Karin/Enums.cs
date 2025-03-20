@@ -1,3 +1,5 @@
+using System;
+
 namespace karin
 {
     public enum AttackType
@@ -18,10 +20,18 @@ namespace karin
         BottomLeft,
     }
 
+    public enum MoveDirection : int
+    {
+        forward,
+        backward
+    }
+
+    [Flags]
     public enum AttackEffect
     {
-        None,
+        None = 0,
         EnchantBuff = 1,
+        procedural = 2, //가장 앞의 적만 공격
     }
 
     public enum MoveEffect

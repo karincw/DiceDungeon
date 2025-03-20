@@ -72,13 +72,15 @@ namespace karin.Event
 
         private void AttackEffectHandler(AttackData ad, AttackEffect af, Agent target)
         {
-            switch (af)
+            if (af.HasFlag(AttackEffect.EnchantBuff))
             {
-                case AttackEffect.EnchantBuff:
-                    var bd = ad.buffData;
-                    bd.who = target;
-                    BuffEvent?.Invoke(bd);
-                    break;
+                var bd = ad.buffData;
+                bd.who = target;
+                BuffEvent?.Invoke(bd);
+            }
+            else if (af.HasFlag(AttackEffect.procedural))
+            {
+
             }
         }
 
@@ -93,15 +95,20 @@ namespace karin.Event
             if (md.distance <= 0)
                 return;
             var owner = md.who;
+            var direction = md.direction;
+
+            if(md.moveDirection == MoveDirection.backward)
+                direction = HexCoordinates.InvertDirection(direction);
+
             Vector2 startPos = owner.transform.position;
             Vector2 targetPos = new();
 
             Action callback = null;
 
             if (md.effect != MoveEffect.None)
-                targetPos = GetMaxDistanceEffect(owner, md.distance, startPos, md.direction, md.effect, md.additionalValue, out callback);
+                targetPos = GetMaxDistanceEffect(owner, md.distance, startPos, direction, md.effect, md.additionalValue, out callback);
             else
-                targetPos = GetMaxDistance(owner, md.distance, startPos, md.direction);
+                targetPos = GetMaxDistance(owner, md.distance, startPos, direction);
 
             MoveAgent(owner, targetPos, md, callback);
         }
@@ -158,7 +165,7 @@ namespace karin.Event
                             callback = () =>
                             {
                                 MoveData colTargetMD = new MoveData(
-                                    colTarget, direction, MoveEffect.None, 1, 0); //Å¸°ÙÀ» ¹Ð¾î³¿
+                                    colTarget, direction, MoveDirection.forward, MoveEffect.None, 1, 0); //Å¸°ÙÀ» ¹Ð¾î³¿
                                 MoveEvent?.Invoke(colTargetMD);
                             };
                         }
@@ -167,7 +174,7 @@ namespace karin.Event
                             callback = () =>
                             {
                                 MoveData returnOwnerMD = new MoveData(
-                                    owner, HexCoordinates.InvertDirection(direction), MoveEffect.None, 1, 0); //´Ù½Ã µ¹¾Æ¿È
+                                    owner, direction, MoveDirection.backward, MoveEffect.None, 1, 0); //´Ù½Ã µ¹¾Æ¿È
                                 MoveEvent?.Invoke(returnOwnerMD);
                             };
                         }
@@ -181,7 +188,12 @@ namespace karin.Event
 
         private void MoveAgent(Agent agent, Vector2 destination, MoveData md, Action callbackAction = null)
         {
-            agent.MoveStart(md.direction, md.rewriteTile);
+            var direction = md.direction;
+
+            if (md.moveDirection == MoveDirection.backward)
+                direction = HexCoordinates.InvertDirection(direction);
+
+            agent.MoveStart(direction, md.rewriteTile);
 
             agent.transform
                 .DOMove(destination, 0.1f).SetEase(Ease.Linear)

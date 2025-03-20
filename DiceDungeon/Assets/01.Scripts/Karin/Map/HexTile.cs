@@ -129,6 +129,13 @@ namespace karin.HexMap
                                 tiles.Add(neighbourTiles[5]);
                             }
                         }
+                        else if (i == 6)
+                        {
+                            if (neighbourTiles[0] != null)
+                            {
+                                tiles.Add(neighbourTiles[0]);
+                            }
+                        }
                         else if (neighbourTiles[i] != null)
                         {
                             tiles.Add(neighbourTiles[i]);

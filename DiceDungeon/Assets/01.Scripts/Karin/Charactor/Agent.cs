@@ -2,12 +2,23 @@ using karin.BuffSystem;
 using karin.HexMap;
 using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace karin.Charactor
 {
     public abstract class Agent : MonoBehaviour
     {
-        public Direction direction;
+        public Direction direction
+        {
+            get => _direction; 
+            set
+            {
+                if(value == _direction) return;
+                visualController.UpdateViewDirection(value);
+                _direction = value;
+            }
+        }
+        private Direction _direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
         [HideInInspector] public VisualController visualController;
@@ -36,6 +47,7 @@ namespace karin.Charactor
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
             visualController.Init(this);
             health.Init(this, _startHealth);
+            visualController.UpdateViewDirection(direction);
         }
 
         protected virtual void Start()
