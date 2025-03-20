@@ -116,7 +116,11 @@ namespace karin.Event
 
                 if (targetTile == null || targetTile.moveAble == false)
                 {
-                    if (i == 1) break;
+                    if (i == 1)
+                    {
+                        targetPos = startPos;
+                        break;
+                    }
 
                     targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(direction) * (i - 1);
                     break;
