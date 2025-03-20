@@ -59,6 +59,7 @@ namespace karin
         public Agent who;
         //어느방향으로
         public Direction direction;
+        public MoveDirection moveDirection;
         //얼마나 이동할꺼고
         public int distance;
         //어떤 효과를 지니는지
@@ -66,10 +67,11 @@ namespace karin
         public int additionalValue;
         public bool rewriteTile;
 
-        public MoveData(Agent _who, Direction _direction, MoveEffect _effect, int _distance, int _additionalValue, bool _reWriteTile = true)
+        public MoveData(Agent _who, Direction _direction, MoveDirection _moveDirection, MoveEffect _effect, int _distance, int _additionalValue, bool _reWriteTile = true)
         {
             who = _who;
             direction = _direction;
+            moveDirection = _moveDirection;
             effect = _effect;
             distance = _distance;
             additionalValue = _additionalValue;

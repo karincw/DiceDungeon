@@ -8,10 +8,11 @@ namespace SHY
     [CreateAssetMenu(fileName = "AttackEyeSO", menuName = "SO/Eye/Move")]
     public class MoveEyeSO : EyeSO
     {
-        public Direction dir;
-        public MoveEffect moveEffect;
+        [SerializeField] private MoveDirection moveDirection;
+        [SerializeField] private MoveEffect moveEffect;
+
         [Header("moveEffectValues")]
-        public int CollisionDamage;
+        [SerializeField] private int CollisionDamage;
 
         public override void OnUse(Agent _agent)
         {
@@ -22,7 +23,8 @@ namespace SHY
         {
             MoveData mo = new MoveData();
             mo.who = _agent;
-            mo.direction = dir;
+            mo.direction = _agent.direction;
+            mo.moveDirection = moveDirection;
             mo.distance = value;
             mo.effect = moveEffect;
             mo.additionalValue = CollisionDamage;

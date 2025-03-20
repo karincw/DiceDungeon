@@ -7,7 +7,17 @@ namespace karin.Charactor
 {
     public abstract class Agent : MonoBehaviour
     {
-        public Direction direction;
+        public Direction direction
+        {
+            get => _direction; 
+            set
+            {
+                if(value == _direction) return;
+                visualController.UpdateViewDirection(value);
+                _direction = value;
+            }
+        }
+        private Direction _direction;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
         [HideInInspector] public VisualController visualController;

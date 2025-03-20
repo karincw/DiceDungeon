@@ -18,6 +18,12 @@ namespace karin
         BottomLeft,
     }
 
+    public enum MoveDirection : int
+    {
+        forward,
+        backward
+    }
+
     public enum AttackEffect
     {
         None,
