@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Move Dice
   m_EditorClassIdentifier: 
   diceName: "\uC774\uB3D9 \uC8FC\uC0AC\uC704\n(\uD14C\uC2A4\uD2B8\uC6A9)"
-  diceColor: {r: 1, g: 1, b: 1, a: 1}
   description: "\uC544\uBB34\uB7F0 \uAE30\uB2A5\uC774 \uC5C6\uC5B4\uC694...\n\uC544\uBB34\uB7F0
     \uAE30\uB2A5\uC774 \uC5C6\uC5B4\uC694...\n\uC544\uBB34\uB7F0 \uAE30\uB2A5\uC774
     \uC5C6\uC5B4\uC694...\n\uC544\uBB34\uB7F0 \uAE30\uB2A5\uC774 \uC5C6\uC5B4\uC694..."
+  diceColor: {r: 1, g: 1, b: 1, a: 1}
   value: 0
   effect: 0
   eyes:
-  - {fileID: 11400000, guid: 3d25a9425c88eb243b702e359e1c5d35, type: 2}
-  - {fileID: 11400000, guid: d4befa96f423d834fb5089441950a036, type: 2}
-  - {fileID: 11400000, guid: 82578bc656df1fe428297e1e38e6f925, type: 2}
-  - {fileID: 11400000, guid: c7d11920fe548da4c9852ec59f082c2d, type: 2}
   - {fileID: 11400000, guid: cdfb7aa545262a841a8f052ce0296dd6, type: 2}
-  - {fileID: 11400000, guid: dc411286cc6841d48b645e97989b957e, type: 2}
+  - {fileID: 11400000, guid: c7d11920fe548da4c9852ec59f082c2d, type: 2}
+  - {fileID: 11400000, guid: 972dd54599c24b246b08a211429b2e3c, type: 2}
+  - {fileID: 11400000, guid: cdfb7aa545262a841a8f052ce0296dd6, type: 2}
+  - {fileID: 11400000, guid: c7d11920fe548da4c9852ec59f082c2d, type: 2}
+  - {fileID: 11400000, guid: 972dd54599c24b246b08a211429b2e3c, type: 2}

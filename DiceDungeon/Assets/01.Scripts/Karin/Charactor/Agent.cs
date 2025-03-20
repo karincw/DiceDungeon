@@ -2,6 +2,7 @@ using karin.BuffSystem;
 using karin.HexMap;
 using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace karin.Charactor
 {
@@ -46,6 +47,7 @@ namespace karin.Charactor
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
             visualController.Init(this);
             health.Init(this, _startHealth);
+            visualController.UpdateViewDirection(direction);
         }
 
         protected virtual void Start()

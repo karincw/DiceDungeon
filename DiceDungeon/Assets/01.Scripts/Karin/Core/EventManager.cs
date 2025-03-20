@@ -72,13 +72,15 @@ namespace karin.Event
 
         private void AttackEffectHandler(AttackData ad, AttackEffect af, Agent target)
         {
-            switch (af)
+            if (af.HasFlag(AttackEffect.EnchantBuff))
             {
-                case AttackEffect.EnchantBuff:
-                    var bd = ad.buffData;
-                    bd.who = target;
-                    BuffEvent?.Invoke(bd);
-                    break;
+                var bd = ad.buffData;
+                bd.who = target;
+                BuffEvent?.Invoke(bd);
+            }
+            else if (af.HasFlag(AttackEffect.procedural))
+            {
+
             }
         }
 
@@ -186,7 +188,12 @@ namespace karin.Event
 
         private void MoveAgent(Agent agent, Vector2 destination, MoveData md, Action callbackAction = null)
         {
-            agent.MoveStart(md.direction, md.rewriteTile);
+            var direction = md.direction;
+
+            if (md.moveDirection == MoveDirection.backward)
+                direction = HexCoordinates.InvertDirection(direction);
+
+            agent.MoveStart(direction, md.rewriteTile);
 
             agent.transform
                 .DOMove(destination, 0.1f).SetEase(Ease.Linear)

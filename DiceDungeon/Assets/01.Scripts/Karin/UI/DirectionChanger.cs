@@ -2,6 +2,7 @@ using karin;
 using karin.Charactor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class DirectionChanger : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class DirectionChanger : MonoBehaviour
     private void SetDirection(Direction dir)
     {
         _direction = dir;
+        _target.direction = dir;
         _showImage.sprite = sprites[(int)dir];
     }
 }
