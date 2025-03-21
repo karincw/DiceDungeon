@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SHY
 {
@@ -10,10 +11,20 @@ namespace SHY
         public StageSO data;
         public List<StageUI> childs = new List<StageUI>();
         private StageManager stageManager;
+        private Image img;
 
-        public void Init()
+        private void Awake()
+        {
+            img = GetComponent<Image>();
+        }
+
+        public void Init(StageSO _data)
         {
             if(stageManager == null) stageManager = FindFirstObjectByType<StageManager>();
+
+            data = _data;
+            if(data.icon != null)
+                img.sprite = data.icon;
 
             LineRender();
         }
