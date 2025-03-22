@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,10 +12,14 @@ namespace SHY
 
         [Header("StageSO")]
         public StageSO baseStage, bossStage;
-        [SerializeField] private List<StageSO> normalEnemySO;
-        [SerializeField] private List<StageSO> eliteEnemySO;
-        [SerializeField] private List<StageSO> eventsStageSO;
-        [SerializeField] private List<StageSO> marketStageSO;
+        [SerializeField] private List<StageSO> easyEnemyStage;
+        [SerializeField] private List<StageSO> normalEnemyStage;
+        [SerializeField] private List<StageSO> eliteEnemyStage;
+        [SerializeField] private List<StageSO> eventsStage;
+        [SerializeField] private List<StageSO> marketStage;
+
+        [Header("Reward List")]
+        [SerializeField] private List<EyeSO> rewards;
 
         
         [Header("Spawn Ratio")]
@@ -32,10 +35,10 @@ namespace SHY
             ch.yStageCnt = yStageCnt;
             ch.baseStage = baseStage;
             ch.bossStage = bossStage;
-            ch.normalEnemySO = new List<StageSO>(normalEnemySO);
-            ch.eliteEnemySO = new List<StageSO>(eliteEnemySO);
-            ch.eventsStageSO = new List<StageSO>(eventsStageSO);
-            ch.marketStageSO = new List<StageSO>(marketStageSO);
+            ch.normalEnemyStage = new List<StageSO>(normalEnemyStage);
+            ch.eliteEnemyStage = new List<StageSO>(eliteEnemyStage);
+            ch.eventsStage = new List<StageSO>(eventsStage);
+            ch.marketStage = new List<StageSO>(marketStage);
             ch.normalEnemy = normalEnemy;
             ch.eliteEnemy = eliteEnemy;
             ch.market = market;
@@ -48,22 +51,22 @@ namespace SHY
         {
             int rand = 0, res = 0;
 
-            if (normalEnemySO.Count != 0)
+            if (normalEnemyStage.Count != 0)
             {
                 rand += normalEnemy * 1000;
                 res += normalEnemy;
             }
-            if (eliteEnemySO.Count != 0)
+            if (eliteEnemyStage.Count != 0)
             {
                 rand += eliteEnemy * 100;
                 res += eliteEnemy;
             }
-            if (marketStageSO.Count != 0)
+            if (marketStage.Count != 0)
             {
                 rand += market * 10;
                 res += market;
             }
-            if (eventsStageSO.Count != 0)
+            if (eventsStage.Count != 0)
             {
                 rand += events;
                 res += events;
@@ -89,10 +92,10 @@ namespace SHY
                 rand /= 10;
             }
 
-            if (rand == 0) return SelectItem(eventsStageSO); //1
-            if (rand == 1) return SelectItem(marketStageSO); //0
-            if (rand == 2) return SelectItem(eliteEnemySO); //1
-            if (rand == 3) return SelectItem(normalEnemySO); //0
+            if (rand == 0) return SelectItem(eventsStage); //1
+            if (rand == 1) return SelectItem(marketStage); //0
+            if (rand == 2) return SelectItem(eliteEnemyStage); //1
+            if (rand == 3) return SelectItem(normalEnemyStage); //0
 
             Debug.Log("Error by ChapterData");
             return null;

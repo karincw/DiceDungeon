@@ -11,6 +11,8 @@ namespace SHY
         private StageUI[,] stageTree = new StageUI[1, 5];
         private List<StageUI> stageList;
         [SerializeField] private Transform backgroundTrm;
+        [SerializeField] private MapType iconOrder;
+        public List<Sprite> mapIcons;
 
         private Vector2Int playerPos;
 
@@ -31,6 +33,7 @@ namespace SHY
             if (!canMove) return;
 
             StagePlayer.Instance.DoMove(stageTree[playerPos.y, playerPos.x].transform.position);
+            GameManager.Instance.playerData.nowStage = stageTree[playerPos.y, playerPos.x].data;
         }
 
         #region »ý¼º
@@ -41,16 +44,14 @@ namespace SHY
             stageTree = new StageUI[nowChapter.yStageCnt + 1, 5];
             stageList = new List<StageUI>();
 
-            //¸Ç À­ ³ð
+            //Base Stage Make
             StageUI fr = Pooling.Instance.GetItem(PoolEnum.StageUI, backgroundTrm).GetComponent<StageUI>();
             fr.transform.position = Vector3.zero;
-            fr.gameObject.name = "Base stage";
             stageTree[0, 2] = fr;
 
             //Boss Stage Make
             StageUI la = Pooling.Instance.GetItem(PoolEnum.StageUI, backgroundTrm).GetComponent<StageUI>();
             la.transform.position = new Vector3(0, -nowChapter.yDistance * nowChapter.yStageCnt, 0);
-            la.gameObject.name = "Boss stage";
             stageTree[nowChapter.yStageCnt, 2] = la;
 
             stageList.Add(fr);

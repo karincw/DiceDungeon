@@ -1,5 +1,3 @@
-using karin.Charactor;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Shy/Stage/Battle")]

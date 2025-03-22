@@ -23,8 +23,7 @@ namespace SHY
             if(stageManager == null) stageManager = FindFirstObjectByType<StageManager>();
 
             data = _data;
-            if(data.icon != null)
-                img.sprite = data.icon;
+            img.sprite = stageManager.mapIcons[(int)data.mapType];
 
             LineRender();
         }

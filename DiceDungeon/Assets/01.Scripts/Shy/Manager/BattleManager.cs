@@ -27,9 +27,11 @@ namespace SHY
         [SerializeField] private Sprite playerIcon;
 
         private List<ShowerData> showerDatas = new List<ShowerData>();
-        [SerializeField] private Transform showerPos;
         private List<TurnShower> tsList = new List<TurnShower>();
         
+        [Header("UI Pos")]
+        [SerializeField] private Transform showerPos;
+        [SerializeField] private Transform enemySpawn;
 
         private void Awake()
         {
@@ -44,13 +46,22 @@ namespace SHY
         private void AgentDie(Agent _agent)
         {
             enemys.Remove(_agent as Enemy);
+            
+            if(enemys.Count == 0)
+            {
+                Debug.Log("Stage Clear");
+                //°á°ú Ã¢
+            }
         }
 
         public override void Init(PlayerData _data)
         {
             Debug.Log("Battle Manager Init");
+
+            if (enemySpawn.childCount != 0) Destroy(enemySpawn.GetChild(0).gameObject);
+            Instantiate((_data.nowStage as BattleStageSO).prefab, enemySpawn);
             Initialize.Invoke(_data);
-            enemys = FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
+            enemys = enemySpawn.GetChild(0).GetComponentsInChildren<Enemy>().ToList();
             TurnReset();
         }
 

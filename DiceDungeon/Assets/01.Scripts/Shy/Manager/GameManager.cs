@@ -32,7 +32,7 @@ namespace SHY
 
         private void Start()
         {
-            //SceneChange(SceneType.Battle);
+            SceneChange(debuggingScene);
         }
 
         [Header("Alpha 1"), SerializeField] private SceneType debuggingScene;

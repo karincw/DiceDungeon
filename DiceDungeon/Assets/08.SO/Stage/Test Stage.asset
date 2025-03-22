@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fcf967981e63c48961e58836269df8, type: 3}
   m_Name: Test Stage
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 7c35e281febf5be46b0825102e69c615, type: 3}
+  mapType: 1
   prefab: {fileID: 5121443931960188090, guid: bd0c925671eefe141beebd326551bd6a, type: 3}

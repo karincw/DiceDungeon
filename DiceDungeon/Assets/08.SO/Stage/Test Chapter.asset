@@ -16,13 +16,50 @@ MonoBehaviour:
   yStageCnt: 2
   baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
   bossStage: {fileID: 0}
-  normalEnemySO:
+  easyEnemyStage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  normalEnemyStage:
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
-  eliteEnemySO: []
-  eventsStageSO: []
-  marketStageSO: []
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  eliteEnemyStage: []
+  eventsStage: []
+  marketStage: []
+  rewards: []
   normalEnemy: 8
   eliteEnemy: 2
   market: 1
