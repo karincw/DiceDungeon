@@ -32,16 +32,20 @@ namespace SHY
 
         private void Start()
         {
+            if(onStart)
             SceneChange(debuggingScene);
         }
 
+        #region Debuging
         [Header("Alpha 1"), SerializeField] private SceneType debuggingScene;
+        public bool onStart = true;
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) SceneChange(debuggingScene);
         }
+        #endregion
 
-        private void SceneChange(SceneType _scene)
+        public void SceneChange(SceneType _scene)
         {
             for (int i = 0; i < scenes.Count; i++)
             {

@@ -40,18 +40,7 @@ namespace SHY
 
             enemyAction += ShowerPop;
             enemyAction += (attack) => StartCoroutine(OnEnemyAction(attack));
-            dieEvent += AgentDie;
-        }
-
-        private void AgentDie(Agent _agent)
-        {
-            enemys.Remove(_agent as Enemy);
-            
-            if(enemys.Count == 0)
-            {
-                Debug.Log("Stage Clear");
-                //결과 창
-            }
+            //dieEvent += AgentDie;
         }
 
         public override void Init(PlayerData _data)
@@ -59,12 +48,30 @@ namespace SHY
             Debug.Log("Battle Manager Init");
 
             if (enemySpawn.childCount != 0) Destroy(enemySpawn.GetChild(0).gameObject);
-            Instantiate((_data.nowStage as BattleStageSO).prefab, enemySpawn);
+
+            GameObject spawner = Instantiate((_data.nowStage as BattleStageSO).prefab, enemySpawn);
             Initialize.Invoke(_data);
-            enemys = enemySpawn.GetChild(0).GetComponentsInChildren<Enemy>().ToList();
+
+            if (enemys.Count != 0) enemys.Clear();
+            showerDatas = new List<ShowerData>();
+
+            enemys = spawner.GetComponentsInChildren<Enemy>().ToList();
+
             TurnReset();
         }
 
+        private void AgentDie(Agent _agent)
+        {
+            enemys.Remove(_agent as Enemy);
+
+            if (enemys.Count == 0)
+            {
+                Debug.Log("Stage Clear");
+                //결과 창
+            }
+        }
+
+        #region Turn Shower
         private void ShowerSet()
         {
             showerDatas.Add(new ShowerData(signColor[0], playerIcon));
@@ -74,7 +81,7 @@ namespace SHY
                 showerDatas.Add(new ShowerData(signColor[1], enemys[i]._eData.icon));
             }
         }
-
+        
         private void OnShower()
         {
             for (int i = 0; i < showerDatas.Count; i++)
@@ -97,8 +104,9 @@ namespace SHY
             tsList.RemoveAt(0);
             showerDatas.RemoveAt(0);
         }
+        #endregion
 
-
+        #region Turn
         private void TurnReset()
         {
             player.TurnReset();
@@ -112,6 +120,7 @@ namespace SHY
 
         private IEnumerator OnEnemyAction(bool _isAttack)
         {
+            yield return new WaitForEndOfFrame();
             if (loopCnt == enemys.Count)
             {
                 loopCnt = 0;
@@ -144,5 +153,6 @@ namespace SHY
                 }
             }
         }
+        #endregion
     }
 }

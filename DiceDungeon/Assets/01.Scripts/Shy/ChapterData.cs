@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,8 @@ namespace SHY
     {
         public float yDistance = 3;
         public int yStageCnt = 15;
+        [SerializeField] private int easyStage = 3;
+        [SerializeField] private int eliteStage = 7;
 
         [Header("StageSO")]
         public StageSO baseStage, bossStage;
@@ -33,12 +36,15 @@ namespace SHY
             ChapterData ch = CreateInstance<ChapterData>();
             ch.yDistance = yDistance;
             ch.yStageCnt = yStageCnt;
+            ch.easyStage = easyStage;
+            ch.eliteStage = eliteStage;
             ch.baseStage = baseStage;
             ch.bossStage = bossStage;
             ch.normalEnemyStage = new List<StageSO>(normalEnemyStage);
             ch.eliteEnemyStage = new List<StageSO>(eliteEnemyStage);
             ch.eventsStage = new List<StageSO>(eventsStage);
             ch.marketStage = new List<StageSO>(marketStage);
+            ch.rewards = new List<EyeSO>(rewards);
             ch.normalEnemy = normalEnemy;
             ch.eliteEnemy = eliteEnemy;
             ch.market = market;
@@ -47,6 +53,7 @@ namespace SHY
             return ch;
         }
 
+        #region Stage Maker
         public StageSO GetValue()
         {
             int rand = 0, res = 0;
@@ -106,6 +113,27 @@ namespace SHY
             StageSO target = _stages[Random.Range(0, _stages.Count)];
             _stages.Remove(target);
             return target;
+        }
+        #endregion
+
+        public List<EyeSO> GetRewards()
+        {
+            List<EyeSO> reward = rewards.ToList();
+
+            int min = Mathf.Min(reward.Count, 5);
+
+            if (min <= 4) return reward;
+
+            List<EyeSO> results = new List<EyeSO>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                int rand = Random.Range(0, reward.Count);
+                results.Add(reward[rand]);
+                reward.RemoveAt(rand);
+            }
+
+            return results;
         }
     }
 }

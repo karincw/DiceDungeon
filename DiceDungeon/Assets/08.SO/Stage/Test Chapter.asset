@@ -13,24 +13,41 @@ MonoBehaviour:
   m_Name: Test Chapter
   m_EditorClassIdentifier: 
   yDistance: 3
-  yStageCnt: 2
+  yStageCnt: 9
+  easyStage: 3
+  eliteStage: 7
   baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
   bossStage: {fileID: 0}
   easyEnemyStage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   normalEnemyStage:
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
@@ -59,7 +76,9 @@ MonoBehaviour:
   eliteEnemyStage: []
   eventsStage: []
   marketStage: []
-  rewards: []
+  rewards:
+  - {fileID: 11400000, guid: 65fac417769d2944f9deff38d9bc78d1, type: 2}
+  - {fileID: 11400000, guid: 59b19972330d15449b3ec99b1660074d, type: 2}
   normalEnemy: 8
   eliteEnemy: 2
   market: 1

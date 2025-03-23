@@ -6,7 +6,7 @@ namespace SHY
     public class StageManager : SceneManager
     {
         [SerializeField] private List<ChapterData> chapterDatas;
-        private ChapterData nowChapter;
+        internal ChapterData nowChapter;
 
         private StageUI[,] stageTree = new StageUI[1, 5];
         private List<StageUI> stageList;
@@ -36,8 +36,13 @@ namespace SHY
             GameManager.Instance.playerData.nowStage = stageTree[playerPos.y, playerPos.x].data;
         }
 
-        #region 积己
         public override void Init(PlayerData _data)
+        {
+            if (nowChapter == null) NewChapter(_data);
+        }
+
+        #region 积己
+        private void NewChapter(PlayerData _data)
         {
             nowChapter = chapterDatas[_data.chapterNum].Reflect();
 
@@ -46,20 +51,21 @@ namespace SHY
 
             //Base Stage Make
             StageUI fr = Pooling.Instance.GetItem(PoolEnum.StageUI, backgroundTrm).GetComponent<StageUI>();
-            fr.transform.position = Vector3.zero;
+            fr.transform.position = new Vector3(0, 5);
+            StagePlayer.Instance.transform.position = fr.transform.position;
             stageTree[0, 2] = fr;
 
             //Boss Stage Make
             StageUI la = Pooling.Instance.GetItem(PoolEnum.StageUI, backgroundTrm).GetComponent<StageUI>();
-            la.transform.position = new Vector3(0, -nowChapter.yDistance * nowChapter.yStageCnt, 0);
+            la.transform.position = new Vector3(0, -nowChapter.yDistance * nowChapter.yStageCnt + 5, 0);
             stageTree[nowChapter.yStageCnt, 2] = la;
 
             stageList.Add(fr);
 
             for (int i = 0; i < 5; i++) Gener2();
-            
+
             fr.Init(nowChapter.baseStage);
-            
+
             for (int i = 1; i < stageList.Count; i++)
             {
                 Debug.Log(i + "锅掳 Init");
@@ -108,7 +114,7 @@ namespace SHY
 
                 st.transform.position = new Vector3(
                     (curX - 2) * 3 + Random.Range(-.3f, .4f),
-                    nowChapter.yDistance * y * -1 + Random.Range(-.3f, .4f)
+                    nowChapter.yDistance * y * -1 + Random.Range(-.3f, .4f) + 5
                     , 0 );
 
                 stageTree[y, curX] = st;
@@ -117,7 +123,5 @@ namespace SHY
             stageTree[nowChapter.yStageCnt - 1, curX].childs.Add(stageTree[nowChapter.yStageCnt, 2]);
         }
         #endregion
-
-
     }
 }
