@@ -44,21 +44,15 @@ namespace karin.Event
             HexTile targetTile = MapManager.Instance.GetTile(ownerHex + offsetPos);
 
             var attackTargets = HexTile.GetData(GetTargetTiles(targetTile, ad.direction, ad.attackType, ad.range));
-            attackTargets.ForEach(t =>
-            {
-                t.health.DecreaseHealth(damage);
-                AttackEffectHandler(ad, ad.effect, t);
-            });
-        }
 
+            AttackEffectHandler(ad, damage, attackTargets);
+        }
         public void DirectAttack(Agent target, AttackData ad)
         {
             var owner = ad.who;
             int damage = DamageClaculate(ad.damage, owner.buffContainer);
-            target.health.DecreaseHealth(damage);
-            AttackEffectHandler(ad, ad.effect, target);
+            AttackEffectHandler(ad, damage, target);
         }
-
         private int DamageClaculate(int damage, BuffContainer buffContainer)
         {
             if (buffContainer.Contains(Buff.Strength, out var buffSO))
@@ -69,21 +63,91 @@ namespace karin.Event
 
             return damage;
         }
-
-        private void AttackEffectHandler(AttackData ad, AttackEffect af, Agent target)
+        private void AttackEffectHandler(AttackData ad, int damage, List<Agent> targets)
         {
-            if (af.HasFlag(AttackEffect.EnchantBuff))
+            if (ad.effect.HasFlag(AttackEffect.EnchantBuff))
             {
-                var bd = ad.buffData;
-                bd.who = target;
-                BuffEvent?.Invoke(bd);
+                foreach (var target in targets)
+                {
+                    var bd = ad.buffData;
+                    bd.who = target;
+                    bd.value = ad.additionalValue;
+                    BuffEvent?.Invoke(bd);
+                }
             }
-            else if (af.HasFlag(AttackEffect.procedural))
+            else if (ad.effect.HasFlag(AttackEffect.HeadButt))
             {
-
+                var owner = ad.who;
+                Action callback = null;
+                Vector2 startPos = owner.transform.position;
+                bool pushTarget = HeadButt(owner, ad.additionalValue, startPos, owner.direction, damage, out Vector2 targetPos, out callback);
+                MoveAgent(owner, targetPos, new MoveData(owner, ad.additionalValue, _rewriteStart: true, _rewriteEnd: pushTarget), callback);
+            }
+            else
+            {
+                foreach (var target in targets)
+                {
+                    target.health.DecreaseHealth(damage);
+                }
             }
         }
+        private void AttackEffectHandler(AttackData ad, int damage, Agent target)
+        {
+            List<Agent> targets = new List<Agent>();
+            targets.Add(target);
+            AttackEffectHandler(ad, damage, targets);
+        }
+        private bool HeadButt(Agent owner, int maxDistance, Vector2 startPos, Direction dir
+            , int damage, out Vector2 targetPos, out Action callback)
+        {
+            bool result = false;
+            callback = null;
+            targetPos = Vector2.zero;
 
+            for (int i = 1; i <= maxDistance; i++)
+            {
+                targetPos = startPos + HexCoordinates.GetDirectionToVector(dir) * i;
+                HexTile targetTile = MapManager.Instance.GetTile(targetPos);
+
+                if (targetTile == null) //가는 길에 타일이 없어 이동하지 못함
+                {
+                    if (i == 1) break;
+                    targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(dir) * (i - 1);
+                }
+                else if (targetTile.moveAble == false) //가는 길에 적이 있어 이동하지 못함
+                {
+                    var colTarget = targetTile.overAgent;                                                                       //충돌하는 agent
+                    var colPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(dir) * (i + 1);  //충돌되어 밀려날위치
+                    var colTile = MapManager.Instance.GetTile(colPos);                                                           //출돌되어 밀려날곳의 타일
+
+                    targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(dir) * i;         //이동할위치
+
+                    if (colTile != null) //밀려날곳이 있음
+                    {
+                        result = true;
+                        callback = () =>
+                        {
+                            MoveData colTargetMD = new MoveData(
+                                colTarget, dir, MoveDirection.forward, MoveEffect.None, 1, 0, false, true); //타겟을 밀어냄
+                            MoveEvent?.Invoke(colTargetMD);
+                        };
+                    }
+                    else                //밀려날곳이 없음
+                    {
+                        result = false;
+                        callback = () =>
+                        {
+                            MoveData returnOwnerMD = new MoveData(
+                                owner, dir, MoveDirection.backward, MoveEffect.None, 1, 0, false, true); //다시 돌아옴
+                            MoveEvent?.Invoke(returnOwnerMD);
+                        };
+                    }
+                    DirectAttack(colTarget, new AttackData(owner, Vector2Int.zero, 1, AttackType.Around, damage));
+                }
+            }
+            return result;
+        }
+        
         private void ShieldEventHandler(ShieldData sd)
         {
             var owner = sd.who;
@@ -97,7 +161,7 @@ namespace karin.Event
             var owner = md.who;
             var direction = md.direction;
 
-            if(md.moveDirection == MoveDirection.backward)
+            if (md.moveDirection == MoveDirection.backward)
                 direction = HexCoordinates.InvertDirection(direction);
 
             Vector2 startPos = owner.transform.position;
@@ -105,14 +169,10 @@ namespace karin.Event
 
             Action callback = null;
 
-            if (md.effect != MoveEffect.None)
-                targetPos = GetMaxDistanceEffect(owner, md.distance, startPos, direction, md.effect, md.additionalValue, out callback);
-            else
-                targetPos = GetMaxDistance(owner, md.distance, startPos, direction);
+            targetPos = GetMaxDistance(owner, md.distance, startPos, direction);
 
             MoveAgent(owner, targetPos, md, callback);
         }
-
         private Vector2 GetMaxDistance(Agent owner, int maxDistance, Vector2 startPos, Direction direction)
         {
             Vector2 targetPos = new();
@@ -135,71 +195,17 @@ namespace karin.Event
             }
             return targetPos;
         }
-
-        private Vector2 GetMaxDistanceEffect(Agent owner, int maxDistance, Vector2 startPos, Direction direction, MoveEffect mf, int additionalValue, out Action callback)
-        {
-            Vector2 targetPos = new();
-            callback = null;
-            for (int i = 1; i <= maxDistance; i++)
-            {
-                targetPos = startPos + HexCoordinates.GetDirectionToVector(direction) * i;
-                HexTile targetTile = MapManager.Instance.GetTile(targetPos);
-
-                if (mf == MoveEffect.Collision)
-                {
-                    if (targetTile == null) //가는 길에 타일이 없어 이동하지 못함
-                    {
-                        if (i == 1) break;
-                        targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(direction) * (i - 1);
-                    }
-                    else if (targetTile.moveAble == false) //가는 길에 적이 있어 이동하지 못함
-                    {
-                        var colTarget = targetTile.overAgent;                                                                       //충돌하는 agent
-                        var colPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(direction) * (i + 1);  //충돌되어 밀려날위치
-                        var colTile = MapManager.Instance.GetTile(colPos);                                                           //출돌되어 밀려날곳의 타일
-
-                        targetPos = (Vector2)owner.transform.position + HexCoordinates.GetDirectionToVector(direction) * i;         //이동할위치
-
-                        if (colTile != null) //밀려날곳이 있음
-                        {
-                            callback = () =>
-                            {
-                                MoveData colTargetMD = new MoveData(
-                                    colTarget, direction, MoveDirection.forward, MoveEffect.None, 1, 0); //타겟을 밀어냄
-                                MoveEvent?.Invoke(colTargetMD);
-                            };
-                        }
-                        else                //밀려날곳이 없음
-                        {
-                            callback = () =>
-                            {
-                                MoveData returnOwnerMD = new MoveData(
-                                    owner, direction, MoveDirection.backward, MoveEffect.None, 1, 0); //다시 돌아옴
-                                MoveEvent?.Invoke(returnOwnerMD);
-                            };
-                        }
-                        DirectAttack(colTarget, new AttackData(owner, Vector2Int.zero, Direction.Left, 1, AttackType.Around, additionalValue, AttackEffect.None));
-
-                    }
-                }
-            }
-            return targetPos;
-        }
-
         private void MoveAgent(Agent agent, Vector2 destination, MoveData md, Action callbackAction = null)
         {
             var direction = md.direction;
 
-            if (md.moveDirection == MoveDirection.backward)
-                direction = HexCoordinates.InvertDirection(direction);
-
-            agent.MoveStart(direction, md.rewriteTile);
+            agent.MoveStart(direction, md.rewriteStart);
 
             agent.transform
                 .DOMove(destination, 0.1f).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    agent.MoveEnd(md.rewriteTile);
+                    agent.MoveEnd(md.rewriteEnd);
 
                     if (callbackAction != null)
                         callbackAction?.Invoke();

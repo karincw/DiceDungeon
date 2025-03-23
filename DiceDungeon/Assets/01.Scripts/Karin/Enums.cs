@@ -31,14 +31,13 @@ namespace karin
     {
         None = 0,
         EnchantBuff = 1,
-        procedural = 2, //가장 앞의 적만 공격
+        HeadButt, //충돌
     }
 
+    [Flags]
     public enum MoveEffect
     {
         None, //아무것도 아님
-        Collision, //충돌
-        //Repeat, //맵 밖으로 나가면 반대편에서 나옴
     }
 
     public enum Buff : int

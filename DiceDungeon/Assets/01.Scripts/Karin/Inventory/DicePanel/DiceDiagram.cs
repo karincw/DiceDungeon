@@ -16,8 +16,16 @@ namespace karin.Inventory
         public bool IsValidate() => _parts.Select(p => p.HasItem).Where(v => v == true).ToList().Count == 6;
 
         public List<EyeItemSO> GetData()
-        { 
-            return _parts.Select(s => s.GetResource()).ToList();
+        {
+            var result = new List<EyeItemSO>(_parts.Count);
+            for (int i = 0; i < _parts.Count; i++)
+            {
+                if (_parts[i] == null)
+                    result[i] = _dicePanel.MakeNoneItem();
+                else
+                    result[i] = _parts[i].GetResource();
+            }
+            return result;
         }
 
         public void SetData(DiceSO dice)
@@ -25,7 +33,10 @@ namespace karin.Inventory
             for (int i = 0; i < _parts.Count; i++)
             {
                 var currentEye = dice.eyes[i];
-                ItemSO so = _dicePanel.MakeNewItem(currentEye.itemName, currentEye.icon, currentEye);
+                EyeItemSO so = _dicePanel.MakeNoneItem();
+                so.itemName = currentEye.itemName;
+                so.image = currentEye.icon;
+                so.eye = currentEye;
                 _parts[i].resource = so;
                 _parts[i].Refresh();
             }

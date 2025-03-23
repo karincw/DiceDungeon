@@ -38,7 +38,7 @@ public class DirectionChanger : MonoBehaviour
         _target.direction = _direction;
         _showImage.sprite = sprites[nextIdx];
     }
-    private void SetDirection(Direction dir)
+    public void SetDirection(Direction dir)
     {
         _direction = dir;
         _target.direction = dir;

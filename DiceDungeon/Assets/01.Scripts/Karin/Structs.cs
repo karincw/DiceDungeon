@@ -23,8 +23,11 @@ namespace karin
         public AttackEffect effect;
         //etc
         public BuffData buffData;
+        public int additionalValue;
 
-        public AttackData(Agent _who, Vector2Int _where, Direction _direction, int _range, AttackType _attackType, int _damage, AttackEffect _effect, BuffData _buffData = default)
+        public AttackData(
+            Agent _who, Vector2Int _where, Direction _direction, int _range, AttackType _attackType
+            , int _damage, AttackEffect _effect, int _additionalValue, BuffData _buffData = default)
         {
             who = _who;
             where = _where;
@@ -33,6 +36,21 @@ namespace karin
             attackType = _attackType;
             damage = _damage;
             effect = _effect;
+            additionalValue = _additionalValue;
+            buffData = _buffData;
+        }
+        public AttackData(
+            Agent _who, Vector2Int _where, int _range, AttackType _attackType, int _damage
+            , AttackEffect _effect = AttackEffect.None, int _additionalValue = 0, BuffData _buffData = default)
+        {
+            who = _who;
+            where = _where;
+            direction = _who.direction;
+            range = _range;
+            attackType = _attackType;
+            damage = _damage;
+            effect = _effect;
+            additionalValue = _additionalValue;
             buffData = _buffData;
         }
     }
@@ -65,9 +83,10 @@ namespace karin
         //어떤 효과를 지니는지
         public MoveEffect effect;
         public int additionalValue;
-        public bool rewriteTile;
+        public bool rewriteStart;
+        public bool rewriteEnd;
 
-        public MoveData(Agent _who, Direction _direction, MoveDirection _moveDirection, MoveEffect _effect, int _distance, int _additionalValue, bool _reWriteTile = true)
+        public MoveData(Agent _who, Direction _direction, MoveDirection _moveDirection, MoveEffect _effect, int _distance, int _additionalValue, bool _rewriteStart = true, bool _rewriteEnd = true)
         {
             who = _who;
             direction = _direction;
@@ -75,7 +94,19 @@ namespace karin
             effect = _effect;
             distance = _distance;
             additionalValue = _additionalValue;
-            rewriteTile = _reWriteTile;
+            rewriteStart = _rewriteStart;
+            rewriteEnd = _rewriteEnd;
+        }
+        public MoveData(Agent _who, int _distance, MoveDirection _moveDirection = MoveDirection.forward, MoveEffect _effect = MoveEffect.None, int _additionalValue = 0, bool _rewriteStart = true, bool _rewriteEnd = true)
+        {
+            who = _who;
+            direction = _who.direction;
+            moveDirection = _moveDirection;
+            effect = _effect;
+            distance = _distance;
+            additionalValue = _additionalValue;
+            rewriteStart = _rewriteStart;
+            rewriteEnd = _rewriteEnd;
         }
     }
 

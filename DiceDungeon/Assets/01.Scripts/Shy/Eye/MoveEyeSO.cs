@@ -28,7 +28,7 @@ namespace SHY
             mo.distance = value;
             mo.effect = moveEffect;
             mo.additionalValue = CollisionDamage;
-            mo.rewriteTile = true;
+            mo.rewriteStart = true;
             return mo;
         }
     }
