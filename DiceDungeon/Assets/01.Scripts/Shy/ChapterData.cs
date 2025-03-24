@@ -86,7 +86,6 @@ namespace SHY
             }
 
             res = Random.Range(0, res);
-            Debug.Log(res);
 
             for (int i = 0; i < 4; i++)
             {
