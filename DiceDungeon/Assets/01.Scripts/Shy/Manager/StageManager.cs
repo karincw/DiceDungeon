@@ -38,7 +38,13 @@ namespace SHY
 
         public override void Init(PlayerData _data)
         {
+            StageCamera.Instance.canUse = true;
             if (nowChapter == null) NewChapter(_data);
+        }
+
+        public override void Fin()
+        {
+            StageCamera.Instance.canUse = false;
         }
 
         #region »ý¼º

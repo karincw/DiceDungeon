@@ -22,6 +22,7 @@ namespace SHY
         public PlayerData playerData;
 
         [SerializeField] private List<Scene> scenes;
+        private SceneType nowScene;
 
         private void Awake()
         {
@@ -51,14 +52,17 @@ namespace SHY
             {
                 bool isScene = scenes[i].sceneType == _scene;
 
+                if (scenes[i].sceneType == nowScene) scenes[i].manager.Fin();
+
                 scenes[i].mapObj.SetActive(isScene);
 
                 if(isScene)
                 {
-                    Debug.Log(playerData);
                     scenes[i].manager.Init(playerData);
                 }
             }
+
+            nowScene = _scene;
         }
     }
 }

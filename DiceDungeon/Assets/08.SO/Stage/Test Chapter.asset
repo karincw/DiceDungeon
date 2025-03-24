@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test Chapter
   m_EditorClassIdentifier: 
   yDistance: 3
-  yStageCnt: 9
+  yStageCnt: 13
   easyStage: 3
   eliteStage: 7
   baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
@@ -33,6 +33,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   normalEnemyStage:
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
