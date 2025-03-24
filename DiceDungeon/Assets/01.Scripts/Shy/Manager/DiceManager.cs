@@ -34,13 +34,19 @@ namespace SHY
             Debug.Log("Dice Manager Init");
 
             for (int i = 0; i < 5; i++)
-                dices[i].Init(_data.dices[i]);
+                dices[i].gameObject.SetActive(false);
         }
 
         private void OnTurn()
         {
             Debug.Log("Turn Init");
             rollcnt = 3;
+
+            DiceSO[] _data = GameManager.Instance.playerData.dices;
+
+            for (int i = 0; i < 5; i++)
+                dices[i].Init(_data[i]);
+
             Roll(true);
         }
 
