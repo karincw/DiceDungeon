@@ -1,3 +1,4 @@
+using SHY;
 using System;
 using UnityEngine;
 
@@ -10,8 +11,6 @@ namespace karin.Charactor
         private int _maxHealth;
         private int currentHealth;
         private Agent _owner;
-
-        public Action<Agent> OnDeadEvent;
 
         public void Init(Agent owner, int maxHealth)
         {
@@ -45,8 +44,8 @@ namespace karin.Charactor
 
         private void Die()
         {
-            Debug.Log($"{_owner.gameObject.name}(이)가 사망했습니다.");
-            OnDeadEvent?.Invoke(_owner);
+            if (_owner is Player) return;
+            BattleManager.Instance.dieEvent?.Invoke(_owner);
         }
     }
 }

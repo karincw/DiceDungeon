@@ -17,7 +17,6 @@ namespace karin.Inventory
         [SerializeField] private ItemSO _itemBase;
 
         [SerializeField] private EventSystem _eventsystem;
-        [SerializeField] private bool DebugingMode = true;
 
         private GraphicRaycaster _graphicRaycaster;
         private PointerEventData _pointerEventData;

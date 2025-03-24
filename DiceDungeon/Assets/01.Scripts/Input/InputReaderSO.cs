@@ -30,6 +30,11 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
 
     private void OnDisable()
     {
+        DisableInput();
+    }
+
+    public void DisableInput()
+    {
         control.InGame.Disable();
         control.UI.Disable();
     }

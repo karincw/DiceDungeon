@@ -124,7 +124,6 @@ namespace karin.Charactor
                         callbackAction?.Invoke(true); // 공격을 예약하고
                         return; //끝
                     }
-
                     BattleManager.Instance.enemyAction.Invoke(false);
                 }
             });
