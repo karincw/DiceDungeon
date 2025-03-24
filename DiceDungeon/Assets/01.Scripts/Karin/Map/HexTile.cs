@@ -108,7 +108,6 @@ namespace karin.HexMap
         {
             List<HexTile> tiles = new List<HexTile>();
             int idir = Mathf.Clamp((int)dir, 0, 5);
-            Debug.Log(idir);
             switch (type)
             {
                 case AttackType.Around:

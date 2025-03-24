@@ -31,6 +31,7 @@ namespace karin.Charactor
                 case AttackType.Around:
                     transform.localPosition = Vector3.zero;
                     transform.localScale = Vector3.one + Vector3.one * (attackDistance - 1 + attackDistance == 3 ? 1 : 0);
+                    transform.Rotate(Vector3.forward, 180);
                     break;
                 case AttackType.Front:
                     transform.Rotate(Vector3.forward, 20);
