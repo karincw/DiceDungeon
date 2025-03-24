@@ -28,7 +28,7 @@ public class DirectionChanger : MonoBehaviour
         childOn = !childOn;
 
         _dirSelector.SetActive(childOn);
-
+       
 
         //int nextIdx = (int)_direction + 1;
         //if (nextIdx > sprites.Length - 1)

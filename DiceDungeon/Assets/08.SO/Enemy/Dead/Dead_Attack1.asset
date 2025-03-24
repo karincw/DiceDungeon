@@ -17,7 +17,8 @@ MonoBehaviour:
   value: 10
   itemName: 0
   range: {fileID: 11400000, guid: a78c0597f640fe340b042e452ca4309c, type: 2}
-  attackType: 0
+  attackType: 1
   rangeDistance: 2
-  attackEffect: 0
+  attackEffect: 2
   buffEye: {fileID: 0}
+  addtionalValue: 1

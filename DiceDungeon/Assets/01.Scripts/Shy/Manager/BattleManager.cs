@@ -40,7 +40,7 @@ namespace SHY
 
             enemyAction += ShowerPop;
             enemyAction += (attack) => StartCoroutine(OnEnemyAction(attack));
-            //dieEvent += AgentDie;
+            dieEvent += AgentDie;
         }
 
         public override void Init(PlayerData _data)
@@ -66,6 +66,7 @@ namespace SHY
             {
                 Debug.Log("Stage Clear");
                 //°á°ú Ã¢
+                Reward.RewardManager.Instance.OnPlay();
             }
         }
 

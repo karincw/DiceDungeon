@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rat
   icon: {fileID: 0}
-  maxHealth: 75
+  maxHealth: 11
   maxMoveCount: 1
   useAbleAbilitys:
   - {fileID: 11400000, guid: a3fb0c0155885d4449a0e6df95d920e0, type: 2}

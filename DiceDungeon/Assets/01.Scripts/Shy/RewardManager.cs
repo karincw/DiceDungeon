@@ -8,7 +8,7 @@ using DG.Tweening;
 
 namespace SHY.Reward
 {
-    public class RewardManager : MonoBehaviour
+    public class RewardManager : SingleTon<RewardManager>
     {
         private struct RewardCell
         {

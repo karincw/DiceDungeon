@@ -12,7 +12,7 @@ namespace SHY
         private Vector2 lastLPos;
         private bool isDrager = false;
         internal int sibleIdx;
-        private int loopCnt = 5;
+        private int loopCnt = 4;
         private static int rollingCnt = 0;
 
         public DiceSO diceData;
