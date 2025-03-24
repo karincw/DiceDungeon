@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c0abeb61f544646a695969af7a3901, type: 3}
+  m_Name: Month Chapter
+  m_EditorClassIdentifier: 
+  yDistance: 3
+  yStageCnt: 5
+  easyStage: 3
+  eliteStage: 7
+  baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
+  bossStage: {fileID: 0}
+  easyEnemyStage:
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  normalEnemyStage:
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: 0ff637e65596fbb43b66e78c8ffce902, type: 2}
+  - {fileID: 11400000, guid: 0ff637e65596fbb43b66e78c8ffce902, type: 2}
+  - {fileID: 11400000, guid: 0ff637e65596fbb43b66e78c8ffce902, type: 2}
+  - {fileID: 11400000, guid: 0ff637e65596fbb43b66e78c8ffce902, type: 2}
+  - {fileID: 11400000, guid: 0ff637e65596fbb43b66e78c8ffce902, type: 2}
+  - {fileID: 11400000, guid: 8788575721600b4409fa2bb79f9d11df, type: 2}
+  - {fileID: 11400000, guid: 8788575721600b4409fa2bb79f9d11df, type: 2}
+  - {fileID: 11400000, guid: 8788575721600b4409fa2bb79f9d11df, type: 2}
+  - {fileID: 11400000, guid: f89e16b0d2c580548bacd5b46efd13f3, type: 2}
+  - {fileID: 11400000, guid: f89e16b0d2c580548bacd5b46efd13f3, type: 2}
+  - {fileID: 11400000, guid: f89e16b0d2c580548bacd5b46efd13f3, type: 2}
+  - {fileID: 11400000, guid: f89e16b0d2c580548bacd5b46efd13f3, type: 2}
+  - {fileID: 11400000, guid: f89e16b0d2c580548bacd5b46efd13f3, type: 2}
+  eliteEnemyStage: []
+  eventsStage: []
+  marketStage: []
+  rewards:
+  - {fileID: 11400000, guid: 65fac417769d2944f9deff38d9bc78d1, type: 2}
+  - {fileID: 11400000, guid: 59b19972330d15449b3ec99b1660074d, type: 2}
+  normalEnemy: 8
+  eliteEnemy: 2
+  market: 1
+  events: 4

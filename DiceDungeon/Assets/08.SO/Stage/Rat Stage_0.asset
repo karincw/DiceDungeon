@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3fcf967981e63c48961e58836269df8, type: 3}
-  m_Name: Test Stage
+  m_Name: Rat Stage_0
   m_EditorClassIdentifier: 
   mapType: 1
-  prefab: {fileID: 5121443931960188090, guid: bd0c925671eefe141beebd326551bd6a, type: 3}
+  prefab: {fileID: 4586887334769798093, guid: 046d37c48f05bd24c8baf3d7894d9f58, type: 3}

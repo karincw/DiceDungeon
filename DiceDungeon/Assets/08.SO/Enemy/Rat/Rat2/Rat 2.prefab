@@ -342,7 +342,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -3121812679155337768, guid: bae740cab29fe024b9a55612634005c5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.63207537, g: 0.67393553, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -375,7 +375,7 @@ Animator:
   m_GameObject: {fileID: 1884586377356172316}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 791b87129003bf44fae2e91e9e15bda6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2df917f04950975409ba3df4c97ee210, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   buffContainer: {fileID: 0}
   visualController: {fileID: 0}
   _startHealth: 50
-  _eData: {fileID: 11400000, guid: e8e98347a673d364394721ed83ce0435, type: 2}
+  _eData: {fileID: 11400000, guid: 2b9aeda8efcff604d807db14f0d9b899, type: 2}
   isReservation: 0
 --- !u!1 &3393131522241371246
 GameObject:

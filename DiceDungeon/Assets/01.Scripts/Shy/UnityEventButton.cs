@@ -8,7 +8,6 @@ public class UnityEventButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Click");
         _event?.Invoke();
     }
 }

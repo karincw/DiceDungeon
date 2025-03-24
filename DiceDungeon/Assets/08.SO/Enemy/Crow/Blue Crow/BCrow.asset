@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a06e034d58ec3449861b8d96e290513, type: 3}
+  m_Name: BCrow
+  m_EditorClassIdentifier: 
+  name: Dummy
+  icon: {fileID: 21300000, guid: 48f64a96e87eb524d9da18e9ceb0c397, type: 3}
+  maxHealth: 8
+  maxMoveCount: 1
+  useAbleAbilitys:
+  - {fileID: 11400000, guid: ce5a093f5cd2371429d8ed67afe564c5, type: 2}
+  - {fileID: 11400000, guid: c22f5c14a54eddb44acd37c6370778ef, type: 2}

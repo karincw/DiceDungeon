@@ -31,8 +31,6 @@ namespace SHY
 
         private void Init(PlayerData _data)
         {
-            Debug.Log("Dice Manager Init");
-
             for (int i = 0; i < 5; i++)
                 dices[i].gameObject.SetActive(false);
         }
@@ -56,14 +54,22 @@ namespace SHY
         {
             if (rollcnt <= 0) return;
 
-            rollcnt--;
-            CanClick.False();
+            bool isUse = false;
 
             for (int i = 0; i < dices.Count; i++)
             {
-                if (dices[i].SelectCheck() || _resetAll) dices[i].VInit();
+                if (dices[i].SelectCheck() || _resetAll)
+                {
+                    dices[i].VInit();
+                    isUse = true;
+                }
             }
 
+            if (!isUse) return;
+
+            CanClick.False();
+
+            rollcnt--;
             StartCoroutine(SpawnDices(_resetAll));
         }
 
