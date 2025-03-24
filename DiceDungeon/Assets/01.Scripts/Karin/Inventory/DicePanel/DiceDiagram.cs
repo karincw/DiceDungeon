@@ -17,13 +17,13 @@ namespace karin.Inventory
 
         public List<EyeItemSO> GetData()
         {
-            var result = new List<EyeItemSO>(_parts.Count);
+            var result = new List<EyeItemSO>();
             for (int i = 0; i < _parts.Count; i++)
-            {
-                if (_parts[i] == null)
-                    result[i] = _dicePanel.MakeNoneItem();
+            { 
+                if (_parts[i].resource == null)
+                    result.Add(_dicePanel.MakeNoneItem());
                 else
-                    result[i] = _parts[i].GetResource();
+                    result.Add(_parts[i].GetResource());
             }
             return result;
         }
