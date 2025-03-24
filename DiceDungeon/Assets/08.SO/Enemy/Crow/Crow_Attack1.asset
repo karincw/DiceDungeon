@@ -21,3 +21,4 @@ MonoBehaviour:
   rangeDistance: 2
   attackEffect: 1
   buffEye: {fileID: 11400000, guid: f2bace1f83240f04bbdd9820faadd744, type: 2}
+  addtionalValue: 2

@@ -2,7 +2,6 @@ using karin.BuffSystem;
 using karin.HexMap;
 using System;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace karin.Charactor
 {
@@ -10,18 +9,18 @@ namespace karin.Charactor
     {
         public Direction direction
         {
-            get => _direction; 
+            get => _direction;
             set
             {
-                if(value == _direction) return;
                 visualController.UpdateViewDirection(value);
                 _direction = value;
             }
         }
-        private Direction _direction;
+        private Direction _direction = Direction.Right;
         [HideInInspector] public AgentHealth health;
         [HideInInspector] public BuffContainer buffContainer;
         [HideInInspector] public VisualController visualController;
+        [HideInInspector] public AttackEffector attackEffector;
         [SerializeField] private short _startHealth = 50;
 
         public HexTile underTile
@@ -43,9 +42,11 @@ namespace karin.Charactor
             health = GetComponent<AgentHealth>();
             buffContainer = GetComponent<BuffContainer>();
             visualController = transform.Find("Visual").GetComponent<VisualController>();
+            attackEffector = GetComponentInChildren<AttackEffector>();
 
             transform.position = HexCoordinates.ConvertOffsetToPosition(HexCoordinates.ConvertPositionToOffset(transform.position));
             visualController.Init(this);
+            attackEffector.Init(this);
             health.Init(this, _startHealth);
             visualController.UpdateViewDirection(direction);
         }

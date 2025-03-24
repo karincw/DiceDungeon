@@ -15,8 +15,6 @@ namespace SHY
 
         private void Awake()
         {
-            Debug.Log("Dice Manager Awake");
-
             layoutGroup.enabled = false;
 
             BattleManager.Instance.Initialize += Init;
@@ -31,15 +29,12 @@ namespace SHY
 
         private void Init(PlayerData _data)
         {
-            Debug.Log("Dice Manager Init");
-
             for (int i = 0; i < 5; i++)
                 dices[i].Init(_data.dices[i]);
         }
 
         private void OnTurn()
         {
-            Debug.Log("Turn Init");
             rollcnt = 3;
             Roll(true);
         }
@@ -87,8 +82,6 @@ namespace SHY
         {
             dices = dices.OrderBy(dice => dice.sibleIdx).ToList();
 
-            Debug.Log("use dice");
-
             foreach (DiceUI dice in dices)
             {
                 yield return new WaitForSeconds(1.3f);
@@ -97,7 +90,6 @@ namespace SHY
 
             yield return new WaitForSeconds(0.7f);
 
-            Debug.Log("Use Dice Fin");
             BattleManager.Instance.enemyAction.Invoke(true);
         }
     }

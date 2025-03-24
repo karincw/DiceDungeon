@@ -65,10 +65,13 @@ namespace karin.Event
         }
         private void AttackEffectHandler(AttackData ad, int damage, List<Agent> targets)
         {
+            var owner = ad.who;
             if (ad.effect.HasFlag(AttackEffect.EnchantBuff))
             {
+                owner.attackEffector.PlayAttackEffect(owner.direction, ad.range, ad.attackType);
                 foreach (var target in targets)
                 {
+                    target.health.DecreaseHealth(damage);
                     var bd = ad.buffData;
                     bd.who = target;
                     bd.value = ad.additionalValue;
@@ -77,7 +80,6 @@ namespace karin.Event
             }
             else if (ad.effect.HasFlag(AttackEffect.HeadButt))
             {
-                var owner = ad.who;
                 Action callback = null;
                 Vector2 startPos = owner.transform.position;
                 bool pushTarget = HeadButt(owner, ad.additionalValue, startPos, owner.direction, damage, out Vector2 targetPos, out callback);
@@ -85,6 +87,7 @@ namespace karin.Event
             }
             else
             {
+                owner.attackEffector.PlayAttackEffect(owner.direction, ad.range, ad.attackType);
                 foreach (var target in targets)
                 {
                     target.health.DecreaseHealth(damage);

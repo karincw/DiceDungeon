@@ -2565,12 +2565,9 @@ MonoBehaviour:
   signColor:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
-  turnShowers:
-  - {fileID: 1482720452}
-  - {fileID: 260167800}
-  - {fileID: 2054391971}
-  - {fileID: 653728866}
-  - {fileID: 1025299162}
+  playerIcon: {fileID: 0}
+  showerPos: {fileID: 0}
+  enemySpawn: {fileID: 0}
 --- !u!1001 &456452248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4264,12 +4261,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7266299431410130635, guid: efa84a1c4c3f113408419e2bb3abe58f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5487191313509143640, guid: efa84a1c4c3f113408419e2bb3abe58f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: efa84a1c4c3f113408419e2bb3abe58f, type: 3}
 --- !u!4 &986805867 stripped
 Transform:
@@ -4632,13 +4632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5e14db439bfb64f8f203b60babc75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yDistance: 3
-  yStageCnt: 15
-  baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
-  bossStage: {fileID: 0}
-  otherStageSO:
-  - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
-  backGround: {fileID: 2048732839}
+  chapterDatas: []
+  backgroundTrm: {fileID: 0}
+  iconOrder: 0
+  mapIcons: []
 --- !u!1001 &1034770369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11476,6 +11473,7 @@ MonoBehaviour:
     sceneType: 1
     manager: {fileID: 448629177}
   debuggingScene: 1
+  onStart: 1
 --- !u!1001 &1439440313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11530,12 +11528,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6055471897852245051, guid: f9d62a293d8300b479be242aa1f9d41d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5715581579365091215, guid: f9d62a293d8300b479be242aa1f9d41d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f9d62a293d8300b479be242aa1f9d41d, type: 3}
 --- !u!4 &1439440314 stripped
 Transform:
@@ -14250,7 +14251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2404092340583152547, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2514843414326842733, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14299,7 +14300,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 809850127324525965, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
 --- !u!114 &4274055693339930539 stripped
 MonoBehaviour:
