@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test Chapter
   m_EditorClassIdentifier: 
   yDistance: 3
-  yStageCnt: 13
+  yStageCnt: 5
   easyStage: 3
   eliteStage: 7
   baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}

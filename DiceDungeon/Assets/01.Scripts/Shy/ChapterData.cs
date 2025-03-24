@@ -9,7 +9,7 @@ namespace SHY
     public class ChapterData : ScriptableObject
     {
         public float yDistance = 3;
-        public int yStageCnt = 15;
+        [Tooltip("시작 지점 제외 갯수")] public int yStageCnt = 15;
         [SerializeField] private int easyStage = 3;
         [SerializeField] private int eliteStage = 7;
 

@@ -464,7 +464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe6a6410b3d4d14b91ea568da603bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 3
   health: {fileID: 0}
   buffContainer: {fileID: 0}
   visualController: {fileID: 0}

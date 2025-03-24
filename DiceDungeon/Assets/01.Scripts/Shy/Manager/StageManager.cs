@@ -39,6 +39,7 @@ namespace SHY
         public override void Init(PlayerData _data)
         {
             StageCamera.Instance.canUse = true;
+            
             if (nowChapter == null) NewChapter(_data);
         }
 
@@ -82,6 +83,7 @@ namespace SHY
             //la.Init(bossStage);
 
             playerPos = new Vector2Int(2, 0);
+            StageCamera.Instance.min = nowChapter.yStageCnt * 0.4f;
         }
 
         private void Gener2()
