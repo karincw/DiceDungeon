@@ -14248,6 +14248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 2404092340583152547, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2514843414326842733, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.42
@@ -14295,10 +14299,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 809850127324525965, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8341a7ae8dc428c46a10831c02c55471, type: 3}
 --- !u!114 &4274055693339930539 stripped
 MonoBehaviour:
