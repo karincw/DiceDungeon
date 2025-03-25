@@ -128,4 +128,11 @@ namespace karin
         }
     }
 
+    [System.Serializable]
+    public struct ShowInfoData
+    {
+        public string infoName;
+        public string infoDescription;
+    }
+
 }

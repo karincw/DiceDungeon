@@ -116,5 +116,6 @@ namespace karin.Inventory
         {
             Border.gameObject.SetActive(state);
         }
+
     }
 }

@@ -15,6 +15,7 @@ namespace karin.Inventory
         [SerializeField] private SlotUI[] _slots;
         [SerializeField] private InvenDataSO data;
         [SerializeField] private ItemSO _itemBase;
+        [SerializeField] private InfoPanel _infoPanel;
 
         [SerializeField] private EventSystem _eventsystem;
 
@@ -79,6 +80,7 @@ namespace karin.Inventory
             _inputReader.OnMLBHoldEvent += HandleMouseHoldEvent;
             _inputReader.OnMLBUpEvent += HandleMouseUpEvent;
             _inputReader.OnLCtrlEvent += HandleLCtrlEvent;
+            _inputReader.OnShowInfoEvent += HandleShowInfo;
             _isDragging = false;
         }
 
@@ -88,6 +90,7 @@ namespace karin.Inventory
             _inputReader.OnMLBHoldEvent -= HandleMouseHoldEvent;
             _inputReader.OnMLBUpEvent -= HandleMouseUpEvent;
             _inputReader.OnLCtrlEvent -= HandleLCtrlEvent;
+            _inputReader.OnShowInfoEvent -= HandleShowInfo;
             SaveItemData();
         }
 
@@ -121,10 +124,10 @@ namespace karin.Inventory
                 data.list.Add(invenData);
             }
         }
-
         [ContextMenu("Load")]
         public void LoadItemData()
         {
+            return;
             foreach (var slot in _slots)
             {
                 slot.resource = null;
@@ -137,7 +140,6 @@ namespace karin.Inventory
                 AddItem(so, data.list[i].count);
             }
         }
-
         [ContextMenu("Init")]
         public void Init()
         {
@@ -152,7 +154,6 @@ namespace karin.Inventory
                 itemCountDic.Add(itemEnum, 0);
             }
         }
-
         public bool AddItem(ItemSO item, int count = 1)
         {
             bool completeAdd = false;
@@ -193,7 +194,6 @@ namespace karin.Inventory
             itemCountDic[item.itemName] += count;
             return completeAdd;
         }
-
         /// <summary>
         /// 아이템을 인벤토리의 앞에서부터 소모
         /// </summary>
@@ -228,7 +228,6 @@ namespace karin.Inventory
 
             return completeRemove;
         }
-
         /// <summary>
         /// 해당슬롯의 아이템을 소모
         /// </summary>
@@ -256,29 +255,28 @@ namespace karin.Inventory
 
             return completeRemove;
         }
-
         /// <summary>
         /// 레이 맞은 얘들 중에서 가장 첫번째로 맞은 애를 반환하는 함수
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>레이 맞은 얘들 중에서 가장 첫번째로 맞은 애</returns>
-        private T RaycastAndGetFirstComponent<T>() where T : Component
+        private T RaycastAndGetFirstComponent<T>()
         {
             _rrList.Clear();
 
             _graphicRaycaster.Raycast(_pointerEventData, _rrList);
 
             if (_rrList.Count == 0)
-                return null;
+                return default;
 
             return _rrList[0].gameObject.GetComponent<T>();
         }
-
         /// <summary>
         /// OnPointerDown
         /// </summary>
         private void HandleMouseDownEvent()
         {
+            _infoPanel.CloseInfo();
             _beginDragSlot = RaycastAndGetFirstComponent<SlotUI>();
 
             // 아이템을 갖고 있는 슬롯만 해당
@@ -301,7 +299,6 @@ namespace karin.Inventory
                 _beginDragSlot = null;
             }
         }
-
         /// <summary>
         /// OnPointerUp
         /// </summary>
@@ -327,7 +324,6 @@ namespace karin.Inventory
                 _beginDragIconTransform = null;
             }
         }
-
         private void OnPointerDrag()
         {
             if (_beginDragSlot == null) return;
@@ -346,7 +342,6 @@ namespace karin.Inventory
                 _cursorItem.EnableBorder(true);
             }
         }
-
         private void EndDrag(SlotUI slotUI)
         {
             if (slotUI == null || _beginDragSlot == slotUI) return;
@@ -396,7 +391,6 @@ namespace karin.Inventory
             _beginDragSlot.Refresh();
             slotUI.Refresh();
         }
-
         /// <summary>
         /// Slot의 Resource를 서로 스왑시킴
         /// </summary>
@@ -406,7 +400,6 @@ namespace karin.Inventory
         {
             (slot1.resource, slot2.resource) = (slot2.resource, slot1.resource);
         }
-
         /// <summary>
         /// Slot1의 Resource를 옮길수있는 최대값만큼 slot2로 옮김
         /// </summary>
@@ -434,7 +427,6 @@ namespace karin.Inventory
             }
             slot2.resource.count += currentValue; //진짜 개수 삽입
         }
-
         /// <summary>
         /// Slot1의 Resource를 value만큼 slot2로 옮김
         /// </summary>
@@ -467,7 +459,26 @@ namespace karin.Inventory
             }
             slot2.resource.count += currentValue; //진짜 개수 삽입
         }
-
+        private void HandleShowInfo()
+        {
+            var showInfoable = RaycastAndGetFirstComponent<IShowInfoAble>();
+            if (showInfoable != null)
+            {
+                ShowInfoData infoData;
+                if (showInfoable.TryGetInfoData(out infoData))
+                {
+                    _infoPanel.ShowInfo(infoData, _pointerEventData.position - new Vector2(350, 30));
+                }
+                else
+                {
+                    _infoPanel.CloseInfo();
+                }
+            }
+            else
+            {
+                _infoPanel.CloseInfo();
+            }
+        }
         #region Handle
 
         private void HandleLCtrlEvent(bool state)

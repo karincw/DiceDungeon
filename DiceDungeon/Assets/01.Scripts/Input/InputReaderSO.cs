@@ -14,6 +14,7 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     public Action<bool> OnLCtrlEvent;
 
     public Action OnOpenInventoryEvent;
+    public Action OnShowInfoEvent;
 
     private void OnEnable()
     {
@@ -65,5 +66,11 @@ public class InputReaderSO : ScriptableObject, IInGameActions, IUIActions
     {
         if (context.performed)
             OnOpenInventoryEvent?.Invoke();
+    }
+
+    public void OnShowInfo(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnShowInfoEvent?.Invoke();
     }
 }

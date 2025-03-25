@@ -35,6 +35,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""84f521d2-6e4d-4319-9724-ba1e4d0a467d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05d64fee-d5af-4eea-9fdf-3d6a9ea85f08"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowInfo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -122,6 +142,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_OpenInventory = m_InGame.FindAction("OpenInventory", throwIfNotFound: true);
+        m_InGame_ShowInfo = m_InGame.FindAction("ShowInfo", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MLBClick = m_UI.FindAction("MLBClick", throwIfNotFound: true);
@@ -194,11 +215,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGame;
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_OpenInventory;
+    private readonly InputAction m_InGame_ShowInfo;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
         public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @OpenInventory => m_Wrapper.m_InGame_OpenInventory;
+        public InputAction @ShowInfo => m_Wrapper.m_InGame_ShowInfo;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -211,6 +234,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @OpenInventory.started += instance.OnOpenInventory;
             @OpenInventory.performed += instance.OnOpenInventory;
             @OpenInventory.canceled += instance.OnOpenInventory;
+            @ShowInfo.started += instance.OnShowInfo;
+            @ShowInfo.performed += instance.OnShowInfo;
+            @ShowInfo.canceled += instance.OnShowInfo;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -218,6 +244,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @OpenInventory.started -= instance.OnOpenInventory;
             @OpenInventory.performed -= instance.OnOpenInventory;
             @OpenInventory.canceled -= instance.OnOpenInventory;
+            @ShowInfo.started -= instance.OnShowInfo;
+            @ShowInfo.performed -= instance.OnShowInfo;
+            @ShowInfo.canceled -= instance.OnShowInfo;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -301,6 +330,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IInGameActions
     {
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnShowInfo(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
