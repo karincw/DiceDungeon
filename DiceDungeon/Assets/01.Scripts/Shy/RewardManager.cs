@@ -93,6 +93,7 @@ namespace SHY.Reward
                     notUI.SetActive(true);
                     _group.alpha = 1;
                     rewardUI.alpha = 0;
+                    rewardUI.gameObject.SetActive(false);
                 });
             }
             seq.Append(_group.DOFade(isOpen ? 1 : 0, 0.5f)).OnStart(()=>opener.ActiveSwitch());
