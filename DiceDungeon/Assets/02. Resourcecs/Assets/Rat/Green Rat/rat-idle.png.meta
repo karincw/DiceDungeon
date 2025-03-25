@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e953114f8e8314449722343ae33018e
+guid: c1a1da944588e484c8c260f302d8c791
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -87,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -131,19 +131,19 @@ TextureImporter:
       name: rat-idle_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 6
         y: 0
-        width: 23
-        height: 15
+        width: 21
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8d5b2ab88e71da4d0800000000000000
+      spriteID: 6dc50dd9f29fba1478a20177e55d2ec4
       internalID: -3121812679155337768
       vertices: []
       indices: 
@@ -153,19 +153,19 @@ TextureImporter:
       name: rat-idle_1
       rect:
         serializedVersion: 2
-        x: 33
+        x: 34
         y: 0
-        width: 27
-        height: 11
+        width: 25
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 648fb483ca1d30a90800000000000000
+      spriteID: 858346da9fddbeb4cb5921bea7307913
       internalID: -7348799629329434554
       vertices: []
       indices: 
@@ -175,19 +175,19 @@ TextureImporter:
       name: rat-idle_2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 68
         y: 0
-        width: 25
-        height: 11
+        width: 23
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c89d44d2e03bea7c0800000000000000
+      spriteID: caa5b35fa4c314e48860b20087d16d94
       internalID: -4058109340743837300
       vertices: []
       indices: 
@@ -197,19 +197,19 @@ TextureImporter:
       name: rat-idle_3
       rect:
         serializedVersion: 2
-        x: 100
+        x: 101
         y: 0
-        width: 24
-        height: 11
+        width: 22
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 718ee89902e44edd0800000000000000
+      spriteID: d4d8f3ebff3c14a4d8b94fb3957e9651
       internalID: -2457753594715248617
       vertices: []
       indices: 
@@ -219,19 +219,19 @@ TextureImporter:
       name: rat-idle_4
       rect:
         serializedVersion: 2
-        x: 131
+        x: 132
         y: 0
-        width: 25
-        height: 11
+        width: 23
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1536ed66721782f90800000000000000
+      spriteID: 11d9e3ec6d01b684ea0452b4114915f7
       internalID: -6978203208567069871
       vertices: []
       indices: 
@@ -241,19 +241,19 @@ TextureImporter:
       name: rat-idle_5
       rect:
         serializedVersion: 2
-        x: 161
+        x: 162
         y: 0
-        width: 27
-        height: 12
+        width: 25
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a16b21deb4697390800000000000000
+      spriteID: 3af5452305bb74e4ebbbbf8edc749796
       internalID: -7820108507236310623
       vertices: []
       indices: 
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3bde090d7291c8c49b9432f227aed4bf
     internalID: 0
     vertices: []
     indices: 

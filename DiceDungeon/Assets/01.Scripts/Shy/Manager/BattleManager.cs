@@ -57,6 +57,10 @@ namespace SHY
 
             enemys = spawner.GetComponentsInChildren<Enemy>().ToList();
 
+            player.MoveStart(karin.Direction.Right);
+            player.transform.localPosition = new Vector3(0, 0.8f, 0);
+            player.MoveEnd();
+
             TurnReset();
         }
 
