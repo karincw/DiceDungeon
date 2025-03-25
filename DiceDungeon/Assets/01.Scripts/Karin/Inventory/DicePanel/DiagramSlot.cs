@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace karin.Inventory
 {
-    public class DiagramSlot : SlotUI
+    public class DiagramSlot : SlotUI, IShowInfoAble
     {
         private void Start()
         {
@@ -21,6 +21,15 @@ namespace karin.Inventory
         public EyeItemSO GetResource()
         {
             return resource as EyeItemSO;
+        }
+
+        public bool TryGetInfoData(out ShowInfoData data)
+        {
+            data = new();
+            if (resource == null) return false;
+            data.infoName = GetResource().itemName.ToString();
+            data.infoDescription = GetResource().eye.eyeDescrption;
+            return true;
         }
     }
 }
