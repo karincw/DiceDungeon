@@ -24,9 +24,12 @@ namespace SHY
             {
                 if(stageTree[playerPos.y + 1, x] == _stage)
                 {
-                    playerPos = new Vector2Int(x, playerPos.y + 1);
-                    canMove = true;
-                    break;
+                    if(stageTree[playerPos.y, playerPos.x].childs.Contains(_stage))
+                    {
+                        playerPos = new Vector2Int(x, playerPos.y + 1);
+                        canMove = true;
+                        break;
+                    }
                 }
             }
 

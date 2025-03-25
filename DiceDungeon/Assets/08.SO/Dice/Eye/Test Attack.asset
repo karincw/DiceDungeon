@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Test Attack
   m_EditorClassIdentifier: 
   eyeName: "\uCE7C"
+  eyeDescrption: 
   icon: {fileID: 21300000, guid: 649454a281ed6ff4a99af0ee8c128c14, type: 3}
   value: 10
-  itemName: 6
+  itemName: 5
   range: {fileID: 0}
   attackType: 0
+  rangeDistance: 1
   attackEffect: 0
   buffEye: {fileID: 0}
+  addtionalValue: 0
