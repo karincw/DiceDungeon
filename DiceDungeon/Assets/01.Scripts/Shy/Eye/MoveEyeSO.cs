@@ -29,6 +29,7 @@ namespace SHY
             mo.effect = moveEffect;
             mo.additionalValue = CollisionDamage;
             mo.rewriteStart = true;
+            mo.rewriteEnd = true;
             return mo;
         }
     }

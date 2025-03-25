@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a06e034d58ec3449861b8d96e290513, type: 3}
   m_Name: Crow
   m_EditorClassIdentifier: 
-  name: Dummy
-  icon: {fileID: 21300000, guid: 2956b93d9e0230d499903a94fc97f5e8, type: 3}
-  maxHealth: 22
+  name: Crow
+  icon: {fileID: -19073062547071739, guid: 5021563498b3ff340a33a9391a31e4aa, type: 3}
+  maxHealth: 50
   maxMoveCount: 2
   useAbleAbilitys:
   - {fileID: 11400000, guid: c48660ea2412dfc43971f3ac5a3f123c, type: 2}
-  - {fileID: 11400000, guid: bddc832b58c08dc4da83b48cd8255b63, type: 2}

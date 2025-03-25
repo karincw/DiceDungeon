@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Dead
   m_EditorClassIdentifier: 
   name: Dummy
-  maxHealth: 75
+  icon: {fileID: 0}
+  maxHealth: 45
   maxMoveCount: 1
   useAbleAbilitys:
   - {fileID: 11400000, guid: 938514e2e5f4ad7428622d62c8298b36, type: 2}
+  - {fileID: 11400000, guid: 07d8cecbba9432d4093368c4cca67f42, type: 2}
+  - {fileID: 11400000, guid: ad12f817a9c94184daa46feda8e390ed, type: 2}

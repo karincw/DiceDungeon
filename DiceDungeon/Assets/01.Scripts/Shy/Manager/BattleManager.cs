@@ -45,8 +45,6 @@ namespace SHY
 
         public override void Init(PlayerData _data)
         {
-            Debug.Log("Battle Manager Init");
-
             if (enemySpawn.childCount != 0) Destroy(enemySpawn.GetChild(0).gameObject);
 
             GameObject spawner = Instantiate((_data.nowStage as BattleStageSO).prefab, enemySpawn);
@@ -104,7 +102,6 @@ namespace SHY
 
         private void TurnShowerPop()
         {
-            Debug.Log("pop");
             Pooling.Instance.ReturnItem(tsList[0].gameObject);
             tsList.RemoveAt(0);
             showerDatas.RemoveAt(0);

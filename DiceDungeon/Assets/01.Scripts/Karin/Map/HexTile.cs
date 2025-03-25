@@ -33,7 +33,7 @@ namespace karin.HexMap
             }
             else
             {
-                if(warningDic.ContainsKey(key))
+                if (warningDic.ContainsKey(key))
                 {
                     warningDic.Remove(key);
                 }
@@ -107,20 +107,21 @@ namespace karin.HexMap
         public List<HexTile> GetNeighbourTiles(Direction dir, AttackType type)
         {
             List<HexTile> tiles = new List<HexTile>();
+            int idir = Mathf.Clamp((int)dir, 0, 5);
             switch (type)
             {
                 case AttackType.Around:
                     tiles = neighbourTiles;
                     break;
                 case AttackType.Front:
-                    if (neighbourTiles[(int)dir] != null)
+                    if (neighbourTiles[idir] != null)
                     {
-                        tiles.Add(neighbourTiles[(int)dir]);
+                        tiles.Add(neighbourTiles[idir]);
                     }
                     break;
                 case AttackType.Fan:
 
-                    for (int i = (int)dir - 1; i <= (int)dir + 1; i++)
+                    for (int i = idir - 1; i <= idir + 1; i++)
                     {
                         if (i == -1)
                         {
