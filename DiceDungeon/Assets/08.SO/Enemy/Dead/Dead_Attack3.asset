@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Dead_Attack3
   m_EditorClassIdentifier: 
   eyeName: Dead_Attack1
+  eyeDescrption: 
   icon: {fileID: 0}
-  value: 5
+  value: 8
   itemName: 0
-  range: {fileID: 11400000, guid: 9cf81404756e91f41a81c6c1293e1f98, type: 2}
+  range: {fileID: 11400000, guid: 9b1f2215381db594997b738b52898025, type: 2}
   attackType: 3
-  rangeDistance: 1
+  rangeDistance: 2
   attackEffect: 0
   buffEye: {fileID: 0}
   addtionalValue: 1

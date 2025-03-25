@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419196c824ab0ba44bb00d36bfd2d196, type: 3}
   m_Name: Move_Backward
   m_EditorClassIdentifier: 
-  eyeName: "\uBC29\uD5A5"
+  eyeName: "\uB3C4\uB9DD"
+  eyeDescrption: "\uBC14\uB77C\uBCF4\uB294 \uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C
+    2\uCE78 \uC804\uC9C4\uD569\uB2C8\uB2E4."
   icon: {fileID: 21300000, guid: 89d55793bf1eb7f4d899f903550bfda8, type: 3}
   value: 1
   itemName: 2

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419196c824ab0ba44bb00d36bfd2d196, type: 3}
   m_Name: Move
   m_EditorClassIdentifier: 
-  eyeName: "\uBC29\uD5A5"
+  eyeName: "\uC804\uC9C4"
+  eyeDescrption: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uC804\uC9C4\uD569\uB2C8\uB2E4."
   icon: {fileID: 21300000, guid: 3c3fd9331238c86428c3ddf14ef50506, type: 3}
   value: 1
   itemName: 1

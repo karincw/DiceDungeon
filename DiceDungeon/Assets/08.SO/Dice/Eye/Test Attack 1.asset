@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fe33d60fe355474eb746f70fb0d54d0, type: 3}
-  m_Name: Test Attack
+  m_Name: Test Attack 1
   m_EditorClassIdentifier: 
-  eyeName: "\uBCA0\uAE30"
-  eyeDescrption: "\uBD80\uCC44\uAF34\uB85C \uC801\uC5D0\uAC8C 7\uC758 \uD53C\uD574\uB97C
+  eyeName: "\uCC0C\uB974\uAE30"
+  eyeDescrption: "\uC804\uBC29 2\uCE78\uC758 \uC801\uB4E4\uC5D0\uAC8C 12\uC758 \uD53C\uD574\uB97C
     \uC90D\uB2C8\uB2E4."
   icon: {fileID: 21300000, guid: 649454a281ed6ff4a99af0ee8c128c14, type: 3}
-  value: 7
-  itemName: 4
+  value: 12
+  itemName: 5
   range: {fileID: 0}
-  attackType: 2
+  attackType: 0
   rangeDistance: 1
   attackEffect: 0
   buffEye: {fileID: 0}

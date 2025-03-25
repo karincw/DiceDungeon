@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dummy
   icon: {fileID: 21300000, guid: 39d88a5147fac38498b838231ce50213, type: 3}
-  maxHealth: 55
+  maxHealth: 70
   maxMoveCount: 2
   useAbleAbilitys:
+  - {fileID: 11400000, guid: 938514e2e5f4ad7428622d62c8298b36, type: 2}
+  - {fileID: 11400000, guid: 07d8cecbba9432d4093368c4cca67f42, type: 2}
   - {fileID: 11400000, guid: ad12f817a9c94184daa46feda8e390ed, type: 2}
