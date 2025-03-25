@@ -4,6 +4,8 @@ namespace karin.Inventory
 {
     public class DiagramSlot : SlotUI, IShowInfoAble
     {
+        public bool canDirectDelete = false;
+
         private void Start()
         {
             maxCount = 1;
@@ -27,7 +29,7 @@ namespace karin.Inventory
         {
             data = new();
             if (resource == null) return false;
-            data.infoName = GetResource().itemName.ToString();
+            data.infoName = GetResource().eye.eyeName;
             data.infoDescription = GetResource().eye.eyeDescrption;
             return true;
         }

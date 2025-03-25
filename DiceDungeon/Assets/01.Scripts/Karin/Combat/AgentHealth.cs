@@ -44,7 +44,6 @@ namespace karin.Charactor
 
         private void Die()
         {
-            if (_owner is Player) return;
             BattleManager.Instance.dieEvent?.Invoke(_owner);
         }
     }
