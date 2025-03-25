@@ -7,6 +7,7 @@ namespace SHY
     public abstract class EyeSO : ScriptableObject
     {
         public string eyeName;
+        public string eyeDescrption;
         public Sprite icon;
         public int value;
         public ItemNames itemName;

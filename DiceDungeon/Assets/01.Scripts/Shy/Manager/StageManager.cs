@@ -75,7 +75,6 @@ namespace SHY
 
             for (int i = 1; i < stageList.Count; i++)
             {
-                Debug.Log(i + "¹øÂ° Init");
                 stageList[i].Init(nowChapter.GetValue());
             }
 
