@@ -40,6 +40,7 @@ namespace SHY
             diceData = _so;
             
             lastLPos = transform.localPosition;
+            Debug.Log(lastLPos);
         }
 
         public void VInit()

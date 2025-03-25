@@ -44,9 +44,10 @@ namespace SHY.Reward
 
         public void AddItem(int _num)
         {
-            ItemSO _item = new ItemSO();
+            EyeItemSO _item = new EyeItemSO();
             _item.itemName = items[_num].data.itemName;
             _item.image = items[_num].data.icon;
+            _item.eye = items[_num].data;
             Inventory.Instance.AddItem(_item);
             BattleSceneFin();
         }
