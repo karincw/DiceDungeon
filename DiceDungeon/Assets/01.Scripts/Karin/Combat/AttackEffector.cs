@@ -40,6 +40,9 @@ namespace karin.Charactor
                     transform.Rotate(Vector3.forward, 180);
                     break;
                 case AttackType.AllAround:
+                    transform.localPosition = Vector3.zero;
+                    transform.localScale = Vector3.one + Vector3.one * (attackDistance - 1 + attackDistance == 3 ? 1 : 0);
+                    transform.Rotate(Vector3.forward, 180);
                     break;
                 default:
                     break;

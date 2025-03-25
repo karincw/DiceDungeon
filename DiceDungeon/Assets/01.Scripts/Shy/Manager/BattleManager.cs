@@ -32,6 +32,7 @@ namespace SHY
         [Header("UI Pos")]
         [SerializeField] private Transform showerPos;
         [SerializeField] private Transform enemySpawn;
+        [SerializeField] private DeadPanel _deadPanel;
 
         private void Awake()
         {
@@ -64,7 +65,11 @@ namespace SHY
 
         private void AgentDie(Agent _agent)
         {
-            Debug.Log("Die");
+            if(_agent is Player player)
+            {
+                _deadPanel.openPanel();
+                return;
+            }
             Enemy en = _agent as Enemy;
             enemys.Remove(en);
             en.DeadEvent();

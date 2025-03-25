@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DeadPanel : MonoBehaviour
@@ -11,7 +12,7 @@ public class DeadPanel : MonoBehaviour
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _retryBtn = transform.Find("RetryButton").GetComponent<Button>();
+        _retryBtn = transform.Find("Panel").Find("RetryButton").GetComponent<Button>();
         _retryBtn.onClick.AddListener(RetryGame);
     }
 
@@ -30,7 +31,7 @@ public class DeadPanel : MonoBehaviour
 
     public void RetryGame()
     {
-        //다시시작
+        SceneManager.LoadScene(0);
     }
 
 }

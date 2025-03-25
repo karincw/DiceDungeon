@@ -345,7 +345,7 @@ namespace karin.Inventory
         private void EndDrag(SlotUI slotUI)
         {
             if (slotUI == null || _beginDragSlot == slotUI) return;
-            if (_beginDragSlot is DiagramSlot && slotUI is TrashSlot)
+            if (!(_beginDragSlot as DiagramSlot).canDirectDelete && slotUI is TrashSlot)
             {
                 Debug.Log("다이어그램에 속한 주사위를 직접적으로 삭제할수없음");
                 return;
