@@ -17,7 +17,7 @@ MonoBehaviour:
   easyStage: 3
   eliteStage: 7
   baseStage: {fileID: 11400000, guid: 3a23bffddc314664b9ca5094fabf1e8b, type: 2}
-  bossStage: {fileID: 0}
+  bossStage: {fileID: 11400000, guid: f5bcf0bd2b3767d40914c43b1015cc69, type: 2}
   easyEnemyStage:
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
@@ -33,7 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   - {fileID: 11400000, guid: 42c31f749fdf1f04e83aac7491e41881, type: 2}
   normalEnemyStage:
-  - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
+  - {fileID: 11400000, guid: f5bcf0bd2b3767d40914c43b1015cc69, type: 2}
   - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
   - {fileID: 11400000, guid: 50b28e385d171044bbacdbad284aefbe, type: 2}
   eliteEnemyStage: []

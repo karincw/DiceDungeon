@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: T2
   m_EditorClassIdentifier: 
   diceName: "\uAE30\uBCF8 \uC8FC\uC0AC\uC704"
-  diceColor: {r: 1, g: 1, b: 1, a: 1}
   description: "\uC544\uBB34\uB7F0 \uAE30\uB2A5\uC774 \uC5C6\uC5B4\uC694..."
+  diceColor: {r: 1, g: 1, b: 1, a: 1}
   value: 0
   effect: 0
   eyes:

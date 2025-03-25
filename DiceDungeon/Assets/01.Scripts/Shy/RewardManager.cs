@@ -54,6 +54,8 @@ namespace SHY.Reward
         public void OnPlay()
         {
             Debug.Log("Reward UI");
+
+            rewardUI.gameObject.SetActive(true);
             rewardUI.alpha = 0;
 
             //Data를 가져오는 코드

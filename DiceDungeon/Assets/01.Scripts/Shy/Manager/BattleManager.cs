@@ -12,7 +12,7 @@ namespace SHY
         public static BattleManager Instance;
 
         public Player player;
-        private List<Enemy> enemys = new List<Enemy>();
+        internal List<Enemy> enemys = new List<Enemy>();
         private int loopCnt = 0;
 
         public Action playerTurnInit;
@@ -55,7 +55,7 @@ namespace SHY
 
             enemys = spawner.GetComponentsInChildren<Enemy>().ToList();
 
-            player.MoveStart(karin.Direction.Right);
+            player.MoveStart(karin.Direction.Right, false);
             player.transform.localPosition = new Vector3(0, 0.8f, 0);
             player.MoveEnd();
 
@@ -64,7 +64,22 @@ namespace SHY
 
         private void AgentDie(Agent _agent)
         {
-            enemys.Remove(_agent as Enemy);
+            Debug.Log("Die");
+            Enemy en = _agent as Enemy;
+            enemys.Remove(en);
+            en.DeadEvent();
+
+            for (int i = 0; i < showerDatas.Count; i++)
+            {
+                if(showerDatas[i].data == en)
+                {
+                    Destroy(tsList[i].gameObject);
+                    tsList.RemoveAt(i);
+                    showerDatas.RemoveAt(i);
+                }
+            }
+
+            Destroy(_agent.gameObject);
 
             if (enemys.Count == 0)
             {
@@ -77,11 +92,11 @@ namespace SHY
         #region Turn Shower
         private void ShowerSet()
         {
-            showerDatas.Add(new ShowerData(signColor[0], playerIcon));
+            showerDatas.Add(new ShowerData(signColor[0], playerIcon, player));
 
             for (int i = 0; i < enemys.Count; i++)
             {
-                showerDatas.Add(new ShowerData(signColor[1], enemys[i]._eData.icon));
+                showerDatas.Add(new ShowerData(signColor[1], enemys[i]._eData.icon, enemys[i]));
             }
         }
         
@@ -123,18 +138,22 @@ namespace SHY
         private IEnumerator OnEnemyAction(bool _isAttack)
         {
             yield return new WaitForEndOfFrame();
+
             if (loopCnt == enemys.Count)
             {
                 loopCnt = 0;
 
-                if(_isAttack) //적 공격이 모두 끝났을 때
+                if(enemys.Count != 0)
                 {
-                    yield return new WaitForSeconds(0.5f);
-                    TurnReset();
-                }
-                else //적 초기화가 모두 끝났을 때
-                {
-                    playerTurnInit.Invoke();
+                    if (_isAttack) //적 공격이 모두 끝났을 때
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        TurnReset();
+                    }
+                    else //적 초기화가 모두 끝났을 때
+                    {
+                        playerTurnInit.Invoke();
+                    }
                 }
             }
             else

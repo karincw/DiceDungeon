@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: 72efec6178b8d674b8d9b17809f2d275
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1307102781619078554
+    second: Swamp_0
+  - first:
+      213: 2128825992742320277
+    second: Swamp_1
+  - first:
+      213: -2929148058146704241
+    second: Swamp_2
+  - first:
+      213: -261222402548667273
+    second: Swamp_3
+  - first:
+      213: -6402091417667100651
+    second: Swamp_4
+  - first:
+      213: -7914766892422834214
+    second: Swamp_5
+  - first:
+      213: 5280192924433528317
+    second: Swamp_6
+  - first:
+      213: 2499881287074726113
+    second: Swamp_7
+  - first:
+      213: -6630879317122115742
+    second: Swamp_8
+  - first:
+      213: 6878899745021184341
+    second: Swamp_9
+  - first:
+      213: 2345681045834276639
+    second: Swamp_10
+  - first:
+      213: 2556176871420060320
+    second: Swamp_11
+  - first:
+      213: -518662519605015107
+    second: Swamp_12
+  - first:
+      213: -784168564734972639
+    second: Swamp_13
+  - first:
+      213: -2397100508889033900
+    second: Swamp_14
+  - first:
+      213: 6312314441964259098
+    second: Swamp_15
+  - first:
+      213: 4874153994306553867
+    second: Swamp_16
+  - first:
+      213: -4563539557602541044
+    second: Swamp_17
+  - first:
+      213: -2775743757213284899
+    second: Swamp_18
+  - first:
+      213: -2857926412597940119
+    second: Swamp_19
+  - first:
+      213: 3056880276579075925
+    second: Swamp_20
+  - first:
+      213: 5732197971125886454
+    second: Swamp_21
+  - first:
+      213: 1007334326998510608
+    second: Swamp_22
+  - first:
+      213: -5355287340973321202
+    second: Swamp_23
+  - first:
+      213: -2454154244149310556
+    second: Swamp_24
+  - first:
+      213: -4431975610784793784
+    second: Swamp_25
+  - first:
+      213: 3767574864309356158
+    second: Swamp_26
+  - first:
+      213: 8702435807748727898
+    second: Swamp_27
+  - first:
+      213: -8020235850250405956
+    second: Swamp_28
+  - first:
+      213: 6097765993465236522
+    second: Swamp_29
+  - first:
+      213: -1985751165393231457
+    second: Swamp_30
+  - first:
+      213: 6933418533777155224
+    second: Swamp_31
+  - first:
+      213: 6124754434912917785
+    second: Swamp_32
+  - first:
+      213: -7778176017021181031
+    second: Swamp_33
+  - first:
+      213: 7003423683191214532
+    second: Swamp_34
+  - first:
+      213: 6957720596319711608
+    second: Swamp_35
+  - first:
+      213: -3476200518422370205
+    second: Swamp_36
+  - first:
+      213: 6244114450027474608
+    second: Swamp_37
+  - first:
+      213: 7930685700899317157
+    second: Swamp_38
+  - first:
+      213: 8305648322583774589
+    second: Swamp_39
+  - first:
+      213: 5917469826289053321
+    second: Swamp_40
+  - first:
+      213: -8699804409108970921
+    second: Swamp_41
+  - first:
+      213: 3613881042104991659
+    second: Swamp_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Swamp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1104
+        width: 640
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 958a1f419c1efc843b759f46c212f91e
+      internalID: 727959439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swamp_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 640
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761325147daf3c7449988ae40b1f1094
+      internalID: -573906312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swamp_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 640
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3eebba905f39d45bdbfd6c73990052
+      internalID: -523437306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swamp_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acef49cea7c3f134bab7078758d998f2
+      internalID: -1427440174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 468f9c8c6ea7cfe4ab5cebfee256fa37
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Swamp_0: 727959439
+      Swamp_1: -573906312
+      Swamp_2: -523437306
+      Swamp_3: -1427440174
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

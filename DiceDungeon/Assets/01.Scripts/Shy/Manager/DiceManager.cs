@@ -36,12 +36,9 @@ namespace SHY
         private void OnTurn()
         {
             rollcnt = 3;
-
             DiceSO[] _data = GameManager.Instance.playerData.dices;
-
             for (int i = 0; i < 5; i++)
                 dices[i].Init(_data[i]);
-
             Roll(true);
         }
 
@@ -53,11 +50,14 @@ namespace SHY
 
             bool isUse = false;
 
+            DiceSO[] _data = GameManager.Instance.playerData.dices;
+
             for (int i = 0; i < dices.Count; i++)
             {
                 if (dices[i].SelectCheck() || _resetAll)
                 {
                     dices[i].VInit();
+                    dices[i].Init(_data[i]);
                     isUse = true;
                 }
             }
@@ -99,6 +99,9 @@ namespace SHY
             foreach (DiceUI dice in dices)
             {
                 yield return new WaitForSeconds(1.3f);
+
+                if (BattleManager.Instance.enemys.Count == 0) break;
+                
                 dice.diceData.OnUse(BattleManager.Instance.player);
             }
 

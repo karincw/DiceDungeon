@@ -2,6 +2,7 @@ using UnityEngine;
 using karin.Charactor;
 using System.Collections.Generic;
 using karin;
+using System.Linq;
 
 namespace SHY
 {
@@ -17,14 +18,22 @@ namespace SHY
         public int value;
         public DiceEffect effect;
 
-        public void Reflect(DiceSO _dice)
-        {
-            eyes = _dice.eyes;
-            eyeNum = 0;
-        }
-
         public List<EyeSO> eyes = new();
         private int eyeNum = 0;
+
+        public DiceSO Reflect()
+        {
+            DiceSO ds = CreateInstance<DiceSO>();
+            for (int i = 0; i < eyes.Count; i++)
+            {
+                ds.eyes.Add(eyes[i]);
+            }
+            ds.eyeNum = 0;
+
+            return ds;
+        }
+
+        
 
         public Sprite Roll()
         {

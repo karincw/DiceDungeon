@@ -26,7 +26,8 @@ namespace SHY
 
         private void Awake()
         {
-            playerData = ScriptableObject.CreateInstance<PlayerData>().Reflect(playerData);
+            playerData = playerData.Reflect();
+            //playerData.DiceInit();
 
             StagePlayer.Instance.fin += SceneChange;
         }

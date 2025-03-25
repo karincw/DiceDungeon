@@ -33,6 +33,11 @@ namespace karin.Charactor
             onUndertileChanged -= HandleUnderTileChanged;
         }
 
+        public void DeadEvent()
+        {
+            MoveStart(Direction.BottomLeft);
+            _warningtiles.ForEach(tile => tile.SetWarning(this, false));
+        }
 
         private void HandleUnderTileChanged()
         {

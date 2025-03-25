@@ -38,17 +38,15 @@ namespace SHY
         public void Init(DiceSO _so)
         {
             diceData = _so;
-            checker.SetActive(false);
-            sibleIdx = transform.GetSiblingIndex();
+            
             lastLPos = transform.localPosition;
-
-            VInit();
         }
 
         public void VInit()
         {
             icon.sprite = diceData.Roll();
             icon.gameObject.SetActive(false);
+            sibleIdx = transform.GetSiblingIndex();
             gameObject.SetActive(false);
         }
 
@@ -57,6 +55,7 @@ namespace SHY
             checker.SetActive(false);
             gameObject.SetActive(true);
             rollingCnt++;
+
             anime.SetBool("Roll", true);
         }
 

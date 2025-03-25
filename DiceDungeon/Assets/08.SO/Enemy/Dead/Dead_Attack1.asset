@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyeName: Dead_Attack1
   icon: {fileID: 0}
-  value: 10
+  value: 12
   itemName: 0
-  range: {fileID: 11400000, guid: a78c0597f640fe340b042e452ca4309c, type: 2}
-  attackType: 0
+  range: {fileID: 11400000, guid: 9cf81404756e91f41a81c6c1293e1f98, type: 2}
+  attackType: 2
   rangeDistance: 2
   attackEffect: 0
   buffEye: {fileID: 0}

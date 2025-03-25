@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demon_Mage
   m_EditorClassIdentifier: 
   name: Demon_Mage
+  icon: {fileID: 21300000, guid: 4eaddd4798c2bc4488676d8f5d2c65c1, type: 3}
   maxHealth: 200
   maxMoveCount: 2
   useAbleAbilitys:

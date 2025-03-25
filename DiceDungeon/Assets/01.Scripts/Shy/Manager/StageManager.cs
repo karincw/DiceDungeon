@@ -79,7 +79,7 @@ namespace SHY
             }
 
             stageList.Add(la);
-            //la.Init(bossStage);
+            la.Init(nowChapter.bossStage);
 
             playerPos = new Vector2Int(2, 0);
             StageCamera.Instance.min = nowChapter.yStageCnt * 0.4f;

@@ -13,17 +13,24 @@ namespace SHY
         public int chapterNum = 0;
         internal StageSO nowStage;
 
-        public PlayerData Reflect (PlayerData _data)
+        public PlayerData Reflect ()
         {
-            hp = _data.hp;
-            gold = _data.gold;
+            PlayerData pd = CreateInstance<PlayerData>();
+
+            pd.hp = hp;
+            pd.gold = gold;
+
             for (int i = 0; i < 5; i++)
             {
-                dices[i] = CreateInstance<DiceSO>();
-                dices[i].Reflect(_data.dices[i]);
+                pd.dices[i] = dices[i].Reflect();
             }
 
-            return this;
+            return pd;
+        }
+
+        public void DiceInit()
+        {
+            
         }
     }
 }

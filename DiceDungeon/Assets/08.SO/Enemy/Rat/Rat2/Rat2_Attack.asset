@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   value: 6
   itemName: 0
-  range: {fileID: 11400000, guid: c283c65f784bc5c4c9351b36aea10e78, type: 2}
+  range: {fileID: 11400000, guid: 9cf81404756e91f41a81c6c1293e1f98, type: 2}
   attackType: 0
   rangeDistance: 1
   attackEffect: 0

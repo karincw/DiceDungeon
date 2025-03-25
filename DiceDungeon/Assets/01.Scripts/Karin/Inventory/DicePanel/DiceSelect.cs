@@ -19,6 +19,9 @@ namespace karin.Inventory
         private void Awake()
         {
             _targetBtn = GetComponent<Button>();
+        }
+        private void Start()
+        {
             _currentDice = GameManager.Instance.playerData.dices[_diceIdx];
         }
         private void OnDestroy()

@@ -1964,7 +1964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Die's Foreset
+  m_text: Die's Forest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5d8bb908a8aa6540b0e4ad23911b80c, type: 2}
   m_sharedMaterial: {fileID: 2722181226836602237, guid: d5d8bb908a8aa6540b0e4ad23911b80c, type: 2}

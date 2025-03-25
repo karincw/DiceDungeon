@@ -52,7 +52,7 @@ namespace karin.HexMap
         {
             _openList = new List<HexTile>();
             _closedList = new List<HexTile>();
-            _destinationPos = endPositions.OrderBy(t => Vector2.Distance(t.transform.position, startPos.transform.position)).First();
+            _destinationPos = endPositions.OrderBy(t => Vector2.Distance(t.transform.position, startPos.transform.position)).Where(t => t.overAgent == null).First();
             _openList.Add(startPos);
 
             while (_openList.Count > 0)

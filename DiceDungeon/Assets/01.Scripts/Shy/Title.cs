@@ -5,6 +5,7 @@ using DG.Tweening;
 using System.Collections;
 using CanClick = SHY.CanClick;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
@@ -100,6 +101,7 @@ public class Title : MonoBehaviour
     {
         if (!CanClick.clickAble) return;
         Debug.Log("Ω√¿€");
+        SceneManager.LoadScene("Dice");
     }
 
     public void OnFinBt()

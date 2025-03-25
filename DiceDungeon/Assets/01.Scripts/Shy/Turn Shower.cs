@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Agent = karin.Charactor.Agent;
 
 namespace SHY
 {
@@ -26,11 +27,13 @@ namespace SHY
     {
         public Color backColor;
         public Sprite icon;
+        public Agent data;
 
-        public ShowerData(Color _color, Sprite _icon) 
+        public ShowerData(Color _color, Sprite _icon, Agent _agent) 
         {
             backColor = _color;
             icon = _icon;
+            data = _agent;
         }
     }
 }
