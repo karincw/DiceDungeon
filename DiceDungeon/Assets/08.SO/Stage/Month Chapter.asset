@@ -63,7 +63,14 @@ MonoBehaviour:
   marketStage: []
   rewards:
   - {fileID: 11400000, guid: 65fac417769d2944f9deff38d9bc78d1, type: 2}
-  - {fileID: 11400000, guid: 59b19972330d15449b3ec99b1660074d, type: 2}
+  - {fileID: 11400000, guid: af8b0ab6fa2f2e1468d9ba9a7674054d, type: 2}
+  - {fileID: 11400000, guid: 2c91efe387d30d14db7f36429bcfbb35, type: 2}
+  - {fileID: 11400000, guid: 177cf5000a6efc34d8720d07e27a8b4b, type: 2}
+  - {fileID: 11400000, guid: a749c08c8a08c604d8cd6872786554d9, type: 2}
+  - {fileID: 11400000, guid: 972dd54599c24b246b08a211429b2e3c, type: 2}
+  - {fileID: 11400000, guid: c7d11920fe548da4c9852ec59f082c2d, type: 2}
+  - {fileID: 11400000, guid: cdfb7aa545262a841a8f052ce0296dd6, type: 2}
+  - {fileID: 11400000, guid: b25caa77b4e319e4a9b91f2e6b8c176d, type: 2}
   normalEnemy: 8
   eliteEnemy: 2
   market: 1

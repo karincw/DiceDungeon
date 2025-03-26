@@ -37,6 +37,7 @@ namespace SHY
 
             StagePlayer.Instance.DoMove(stageTree[playerPos.y, playerPos.x].transform.position);
             GameManager.Instance.playerData.nowStage = stageTree[playerPos.y, playerPos.x].data;
+            GameManager.Instance.playerData.chapterNum += 1;
         }
 
         public override void Init(PlayerData _data)

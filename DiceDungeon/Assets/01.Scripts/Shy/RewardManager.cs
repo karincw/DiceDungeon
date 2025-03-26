@@ -103,11 +103,5 @@ namespace SHY.Reward
         {
             CanvasAlpha(battleScene, false);
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P)) OnPlay();
-            if (Input.GetKeyDown(KeyCode.O)) BattleSceneFin();
-        }
     }
 }

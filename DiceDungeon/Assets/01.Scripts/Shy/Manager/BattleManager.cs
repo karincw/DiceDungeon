@@ -90,6 +90,9 @@ namespace SHY
             {
                 Debug.Log("Stage Clear");
                 //°á°ú Ã¢
+
+                if (GameManager.Instance.playerData.chapterNum == 5) UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
+
                 Reward.RewardManager.Instance.OnPlay();
             }
         }
@@ -144,7 +147,7 @@ namespace SHY
         {
             yield return new WaitForEndOfFrame();
 
-            if (loopCnt == enemys.Count)
+            if (loopCnt >= enemys.Count)
             {
                 loopCnt = 0;
 
@@ -170,6 +173,7 @@ namespace SHY
 
                 if(_isAttack)
                 {
+                    Debug.Log(enemys[loopCnt]);
                     enemys[loopCnt++].PlayAttack();
                 }
                 else
